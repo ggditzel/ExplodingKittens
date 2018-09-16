@@ -1,0 +1,8 @@
+09:23 16/09/2018
+retirado o "include" entre "efetuar jogada" e "comprar carta", já que não é obrigatório comprar a carta durante uma jogada (caso a carta Skip seja utilizada); também não é obrigatório jogar uma carta antes de comprar, então foi colocado o "extend"
+
+09:42 16/09/2018
+Adicionado o retorno do caso "Mostrar descrição da carta", no diagrama geral de interação
+
+
+
