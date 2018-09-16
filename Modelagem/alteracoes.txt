@@ -27,3 +27,6 @@ Mudado o diagrama de atividade "Jogar carta"
 15:42 16/09/2018
 Mudado o diagrama "jogar par"
 
+15:54 16/09/2018
+Mudado o diagrama de atividades "comprar carta"; mudado o diagrama geral de interação (ao efetuar a compra, já temos um possível vencedor, caso compre o EK e não tenha Defuse)
+
