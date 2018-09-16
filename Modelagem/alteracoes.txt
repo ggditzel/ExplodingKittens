@@ -15,3 +15,14 @@ Casos de uso "Iniciar Partida" e "Esperar solicitação de Início" são possíveis a
 
 14:02 16/09/2018
 Inserido "Comprar carta" como caso opcional de "Efetuar jogada"
+
+14:08 16/09/2018
+No diagrama de atividades "Iniciar partida", condições lógicas foram trocadas de lugar
+
+14:42 16/09/2018 "Iniciar partida" e "Receber solicitação de início" novamente em sequência, para ficar em acordo com os diagramas de atividades; incluída a opção de sair, após ter partida iniciada (obs: criar caso de uso pra isso?)
+
+15:24 16/09/2018
+Mudado o diagrama de atividade "Jogar carta"
+
+
+
