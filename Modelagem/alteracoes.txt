@@ -30,3 +30,8 @@ Mudado o diagrama "jogar par"
 15:54 16/09/2018
 Mudado o diagrama de atividades "comprar carta"; mudado o diagrama geral de interação (ao efetuar a compra, já temos um possível vencedor, caso compre o EK e não tenha Defuse)
 
+16:07 16/09/2018
+Como "efetuar jogada" só ocorre se for a vez do jogador, tirada a verficação dentro deste diagrama e dos demais associados
+
+16:29 16/09/2018
+Ao final de cada "efetuar jogada" há a atividade "atualizar a mão", logo esta foi retirada dos casos de usos associados
