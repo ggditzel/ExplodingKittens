@@ -24,5 +24,6 @@ No diagrama de atividades "Iniciar partida", condições lógicas foram trocadas de
 15:24 16/09/2018
 Mudado o diagrama de atividade "Jogar carta"
 
-
+15:42 16/09/2018
+Mudado o diagrama "jogar par"
 
