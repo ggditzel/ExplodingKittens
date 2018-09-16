@@ -4,5 +4,8 @@ retirado o "include" entre "efetuar jogada" e "comprar carta", já que não é obri
 09:42 16/09/2018
 Adicionado o retorno do caso "Mostrar descrição da carta", no diagrama geral de interação
 
+12:23 16/09/2018
+Mudado o diagrama de visão geral, mostrando os "sub-casos" de "efetuar jogada"; o diagrama de atividades vai precisar detalhar bem o que acontece em cada caso, já que aqui só estão as dependências entre os casos de uso
+
 
 
