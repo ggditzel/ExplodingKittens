@@ -12,3 +12,6 @@ Adicionado o caso de uso "Jogar Skip" no respectivo diagrama
 
 12:42 16/09/2018
 Casos de uso "Iniciar Partida" e "Esperar solicitação de Início" são possíveis após a conexão com o servidor
+
+14:02 16/09/2018
+Inserido "Comprar carta" como caso opcional de "Efetuar jogada"
