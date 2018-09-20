@@ -35,3 +35,6 @@ Como "efetuar jogada" só ocorre se for a vez do jogador, tirada a verficação den
 
 16:29 16/09/2018
 Ao final de cada "efetuar jogada" há a atividade "atualizar a mão", logo esta foi retirada dos casos de usos associados
+
+08:30 20/09/2018
+Alterações feitas para a segunda entrega (dia 18/09/18)
