@@ -5,3 +5,4 @@ Branch gustavo
 - método pra pegar efeito da carta
 - método pra pegar tribo da carta
 - parte do diagrama "jogar carta", para descobrir o tipo de carta
+- mudado diagrama de atividades "jogar carta"
