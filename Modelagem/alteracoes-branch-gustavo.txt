@@ -6,3 +6,4 @@ Branch gustavo
 - método pra pegar tribo da carta
 - parte do diagrama "jogar carta", para descobrir o tipo de carta
 - mudado diagrama de atividades "jogar carta"
+- finalizado o diagrama de sequência de "jogar carta" (provavelmente pode melhorar no futuro)
