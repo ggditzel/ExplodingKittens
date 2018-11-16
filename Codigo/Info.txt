@@ -1,0 +1,1 @@
+Pasta criada para guardar o codigo do projeto. Como o git não controla pastas vazias, foi criado este arquivo inicial, pode ser apagado depois.
