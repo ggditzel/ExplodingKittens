@@ -1,0 +1,37 @@
+Diagrama para algoritmo "comprarCarta()"
+========================================
+Classe: Mesa
+
+Pelo diagrama de sequência, este método pertence à classe Mesa, porém o mesmo não existia em tal classe (não foi criado automaticamente, por não ter sido inserido de forma adequada no diagrama de sequência); corrigido
+
+De maneira similar, de acordo com o diagrama de sequência, este método chama "removeCartaTopo()" da classe baralho, porém tal classe não possuía este método; corrigido
+
+Este método passa a chamar "inserirCarta(cartaRemovida)" do jogadorDaVez; não é preciso o método para ver a mão
+
+
+Diagrama para algoritmo "roubarCartaAdversario()"
+=================================================
+Classe: Mesa
+
+Desenho de um if...else
+
+
+Diagrama para algoritmo "retirarCartaAleatoria()"
+=================================================
+Classe: Mao
+
+Gera uma posição aleatória baseada no tamanho da lista (quantidade de cartas na mao)
+
+
+Diagrama para algoritmo "mostrarCartasTopo()"
+=============================================
+Classe: Mesa
+
+Usa um <<task package>> para inserir diretamente o código
+
+
+Diagrama para algoritmo "criarBaralho()"
+========================================
+Classe: Mesa
+
+Define a quantidade de cada tipo de carta, e faz o embaralhamento
