@@ -1,33 +1,51 @@
+import java.util.ArrayList;
+
 public class Baralho {
 
-	protected Carta cartas;
-
-	public Carta removeCartaTopo() {
-		// TODO - implement Baralho.removeCartaTopo
-		throw new UnsupportedOperationException();
+	//topo do baralho sera a posicao 0
+	protected ArrayList<Carta> cartas;
+	
+	public Baralho() {
+		this.cartas = new ArrayList<>();
+	}
+	
+	public Baralho(ArrayList<Carta> cartas) {
+		this.cartas = cartas;
 	}
 
-	public Carta getCartas() {
+	public Carta removeCartaTopo() {
+		return cartas.remove(0);
+	}
+
+	public ArrayList<Carta> getCartas() {
 		return this.cartas;
 	}
 
-	public Carta getCartasTopo() {
-		// TODO - implement Baralho.getCartasTopo
-		throw new UnsupportedOperationException();
+	public ArrayList<Carta> getCartasTopo() {
+		ArrayList<Carta> cartasTopo = new ArrayList<>();
+		if(cartas.size() >= 3) {
+			cartasTopo.addAll(cartas.subList(0, 3));
+			return cartasTopo;
+		} else {
+			for(int i = 0; i < cartas.size(); i++) {
+				cartasTopo.add(cartas.get(i));
+			}
+			return cartasTopo;
+		}
+		
 	}
 
 	/**
 	 * 
 	 * @param cartas
 	 */
-	public Carta setCartasTopo(int cartas) {
-		// TODO - implement Baralho.setCartasTopo
-		throw new UnsupportedOperationException();
+	public void setCartasTopo(ArrayList<Carta> cartasTopo) {
+		cartas.subList(0,cartasTopo.size()).clear();
+		cartas.addAll(0, cartasTopo);
 	}
 
-	public void inserirDefuse() {
-		// TODO - implement Baralho.inserirDefuse
-		throw new UnsupportedOperationException();
+	public void inserirDefuse(int posicao, Carta defuse) {
+		cartas.add(posicao, defuse);
 	}
 
 }

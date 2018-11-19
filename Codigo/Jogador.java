@@ -1,9 +1,9 @@
 public class Jogador {
 
-	protected string nome;
+	protected String nome;
 	protected Mao mao;
 
-	public string getNome() {
+	public String getNome() {
 		return this.nome;
 	}
 

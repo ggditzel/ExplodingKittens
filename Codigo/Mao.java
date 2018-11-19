@@ -1,6 +1,9 @@
+import java.util.ArrayList;
+import java.util.Random;
+
 public class Mao {
 
-	protected Carta cartas;
+	protected ArrayList<Carta> cartas;
 	protected int quantidadeKittenGarfield;
 	protected int quantidadeKittenPussInBoots;
 	protected int quantidadeKittenSylvester;
@@ -8,23 +11,93 @@ public class Mao {
 	protected int quantidadeNope;
 	protected int quantidadeDefuse;
 
+	
+	public Mao() {
+		this.cartas = new ArrayList<>();
+		this.quantidadeDefuse = 0;
+		this.quantidadeKittenGarfield = 0;
+		this.quantidadeKittenMeow = 0;
+		this.quantidadeKittenPussInBoots = 0;
+		this.quantidadeKittenSylvester = 0;
+		this.quantidadeNope = 0;
+	}
+	public Mao(ArrayList<Carta> cartas) {
+		this.cartas = cartas;
+		atualizarQuantidades();
+	}
+	
+	
 	/**
 	 * 
 	 * @param carta
 	 */
 	public void inserirCarta(Carta carta) {
-		// TODO - implement Mao.inserirCarta
-		throw new UnsupportedOperationException();
+		this.cartas.add(carta);
+		if(carta.isCartaEfeito()) {
+			CartaEfeito cartaEfeito = (CartaEfeito) carta;
+			if(cartaEfeito.getEfeito() == EfeitoCarta.NOPE) {
+				quantidadeNope++;
+			} else if(cartaEfeito.getEfeito() == EfeitoCarta.DEFUSE) {
+				quantidadeDefuse++;
+			}
+		} else {
+			CartaKitten cartaKitten = (CartaKitten) carta;
+			switch(cartaKitten.getTribo()) {
+				case KITTEN_GARFIELD: 
+					quantidadeKittenGarfield++;
+					break;
+				case KITTEN_MEOW:
+					quantidadeKittenMeow++;
+					break;
+				case KITTEN_PUSS_IN_BOOTS:
+					quantidadeKittenPussInBoots++;
+					break;
+				case KITTEN_SYLVESTER:
+					quantidadeKittenSylvester++;
+					break;
+			}
+		}
 	}
 
 	public Carta retirarCartaAleatoria() {
-		// TODO - implement Mao.retirarCartaAleatoria
-		throw new UnsupportedOperationException();
+		Carta cartaRemovida = cartas.remove(new Random().nextInt(cartas.size()));
+		AtualizaRemocao(cartaRemovida);
+		return cartaRemovida;
 	}
 
 	private void atualizarQuantidades() {
-		// TODO - implement Mao.atualizarQuantidades
-		throw new UnsupportedOperationException();
+		this.quantidadeDefuse = 0;
+		this.quantidadeKittenGarfield = 0;
+		this.quantidadeKittenMeow = 0;
+		this.quantidadeKittenPussInBoots = 0;
+		this.quantidadeKittenSylvester = 0;
+		this.quantidadeNope = 0;
+		for(Carta carta: this.cartas) {
+			if(carta.isCartaEfeito()) {
+				CartaEfeito cartaEfeito = (CartaEfeito) carta;
+				if(cartaEfeito.getEfeito() == EfeitoCarta.NOPE) {
+					quantidadeNope++;
+				} else if(cartaEfeito.getEfeito() == EfeitoCarta.DEFUSE) {
+					quantidadeDefuse++;
+				}
+			} else {
+				CartaKitten cartaKitten = (CartaKitten) carta;
+				switch(cartaKitten.getTribo()) {
+					case KITTEN_GARFIELD: 
+						quantidadeKittenGarfield++;
+						break;
+					case KITTEN_MEOW:
+						quantidadeKittenMeow++;
+						break;
+					case KITTEN_PUSS_IN_BOOTS:
+						quantidadeKittenPussInBoots++;
+						break;
+					case KITTEN_SYLVESTER:
+						quantidadeKittenSylvester++;
+						break;
+				}
+			}
+		}
 	}
 
 	/**
@@ -32,23 +105,80 @@ public class Mao {
 	 * @param posicao
 	 */
 	public Carta retirarCarta(int posicao) {
-		// TODO - implement Mao.retirarCarta
-		throw new UnsupportedOperationException();
+		Carta cartaRemovida = cartas.remove(posicao);
+		AtualizaRemocao(cartaRemovida);		
+		return cartaRemovida;
+	}
+	
+	private void AtualizaRemocao(Carta carta) {
+		if(carta.isCartaEfeito()) {
+			CartaEfeito cartaEfeito = (CartaEfeito) carta;
+			if(cartaEfeito.getEfeito() == EfeitoCarta.NOPE) {
+				quantidadeNope--;
+			} else if(cartaEfeito.getEfeito() == EfeitoCarta.DEFUSE) {
+				quantidadeDefuse--;
+			}
+		} else {
+			CartaKitten cartaKitten = (CartaKitten) carta;
+			switch(cartaKitten.getTribo()) {
+				case KITTEN_GARFIELD: 
+					quantidadeKittenGarfield--;
+					break;
+				case KITTEN_MEOW:
+					quantidadeKittenMeow--;
+					break;
+				case KITTEN_PUSS_IN_BOOTS:
+					quantidadeKittenPussInBoots--;
+					break;
+				case KITTEN_SYLVESTER:
+					quantidadeKittenSylvester--;
+					break;
+			}
+		}
 	}
 
 	public void retirarDefuse() {
-		// TODO - implement Mao.retirarDefuse
-		throw new UnsupportedOperationException();
+		for(Carta c: cartas) {
+			if(c.isCartaEfeito()) {
+				CartaEfeito cartaEfeito = (CartaEfeito) c;
+				if(cartaEfeito.getEfeito() == EfeitoCarta.DEFUSE) {
+					cartas.remove(cartaEfeito);
+					quantidadeDefuse--;
+					return;
+				} 
+			}
+		}
 	}
-
+	
+	public boolean possuiNope() {
+		return quantidadeNope > 0;
+	}
+	public boolean possuiDefuse() {
+		return quantidadeDefuse > 0;
+	}
+	
 	/**
 	 * 
 	 * @param posicao1
 	 * @param posicao2
+	 * @throws Exception 
 	 */
-	public void retirarCartas(int posicao1, int posicao2) {
-		// TODO - implement Mao.retirarCartas
-		throw new UnsupportedOperationException();
+	public void retirarCartas(int posicao1, int posicao2) throws Exception {
+		Carta carta1 = cartas.get(posicao1);
+		Carta carta2 = cartas.get(posicao2);
+		if(carta1.isCartaEfeito() || carta2.isCartaEfeito() ) {
+			throw new Exception("Carta de efeito nao pode ser jogada como par");
+		}
+		CartaKitten cartaKitten1 = (CartaKitten) carta1;
+		CartaKitten cartaKitten2 = (CartaKitten) carta2;
+		if(cartaKitten1.getTribo() != cartaKitten2.getTribo()) {
+			throw new Exception("Cartas de tribo diferente nao podem ser jogadas como par");
+		}
+		cartas.remove(posicao1);
+		cartas.remove(posicao2);
+		AtualizaRemocao(carta1);
+		AtualizaRemocao(carta2);
+		
 	}
 
 }

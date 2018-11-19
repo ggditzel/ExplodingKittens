@@ -1,8 +1,8 @@
 public abstract class Carta {
 
-	protected string descricao;
+	protected String descricao;
 
-	public string getDescricao() {
+	public String getDescricao() {
 		return this.descricao;
 	}
 
