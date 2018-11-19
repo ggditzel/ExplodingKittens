@@ -6,9 +6,6 @@ public abstract class Carta {
 		return this.descricao;
 	}
 
-	public boolean isCartaEfeito() {
-		// TODO - implement Carta.isCartaEfeito
-		throw new UnsupportedOperationException();
-	}
+	public abstract boolean isCartaEfeito();
 
 }

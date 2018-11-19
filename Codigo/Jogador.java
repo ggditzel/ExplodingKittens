@@ -12,8 +12,7 @@ public class Jogador {
 	}
 
 	public Carta retirarCartaAleatoria() {
-		// TODO - implement Jogador.retirarCartaAleatoria
-		throw new UnsupportedOperationException();
+		return this.mao.retirarCartaAleatoria();
 	}
 
 	/**
@@ -21,8 +20,7 @@ public class Jogador {
 	 * @param carta
 	 */
 	public void inserirCarta(Carta carta) {
-		// TODO - implement Jogador.inserirCarta
-		throw new UnsupportedOperationException();
+		this.mao.inserirCarta(carta);
 	}
 
 	/**
@@ -30,8 +28,7 @@ public class Jogador {
 	 * @param posicao
 	 */
 	public Carta retirarCarta(int posicao) {
-		// TODO - implement Jogador.retirarCarta
-		throw new UnsupportedOperationException();
+		return this.mao.retirarCarta(posicao);
 	}
 
 }
