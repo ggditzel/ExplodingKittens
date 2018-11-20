@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Baralho {
 
@@ -7,6 +8,7 @@ public class Baralho {
 	
 	public Baralho() {
 		this.cartas = new ArrayList<>();
+		//adicionar as cartas do baralho
 	}
 	
 	public Baralho(ArrayList<Carta> cartas) {
@@ -40,12 +42,15 @@ public class Baralho {
 	 * @param cartas
 	 */
 	public void setCartasTopo(ArrayList<Carta> cartasTopo) {
-		cartas.subList(0,cartasTopo.size()).clear();
+		cartas.subList(0, cartasTopo.size()).clear();
 		cartas.addAll(0, cartasTopo);
 	}
 
-	public void inserirDefuse(int posicao, Carta defuse) {
-		cartas.add(posicao, defuse);
+	public void inserirDefuse(int posicao) {
+		cartas.add(posicao, new CartaEfeito(EfeitoCarta.DEFUSE));
 	}
 
+	public void embaralhar() {
+		Collections.shuffle(cartas);
+	}
 }

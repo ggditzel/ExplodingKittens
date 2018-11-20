@@ -30,5 +30,12 @@ public class Jogador {
 	public Carta retirarCarta(int posicao) {
 		return this.mao.retirarCarta(posicao);
 	}
+	
+	public void retirarDefuse() {
+		this.mao.retirarDefuse();
+	}
+	public boolean possuiDefuse() {
+		return this.mao.possuiDefuse();
+	}
 
 }

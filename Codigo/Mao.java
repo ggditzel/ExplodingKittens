@@ -150,12 +150,8 @@ public class Mao {
 		}
 	}
 	
-	public boolean possuiNope() {
-		return quantidadeNope > 0;
-	}
-	public boolean possuiDefuse() {
-		return quantidadeDefuse > 0;
-	}
+
+	
 	
 	/**
 	 * 
@@ -179,6 +175,17 @@ public class Mao {
 		AtualizaRemocao(carta1);
 		AtualizaRemocao(carta2);
 		
+	}
+	
+	public boolean possuiNope() {
+		return quantidadeNope > 0;
+	}
+	public boolean possuiDefuse() {
+		return quantidadeDefuse > 0;
+	}
+	
+	public Carta getCarta(int posicao) {
+		return cartas.get(posicao);
 	}
 
 }
