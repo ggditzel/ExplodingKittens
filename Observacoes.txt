@@ -1,0 +1,3 @@
+metodo criar baralho (que está no diagrama de atividade) nao vai existir, o baralho é criado ao dar new em baralho
+
+carta nope provavelmente nao ocorrera

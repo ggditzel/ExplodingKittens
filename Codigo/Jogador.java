@@ -3,6 +3,25 @@ public class Jogador {
 	protected String nome;
 	protected Mao mao;
 
+	public Jogador() {
+		this.mao = new Mao();
+	}
+	
+	public Jogador(String nome) {
+		this.mao = new Mao();
+		this.nome = nome;
+	}
+	
+	public Jogador(String nome, Mao mao) {
+		this.mao = mao;
+		this.nome = nome;
+	}
+	
+	
+	
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 	public String getNome() {
 		return this.nome;
 	}

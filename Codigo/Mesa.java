@@ -17,7 +17,11 @@ public class Mesa {
 		embaralhar();
 		this.jogadorDaVez = new Random().nextDouble() >= 0.5 ? jogador1 : jogador2;
 		this.skip = false;
+		this.tela = new TelaMesa();
+		System.out.println("mesa criada");
+		perguntaNomes();
 	}
+	
 	
 	public Mesa(Jogador jogador1, Jogador jogador2) {
 		this.baralho = new Baralho();
@@ -131,7 +135,7 @@ public class Mesa {
 		if(jogadorDaVez.possuiDefuse()) {
 			jogadorDaVez.retirarDefuse();
 			ArrayList<Carta> cartas = baralho.getCartas();
-			int posicao = tela.mostrarCartasViradasBaixo(cartas.size());
+			int posicao = tela.mostrarCartasViradasBaixo(cartas.size() + 1);
 			baralho.inserirDefuse(posicao);
 		} else {
 			encerraJogo();
@@ -174,6 +178,13 @@ public class Mesa {
 	
 	public int[] perguntaCartasTopo(ArrayList<Carta> cartas) {
 		return tela.perguntaCartasTopo(cartas);
+	}
+
+	//---------------------------------------------------------------------------------------------------------------------------------------
+	private void perguntaNomes() {
+		this.jogador1.setNome(tela.perguntaNomeJogador());
+		this.jogador2.setNome(tela.perguntaNomeJogador());
+		System.out.println("o jogador que comeca sera: " + jogadorDaVez.getNome());
 	}
 
 }

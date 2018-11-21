@@ -8,6 +8,23 @@ public class Baralho {
 	
 	public Baralho() {
 		this.cartas = new ArrayList<>();
+		cartas.add(new CartaEfeito(EfeitoCarta.EXPLODING_KITTEN)); 
+		for(int i = 0; i < 3; i++) {
+			cartas.add(new CartaEfeito(EfeitoCarta.CHANGE_THE_FUTURE));
+			cartas.add(new CartaEfeito(EfeitoCarta.DEFUSE));
+			cartas.add(new CartaEfeito(EfeitoCarta.FAVOR));
+			cartas.add(new CartaEfeito(EfeitoCarta.NOPE));
+			cartas.add(new CartaEfeito(EfeitoCarta.SEE_THE_FUTURE));
+			cartas.add(new CartaEfeito(EfeitoCarta.SKIP));
+			cartas.add(new CartaKitten(TriboKitten.KITTEN_GARFIELD));
+			cartas.add(new CartaKitten(TriboKitten.KITTEN_MEOW));
+			cartas.add(new CartaKitten(TriboKitten.KITTEN_PUSS_IN_BOOTS));
+			cartas.add(new CartaKitten(TriboKitten.KITTEN_SYLVESTER));
+		}
+		cartas.add(new CartaKitten(TriboKitten.KITTEN_GARFIELD));
+		cartas.add(new CartaKitten(TriboKitten.KITTEN_MEOW));
+		cartas.add(new CartaKitten(TriboKitten.KITTEN_PUSS_IN_BOOTS));
+		cartas.add(new CartaKitten(TriboKitten.KITTEN_SYLVESTER));
 		//adicionar as cartas do baralho
 	}
 	
