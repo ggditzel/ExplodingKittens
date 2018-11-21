@@ -31,4 +31,12 @@ public class TelaMesa {
 		return sc.nextLine();
 	}
 
+	public void falaMao(Jogador jogador) {
+		System.out.println("mao do jogador " + jogador.getNome() + " :");
+		for(int i = 0; i < jogador.getMao().cartas.size(); i++) {
+			System.out.println("" + i + jogador.getMao().getCarta(i).getDescricao());
+		}
+		
+	}
+
 }

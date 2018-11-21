@@ -20,9 +20,11 @@ public class Mesa {
 		this.tela = new TelaMesa();
 		System.out.println("mesa criada");
 		perguntaNomes();
+		distribuiCartas();
 	}
 	
-	
+
+
 	public Mesa(Jogador jogador1, Jogador jogador2) {
 		this.baralho = new Baralho();
 		embaralhar();
@@ -179,6 +181,23 @@ public class Mesa {
 	public int[] perguntaCartasTopo(ArrayList<Carta> cartas) {
 		return tela.perguntaCartasTopo(cartas);
 	}
+	
+	private void distribuiCartas() {
+		CartaEfeito explodingKitten = baralho.removeExpoddingKitten();
+		CartaEfeito defuse1 = baralho.removeDefuse();
+		CartaEfeito defuse2 = baralho.removeDefuse();
+		for(int i = 0; i < 7; i++) {
+			jogador1.inserirCarta(baralho.removeCartaTopo());
+			jogador2.inserirCarta(baralho.removeCartaTopo());
+		}
+		jogador1.inserirCarta(defuse1);
+		jogador2.inserirCarta(defuse2);
+		baralho.inserir(explodingKitten);
+		embaralhar();
+		falaMaos();
+	
+	}
+
 
 	//---------------------------------------------------------------------------------------------------------------------------------------
 	private void perguntaNomes() {
@@ -186,5 +205,13 @@ public class Mesa {
 		this.jogador2.setNome(tela.perguntaNomeJogador());
 		System.out.println("o jogador que comeca sera: " + jogadorDaVez.getNome());
 	}
+
+	private void falaMaos() {
+		tela.falaMao(jogador1);
+		tela.falaMao(jogador2);
+		System.out.println(jogadorDaVez.getNome() + " escolha sua jogada:");
+	}
+
+
 
 }

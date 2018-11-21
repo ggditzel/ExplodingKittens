@@ -70,4 +70,34 @@ public class Baralho {
 	public void embaralhar() {
 		Collections.shuffle(cartas);
 	}
+
+	public CartaEfeito removeExpoddingKitten() {
+		for(Carta c: cartas) {
+			if(c instanceof CartaEfeito) {
+				CartaEfeito cEfeito = (CartaEfeito) c;
+				if(cEfeito.getEfeito() == EfeitoCarta.EXPLODING_KITTEN) {
+					cartas.remove(cEfeito);
+					return cEfeito;
+				}
+			}
+		}
+		return null;
+	}
+
+	public CartaEfeito removeDefuse() {
+		for(Carta c: cartas) {
+			if(c instanceof CartaEfeito) {
+				CartaEfeito cEfeito = (CartaEfeito) c;
+				if(cEfeito.getEfeito() == EfeitoCarta.DEFUSE) {
+					cartas.remove(cEfeito);
+					return cEfeito;
+				}
+			}
+		}
+		return null;
+	}
+
+	public void inserir(Carta carta) {
+		this.cartas.add(carta);
+	}
 }

@@ -4,6 +4,7 @@ public class CartaKitten extends Carta {
 
 	public CartaKitten(TriboKitten tribo) {
 		this.tribo = tribo;
+		descricao = tribo.toString();
 	}
 	
 	@Override

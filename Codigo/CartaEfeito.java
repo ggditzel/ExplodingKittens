@@ -4,6 +4,7 @@ public class CartaEfeito extends Carta {
 
 	public CartaEfeito(EfeitoCarta efeito) {
 		this.efeito = efeito;
+		super.descricao = efeito.toString();
 	}
 	
 	@Override
