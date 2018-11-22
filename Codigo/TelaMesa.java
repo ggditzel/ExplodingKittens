@@ -20,13 +20,21 @@ public class TelaMesa {
 	}
 
 	public void mostrarCartasTopo(ArrayList<Carta> cartas) {
-		// TODO Auto-generated method stub
-		
+		for(int i = 0; i < cartas.size(); i++) {
+			System.out.println("[" + i +"] " + cartas.get(i).getDescricao());
+		}
 	}
 
 	public int[] perguntaCartasTopo(ArrayList<Carta> cartas) {
-		// TODO Auto-generated method stub
-		return new int[0];
+		int[] ordem = new int[cartas.size()];
+		System.out.println("Selecione a ordem das cartas:");
+		for(int i = 0; i < cartas.size(); i++) {
+			System.out.println(i + " - " + cartas.get(i).getDescricao());
+		}
+		for(int i = 0; i < cartas.size(); i++) {
+			ordem[i] = sc.nextInt();
+		}
+		return ordem;
 	}
 
 	public String perguntaNomeJogador() {

@@ -102,10 +102,6 @@ public class Mesa {
 		throw new UnsupportedOperationException();
 	}
 
-	public void desativarExplpodingKitten() {
-		// TODO - implement Mesa.desativarExplpodingKitten
-		throw new UnsupportedOperationException();
-	}
 
 	public void mostrarCartasViradasBaixo() {
 		// TODO - implement Mesa.mostrarCartasViradasBaixo
@@ -134,8 +130,13 @@ public class Mesa {
 					roubarCartaAdversario();
 					break;
 				case SKIP:
-					this.skip = true;
-					break;
+					if(this.skip = true) {
+						jogadorDaVez.inserirCarta(cartaSelecionada);
+						throw new Exception(cartaEfeito.descricao + " ja foi jogada nesse turno");
+					} else {
+						this.skip = true;
+						break;
+					}
 				default:
 					jogadorDaVez.inserirCarta(cartaSelecionada);
 					throw new Exception(cartaEfeito.descricao + " nao pode ser jogada em seu turno");
@@ -151,7 +152,7 @@ public class Mesa {
 
 
 	public void jogarDefuse() {
-		System.out.println("!! compro kitten !! \n");
+		System.out.println("\n \n \n \n !! comprou kitten !! \n \n \n \n");
 		if(jogadorDaVez.possuiDefuse()) {
 			jogadorDaVez.retirarDefuse();
 			ArrayList<Carta> cartas = baralho.getCartas();
@@ -183,9 +184,7 @@ public class Mesa {
 				}
 			}
 			jogadorDaVez.inserirCarta(carta);
-		} else {
-			this.skip = !this.skip;
-		}
+		} 
 		mudarTurno();
 	}
 	
@@ -250,6 +249,7 @@ public class Mesa {
 
 	public void mudarTurno() {
 		jogadorDaVez = jogadorDaVez.equals(jogador1) ? jogador2 : jogador1;
+		this.skip = false;
 	}
 
 

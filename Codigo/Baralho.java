@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 public class Baralho {
@@ -59,8 +60,12 @@ public class Baralho {
 	 * @param cartas
 	 */
 	public void setCartasTopo(ArrayList<Carta> cartasTopo) {
+		System.out.println("ordem antiga: ");
+		System.out.println(Arrays.toString(cartas.subList(0, cartasTopo.size()).toArray()));
 		cartas.subList(0, cartasTopo.size()).clear();
 		cartas.addAll(0, cartasTopo);
+		System.out.println("nova ordem:");
+		System.out.println(Arrays.toString(cartas.subList(0, cartasTopo.size()).toArray()));
 	}
 
 	public void inserirExplodingKitten(int posicao) {
