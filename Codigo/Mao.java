@@ -160,6 +160,7 @@ public class Mao {
 	 * @throws Exception 
 	 */
 	public void retirarCartas(int posicao1, int posicao2) throws Exception {
+		if(posicao1 == posicao2) throw new Exception("Selecione duas cartas diferentes");
 		Carta carta1 = cartas.get(posicao1);
 		Carta carta2 = cartas.get(posicao2);
 		if(carta1.isCartaEfeito() || carta2.isCartaEfeito() ) {
@@ -170,8 +171,14 @@ public class Mao {
 		if(cartaKitten1.getTribo() != cartaKitten2.getTribo()) {
 			throw new Exception("Cartas de tribo diferente nao podem ser jogadas como par");
 		}
-		cartas.remove(posicao1);
-		cartas.remove(posicao2);
+		
+		if(posicao1 > posicao2) {
+			cartas.remove(posicao1);
+			cartas.remove(posicao2);
+		} else {
+			cartas.remove(posicao2);
+			cartas.remove(posicao1);
+		}
 		AtualizaRemocao(carta1);
 		AtualizaRemocao(carta2);
 		
@@ -187,5 +194,9 @@ public class Mao {
 	public Carta getCarta(int posicao) {
 		return cartas.get(posicao);
 	}
+	public boolean possuiPar() {
+		return quantidadeKittenGarfield > 1 || quantidadeKittenMeow > 1 || quantidadeKittenPussInBoots > 1 || quantidadeKittenSylvester > 1;
+	}
+
 
 }

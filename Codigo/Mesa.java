@@ -9,8 +9,11 @@ public class Mesa {
 	protected Jogador jogadorDaVez;
 	protected boolean skip;
 	protected TelaMesa tela;
+	
+	protected boolean encerrado;
 
 	public Mesa() {
+		this.encerrado = false;
 		this.jogador1 = new Jogador();
 		this.jogador2 = new Jogador();
 		this.baralho = new Baralho();
@@ -21,11 +24,13 @@ public class Mesa {
 		System.out.println("mesa criada");
 		perguntaNomes();
 		distribuiCartas();
+		realizaJogada();
 	}
 	
 
 
 	public Mesa(Jogador jogador1, Jogador jogador2) {
+		this.encerrado = false;
 		this.baralho = new Baralho();
 		embaralhar();
 		this.skip = false;
@@ -33,6 +38,7 @@ public class Mesa {
 	}
 	
 	public Mesa(Jogador jogador1, Jogador jogador2, Jogador jogadorDaVez) {
+		this.encerrado = false;
 		this.baralho = new Baralho();
 		embaralhar();
 		this.skip = false;
@@ -40,6 +46,7 @@ public class Mesa {
 	}
 	
 	public Mesa(Jogador jogador1, Jogador jogador2, Baralho baralho, Jogador jogadorDaVez, boolean skip) {
+		this.encerrado = false;
 		this.jogador1 = jogador1;
 		this.jogador2 = jogador2;
 		this.baralho = baralho;
@@ -57,6 +64,7 @@ public class Mesa {
 			Carta carta = jogador1.retirarCartaAleatoria();
 			jogador2.inserirCarta(carta);
 		}
+		falaMaos();
 	}
 
 	public void trocaSkip() {
@@ -105,10 +113,12 @@ public class Mesa {
 	}
 	
 	//jogar carta
-	public void retirarCarta(int posicao) {
+	public void retirarCarta(int posicao) throws Exception {
 		Carta cartaSelecionada = jogadorDaVez.retirarCarta(posicao);
+		System.out.println("carta selecionada: " + cartaSelecionada.getDescricao());
 		
-		if(!verificarNope(cartaSelecionada) ) {
+		//if(!verificarNope(cartaSelecionada) ) {
+		if(cartaSelecionada.isCartaEfeito()) {
 			CartaEfeito cartaEfeito = (CartaEfeito) cartaSelecionada;
 			switch (cartaEfeito.getEfeito()) {
 				case CHANGE_THE_FUTURE: 
@@ -126,19 +136,28 @@ public class Mesa {
 				case SKIP:
 					this.skip = true;
 					break;
+				default:
+					jogadorDaVez.inserirCarta(cartaSelecionada);
+					throw new Exception(cartaEfeito.descricao + " nao pode ser jogada em seu turno");
 			}
+		} else {
+			jogadorDaVez.inserirCarta(cartaSelecionada);
+			throw new Exception("Cartas kitten nao podem ser jogada sem ser em par");
 		}
+		//}
 		
 	}
 
 
 
 	public void jogarDefuse() {
+		System.out.println("!! compro kitten !! \n");
 		if(jogadorDaVez.possuiDefuse()) {
 			jogadorDaVez.retirarDefuse();
 			ArrayList<Carta> cartas = baralho.getCartas();
 			int posicao = tela.mostrarCartasViradasBaixo(cartas.size() + 1);
-			baralho.inserirDefuse(posicao);
+			baralho.inserirExplodingKitten(posicao);
+			mudarTurno();
 		} else {
 			encerraJogo();
 		}
@@ -167,10 +186,15 @@ public class Mesa {
 		} else {
 			this.skip = !this.skip;
 		}
+		mudarTurno();
 	}
 	
+
+
+
 	public void encerraJogo() {
 		System.out.println("fim de jogo");
+		this.encerrado = true;
 	}
 	
 	public void mostrarDescricaoCarta(int posicao, Jogador jogador) {
@@ -182,7 +206,7 @@ public class Mesa {
 		return tela.perguntaCartasTopo(cartas);
 	}
 	
-	private void distribuiCartas() {
+	public void distribuiCartas() {
 		CartaEfeito explodingKitten = baralho.removeExpoddingKitten();
 		CartaEfeito defuse1 = baralho.removeDefuse();
 		CartaEfeito defuse2 = baralho.removeDefuse();
@@ -195,8 +219,47 @@ public class Mesa {
 		baralho.inserir(explodingKitten);
 		embaralhar();
 		falaMaos();
-	
 	}
+
+
+	public void realizaJogada() {
+		while(!encerrado) {
+			int jogada = -1;
+			while(true) {
+				jogada = tela.perguntaJogada(jogadorDaVez);
+				if(jogada != jogadorDaVez.getMao().cartas.size() && jogada != jogadorDaVez.getMao().cartas.size() + 1) {
+					try  {
+						retirarCarta(jogada);
+					} catch(Exception e) {
+						System.out.println(e.getMessage());
+					}
+				} else if(jogada == jogadorDaVez.getMao().cartas.size() && jogadorDaVez.possuiPar()){
+					try  {
+						jogarPar();
+					} catch(Exception e) {
+						System.out.println(e.getMessage());
+					}
+				} else {
+					comprarCarta();
+					break;
+				}
+			}
+		}
+	}
+
+
+	public void mudarTurno() {
+		jogadorDaVez = jogadorDaVez.equals(jogador1) ? jogador2 : jogador1;
+	}
+
+
+	public void jogarPar() throws Exception {
+		int[] posicoes = tela.perguntaPar();
+		jogadorDaVez.getMao().retirarCartas(posicoes[0], posicoes[1]);
+		roubarCartaAdversario();
+	}
+	
+
 
 
 	//---------------------------------------------------------------------------------------------------------------------------------------
@@ -209,7 +272,6 @@ public class Mesa {
 	private void falaMaos() {
 		tela.falaMao(jogador1);
 		tela.falaMao(jogador2);
-		System.out.println(jogadorDaVez.getNome() + " escolha sua jogada:");
 	}
 
 

@@ -63,8 +63,8 @@ public class Baralho {
 		cartas.addAll(0, cartasTopo);
 	}
 
-	public void inserirDefuse(int posicao) {
-		cartas.add(posicao, new CartaEfeito(EfeitoCarta.DEFUSE));
+	public void inserirExplodingKitten(int posicao) {
+		cartas.add(posicao, new CartaEfeito(EfeitoCarta.EXPLODING_KITTEN));
 	}
 
 	public void embaralhar() {

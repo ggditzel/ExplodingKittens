@@ -56,5 +56,9 @@ public class Jogador {
 	public boolean possuiDefuse() {
 		return this.mao.possuiDefuse();
 	}
+	
+	public boolean possuiPar() {
+		return this.mao.possuiPar();
+	}
 
 }
