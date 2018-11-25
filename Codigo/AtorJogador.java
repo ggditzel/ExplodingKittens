@@ -15,13 +15,26 @@ public class AtorJogador {
 		atorNetgames = new AtorNetgames(this);
 	}
 	
-	public void go() {
+	public void conectar() {
 		
 		// solicitar nome, depois conectar
 		
-		atorNetgames.conectar("localhost", nome); // servidor na propria maquina onde esta o jogo
+		atorNetgames.conectar("localhost", "ze"); // servidor na propria maquina onde esta o jogo
 		
 		
+	}
+	
+	public void desconectar() {
+		
+		atorNetgames.desconectar();
+
+	}
+	
+	public boolean sair() {
+
+		atorNetgames.desconectar();
+		
+		return true;
 	}
 
 	/*
@@ -40,9 +53,6 @@ public class AtorJogador {
 		if (comecoJogando) {
 			System.out.println("Eu ("+this.nome+") que jogo");// inserir criacao de mesa, etc
 		}
-		
-
-		
 	}
 
 	public void receberJogada(Lance lance) {
@@ -54,6 +64,16 @@ public class AtorJogador {
 
 	public void enviarJogada(Lance lance) {
 		atorNetgames.enviarJogada(new Lance("Uma jogada"));
+		
+	}
+
+	public void iniciarNovaPartida() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void desistirPartida() {
+		// TODO Auto-generated method stub
 		
 	}
 	
