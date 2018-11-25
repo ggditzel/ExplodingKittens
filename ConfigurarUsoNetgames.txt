@@ -1,0 +1,19 @@
+Para usar o Netgames, é necessário baixar alguns arquivos:
+
+1)
+Criar uma pasta dentro do projeto do jogo (ex: netgames) e colocar os arquivos abaixo; executar o "NetGamesFileOffline.jar" (será criado um arquivo de propriedades do framework - "jogoMultiPlayer.properties");
+
+http://www.labsoft.ufsc.br/~netgames/NetGamesNRT/Executavel/Framework/ngnrtFramework.jar
+http://www.labsoft.ufsc.br/~netgames/NetGamesNRT/Executavel/GeradorArquivo/NetGamesFileOffline.jar
+
+2)
+Configurar a build path ("Configure Build Path") do projeto para incluir esta pasta ("Add Class Folder") e também incluir o arquivo JAR ("Add JAR")
+Acho que com o botão direito se consegue isso também
+
+3)
+Para testar, com o servidor rodando na própria máquina, baixar também
+
+http://www.labsoft.ufsc.br/~netgames/NetGamesNRT/Executavel/Servidor/servidor.jar
+http://www.labsoft.ufsc.br/~netgames/NetGamesNRT/Executavel/Servidor/server.properties
+
+Para iniciar o servidor, basta rodar o arquivo "servidor.java" (obs: é possível baixar o código fonte e rodar diretamente a partir do Eclipse)
