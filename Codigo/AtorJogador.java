@@ -7,7 +7,11 @@ public class AtorJogador {
 	private AtorNetgames atorNetgames;
 	
 	public AtorJogador() {
-		super();
+		atorNetgames = new AtorNetgames(this);
+	}
+	
+	public AtorJogador(String nome) {
+		this.nome = nome;
 		atorNetgames = new AtorNetgames(this);
 	}
 	
@@ -34,7 +38,7 @@ public class AtorJogador {
 		String nomeOutroJogador = atorNetgames.obterNomeAdversario();
 		
 		if (comecoJogando) {
-			// inserir criacao de mesa, etc
+			System.out.println("Eu ("+this.nome+") que jogo");// inserir criacao de mesa, etc
 		}
 		
 
@@ -42,8 +46,15 @@ public class AtorJogador {
 	}
 
 	public void receberJogada(Lance lance) {
-		// recebe a jogada via servidor, implementar a logica
+		// recebe a jogada via AtorNetgames/servidor, implementar a logica
+		// pode ter varios getters...
+		System.out.println(lance.getMessage());
 		
 	}
 
+	public void enviarJogada(Lance lance) {
+		atorNetgames.enviarJogada(new Lance("Uma jogada"));
+		
+	}
+	
 }

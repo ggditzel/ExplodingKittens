@@ -7,11 +7,22 @@ public class Lance implements Jogada {
 	
 	// incluir todos os atributos necessarios para definir a jogada
 	// serao enviados como um unico objeto via rede
-	// quem receber deve dar um cast para (Lance)
+	// quem receber deve dar um cast para (Lance) para recuperar os dados
 	
-	public Lance() {
+	String msgTeste = "";
+	
+	public Lance(String msgTeste) {
 		super();
+		this.msgTeste = msgTeste;
 		// todos os dados que precisam ser enviados a cada jogada vao ser setados aqui
+	}
+	
+	public String getMessage() {
+		return msgTeste;
+	}
+	
+	public void setMessage(String msg) {
+		this.msgTeste = msg;
 	}
 
 }

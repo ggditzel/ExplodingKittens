@@ -11,6 +11,8 @@ import br.ufsc.inf.leobr.cliente.exception.NaoPossivelConectarException;
 
 public class AtorNetgames implements OuvidorProxy {
 	
+	private static final long serialVersionUID = 1L;
+	
 	private AtorJogador atorJogador; // ainda falta implementar o atorJogador
 	
 	private Proxy proxy;
@@ -18,7 +20,7 @@ public class AtorNetgames implements OuvidorProxy {
 	private boolean ehMinhaVez = false;
 	
 	public AtorNetgames(AtorJogador atorJogador) {
-		super();
+		//super();
 		this.atorJogador = atorJogador;
 		proxy = Proxy.getInstance();
 		proxy.addOuvinte(this); // para ouvir o Proxy, receber jogada do outro jogador
@@ -34,6 +36,7 @@ public class AtorNetgames implements OuvidorProxy {
 	public void conectar(String servidor, String nome) {
 		try {
 			proxy.conectar(servidor, nome);
+			
 		} catch (JahConectadoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -56,6 +59,26 @@ public class AtorNetgames implements OuvidorProxy {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * mensagem recebida pelo ouvidor proxy, quando recebe solicitacao do servidor
+	 * 
+	 * indica a "posicao" (vez) do jogador
+	 * 
+	 * posicao = 1 => jogador da vez;
+	 * posicao = 2 => segundo a jogar;
+	 */
+	@Override
+	public void iniciarNovaPartida(Integer posicao) {  // 1 se for jogador 1, 2 se for jogador 2, ...
+		
+		if (posicao == 1) {
+			ehMinhaVez = true;
+		} else if (posicao == 2) {
+			ehMinhaVez = false;
+		}
+		atorJogador.iniciarPartida(ehMinhaVez);
+
 	}
 	
 	public void enviarJogada(Jogada jogada) {
@@ -95,26 +118,6 @@ public class AtorNetgames implements OuvidorProxy {
 			nome = proxy.obterNomeAdversario(1);
 		}
 		return nome;
-	}
-
-	/**
-	 * mensagem recebida pelo ouvidor proxy, quando recebe solicitacao do servidor
-	 * 
-	 * indica a "posicao" (vez) do jogador
-	 * 
-	 * posicao = 1 => jogador da vez;
-	 * posicao = 2 => segundo a jogar;
-	 */
-	@Override
-	public void iniciarNovaPartida(Integer posicao) {  // 1 se for jogador 1, 2 se for jogador 2, ...
-		
-		if (posicao == 1) {
-			ehMinhaVez = true;
-		} else if (posicao == 2) {
-			ehMinhaVez = false;
-		}
-		atorJogador.iniciarPartida(ehMinhaVez);
-
 	}
 
 	@Override
