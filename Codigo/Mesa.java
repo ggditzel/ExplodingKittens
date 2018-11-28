@@ -58,9 +58,9 @@ public class Mesa {
 
 
 
-	public Mesa(EstadoMesa estado) {
-		this.jogador1 = estado.getJogador1();
-		this.jogador2 = estado.getJogador2();
+	public Mesa(EstadoMesa estado) { //aqui eh invertido para a interface mostrar sempre o jogador 1
+		this.jogador1 = estado.getJogador2();
+		this.jogador2 = estado.getJogador1();
 		this.baralho = estado.getBaralho();
 		this.jogadorDaVez = estado.getJogadorDaVez();
 		this.skip = estado.isSkip();

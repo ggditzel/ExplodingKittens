@@ -8,7 +8,6 @@ public class EstadoMesa implements Jogada{
 	protected boolean skip;
 	
 	public EstadoMesa(Jogador jogador1, Jogador jogador2, Baralho baralho, Jogador jogadorDaVez, boolean skip) {
-		super();
 		this.jogador1 = jogador1;
 		this.jogador2 = jogador2;
 		this.baralho = baralho;

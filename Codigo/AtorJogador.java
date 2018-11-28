@@ -57,15 +57,17 @@ public class AtorJogador {
 			mesa.jogador1.setNome(nome);
 			mesa.jogador2.setNome(nomeOutroJogador);
 			enviarJogada(mesa.getEstadoMesa());
-			System.out.println("Eu ("+this.nome+") que jogo");// inserir criacao de mesa, etc
-		} else {
-			
+			//System.out.println("Eu ("+this.nome+") que jogo");// inserir criacao de mesa, etc
 		}
 	}
 
 	public void receberJogada(Jogada lance) {
 		if(lance instanceof EstadoMesa) { //se for passado apenas o estado da mesa entao eh a criacao da mesa pro jogador 2
 			mesa = new Mesa((EstadoMesa) lance);
+		} else if(lance instanceof PretensaoJogarCarta) {
+			//algo para verificar nope
+		} else if(lance instanceof RespostaNope) {
+			//resposta do verificar nope
 		}
 		// recebe a jogada via AtorNetgames/servidor, implementar a logica
 		// pode ter varios getters...

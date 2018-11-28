@@ -21,6 +21,7 @@ public class AtorNetgames implements OuvidorProxy {
 	
 	private boolean ehMinhaVez = false;
 	
+	
 	public AtorNetgames(AtorJogador atorJogador) {
 		//super();
 		this.atorJogador = atorJogador;
