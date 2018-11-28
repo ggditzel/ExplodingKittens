@@ -254,30 +254,34 @@ public class Mesa {
 
 	public void jogarCarta(RespostaNope resposta) throws Exception {
 		CartaEfeito cartaEfeito = resposta.getCartaJogada();
-		switch (cartaEfeito.getEfeito()) {
-		case CHANGE_THE_FUTURE: 
-			ArrayList<Carta> cartas = getCartasTopo();
-			int[] posicoes = perguntaCartasTopo(cartas);
-			definirOrdemTopo(cartas, posicoes);
-			break;
-		case SEE_THE_FUTURE:
-			ArrayList<Carta> cartasTopo = getCartasTopo();
-			mostrarCartasTopo(cartasTopo);
-			break;
-		case FAVOR:
-			roubarCartaAdversario();
-			break;
-		case SKIP:
-			if(this.skip = true) {
-				jogadorDaVez.inserirCarta(cartaEfeito);
-				throw new Exception(cartaEfeito.descricao + " ja foi jogada nesse turno");
-			} else {
-				this.skip = true;
+		if(!resposta.jogouNope) {
+			switch (cartaEfeito.getEfeito()) {
+			case CHANGE_THE_FUTURE: 
+				ArrayList<Carta> cartas = getCartasTopo();
+				int[] posicoes = perguntaCartasTopo(cartas);
+				definirOrdemTopo(cartas, posicoes);
 				break;
+			case SEE_THE_FUTURE:
+				ArrayList<Carta> cartasTopo = getCartasTopo();
+				mostrarCartasTopo(cartasTopo);
+				break;
+			case FAVOR:
+				roubarCartaAdversario();
+				break;
+			case SKIP:
+				if(this.skip = true) {
+					jogadorDaVez.inserirCarta(cartaEfeito);
+					throw new Exception(cartaEfeito.descricao + " ja foi jogada nesse turno");
+				} else {
+					this.skip = true;
+					break;
+				}
+			default:
+				jogadorDaVez.inserirCarta(cartaEfeito);
+				throw new Exception(cartaEfeito.descricao + " nao pode ser jogada em seu turno");
 			}
-		default:
-			jogadorDaVez.inserirCarta(cartaEfeito);
-			throw new Exception(cartaEfeito.descricao + " nao pode ser jogada em seu turno");
+		} else {
+			tela.avisaNopeJogado();
 		}
 	}
 
