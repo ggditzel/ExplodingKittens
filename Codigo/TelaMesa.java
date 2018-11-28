@@ -72,4 +72,9 @@ public class TelaMesa {
 		return par;
 	}
 
+	public void avisaNopeJogado() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

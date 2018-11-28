@@ -9,10 +9,12 @@ public class Mesa {
 	protected Jogador jogadorDaVez;
 	protected boolean skip;
 	protected TelaMesa tela;
+	protected AtorJogador atorJogador;
 	
 	protected boolean encerrado;
 
-	public Mesa() {
+	public Mesa(AtorJogador atorJogador) {
+		this.atorJogador = atorJogador;
 		this.encerrado = false;
 		this.jogador1 = new Jogador();
 		this.jogador2 = new Jogador();
@@ -53,17 +55,18 @@ public class Mesa {
 		this.baralho = baralho;
 		this.jogadorDaVez = jogadorDaVez;
 		this.skip = skip;
-		this.tela = new TelaMesa();
 	}
 
 
 
-	public Mesa(EstadoMesa estado) { //aqui eh invertido para a interface mostrar sempre o jogador 1
+	public Mesa(EstadoMesa estado,AtorJogador atorJogador) { //aqui eh invertido para a interface mostrar sempre o jogador 1
+		this.atorJogador = atorJogador; 
 		this.jogador1 = estado.getJogador2();
 		this.jogador2 = estado.getJogador1();
 		this.baralho = estado.getBaralho();
 		this.jogadorDaVez = estado.getJogadorDaVez();
 		this.skip = estado.isSkip();
+		this.tela = new TelaMesa();
 	}
 
 
@@ -109,9 +112,8 @@ public class Mesa {
 		this.baralho.setCartasTopo(cartasTopo);
 	}
 
-	public boolean verificarNope(Carta cartaSelecionada) {
-		// TODO - implement Mesa.verificarNope
-		throw new UnsupportedOperationException();
+	public void verificarNope(CartaEfeito cartaSelecionada) {
+		atorJogador.enviarJogada(new PretensaoJogarCarta(cartaSelecionada));
 	}
 
 
@@ -125,41 +127,16 @@ public class Mesa {
 		Carta cartaSelecionada = jogadorDaVez.retirarCarta(posicao);
 		System.out.println("carta selecionada: " + cartaSelecionada.getDescricao());
 		
-		//if(!verificarNope(cartaSelecionada) ) {
 		if(cartaSelecionada.isCartaEfeito()) {
 			CartaEfeito cartaEfeito = (CartaEfeito) cartaSelecionada;
-			switch (cartaEfeito.getEfeito()) {
-				case CHANGE_THE_FUTURE: 
-					ArrayList<Carta> cartas = getCartasTopo();
-					int[] posicoes = perguntaCartasTopo(cartas);
-					definirOrdemTopo(cartas, posicoes);
-					break;
-				case SEE_THE_FUTURE:
-					ArrayList<Carta> cartasTopo = getCartasTopo();
-					mostrarCartasTopo(cartasTopo);
-					break;
-				case FAVOR:
-					roubarCartaAdversario();
-					break;
-				case SKIP:
-					if(this.skip = true) {
-						jogadorDaVez.inserirCarta(cartaSelecionada);
-						throw new Exception(cartaEfeito.descricao + " ja foi jogada nesse turno");
-					} else {
-						this.skip = true;
-						break;
-					}
-				default:
-					jogadorDaVez.inserirCarta(cartaSelecionada);
-					throw new Exception(cartaEfeito.descricao + " nao pode ser jogada em seu turno");
-			}
+			verificarNope(cartaEfeito);
 		} else {
 			jogadorDaVez.inserirCarta(cartaSelecionada);
 			throw new Exception("Cartas kitten nao podem ser jogada sem ser em par");
 		}
-		//}
 		
 	}
+	
 
 
 
@@ -275,6 +252,34 @@ public class Mesa {
 		return new EstadoMesa(jogador1, jogador2, baralho, jogadorDaVez, skip);
 	}
 
+	public void jogarCarta(RespostaNope resposta) throws Exception {
+		CartaEfeito cartaEfeito = resposta.getCartaJogada();
+		switch (cartaEfeito.getEfeito()) {
+		case CHANGE_THE_FUTURE: 
+			ArrayList<Carta> cartas = getCartasTopo();
+			int[] posicoes = perguntaCartasTopo(cartas);
+			definirOrdemTopo(cartas, posicoes);
+			break;
+		case SEE_THE_FUTURE:
+			ArrayList<Carta> cartasTopo = getCartasTopo();
+			mostrarCartasTopo(cartasTopo);
+			break;
+		case FAVOR:
+			roubarCartaAdversario();
+			break;
+		case SKIP:
+			if(this.skip = true) {
+				jogadorDaVez.inserirCarta(cartaEfeito);
+				throw new Exception(cartaEfeito.descricao + " ja foi jogada nesse turno");
+			} else {
+				this.skip = true;
+				break;
+			}
+		default:
+			jogadorDaVez.inserirCarta(cartaEfeito);
+			throw new Exception(cartaEfeito.descricao + " nao pode ser jogada em seu turno");
+		}
+	}
 
 
 	//---------------------------------------------------------------------------------------------------------------------------------------

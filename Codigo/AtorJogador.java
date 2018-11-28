@@ -53,7 +53,7 @@ public class AtorJogador {
 		
 		if (comecoJogando) {
 			String nomeOutroJogador = atorNetgames.obterNomeAdversario();
-			mesa = new Mesa();
+			mesa = new Mesa(this);
 			mesa.jogador1.setNome(nome);
 			mesa.jogador2.setNome(nomeOutroJogador);
 			enviarJogada(mesa.getEstadoMesa());
@@ -63,7 +63,7 @@ public class AtorJogador {
 
 	public void receberJogada(Jogada lance) {
 		if(lance instanceof EstadoMesa) { //se for passado apenas o estado da mesa entao eh a criacao da mesa pro jogador 2
-			mesa = new Mesa((EstadoMesa) lance);
+			mesa = new Mesa((EstadoMesa) lance, this);
 		} else if(lance instanceof PretensaoJogarCarta) {
 			//algo para verificar nope
 		} else if(lance instanceof RespostaNope) {
