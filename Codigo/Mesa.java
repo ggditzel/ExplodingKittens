@@ -18,13 +18,14 @@ public class Mesa {
 		this.jogador2 = new Jogador();
 		this.baralho = new Baralho();
 		embaralhar();
-		this.jogadorDaVez = new Random().nextDouble() >= 0.5 ? jogador1 : jogador2;
+		//this.jogadorDaVez = new Random().nextDouble() >= 0.5 ? jogador1 : jogador2;
+		this.jogadorDaVez = jogador1;
 		this.skip = false;
 		this.tela = new TelaMesa();
 		System.out.println("mesa criada");
-		perguntaNomes();
+		//perguntaNomes();
 		distribuiCartas();
-		realizaJogada();
+		//realizaJogada();
 	}
 	
 
@@ -52,6 +53,17 @@ public class Mesa {
 		this.baralho = baralho;
 		this.jogadorDaVez = jogadorDaVez;
 		this.skip = skip;
+		this.tela = new TelaMesa();
+	}
+
+
+
+	public Mesa(EstadoMesa estado) {
+		this.jogador1 = estado.getJogador1();
+		this.jogador2 = estado.getJogador2();
+		this.baralho = estado.getBaralho();
+		this.jogadorDaVez = estado.getJogadorDaVez();
+		this.skip = estado.isSkip();
 	}
 
 
@@ -259,6 +271,9 @@ public class Mesa {
 		roubarCartaAdversario();
 	}
 	
+	public EstadoMesa getEstadoMesa() {
+		return new EstadoMesa(jogador1, jogador2, baralho, jogadorDaVez, skip);
+	}
 
 
 

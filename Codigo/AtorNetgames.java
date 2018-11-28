@@ -1,5 +1,7 @@
 
 
+import javax.swing.JOptionPane;
+
 import br.ufsc.inf.leobr.cliente.Jogada;
 import br.ufsc.inf.leobr.cliente.OuvidorProxy;
 import br.ufsc.inf.leobr.cliente.Proxy;
@@ -38,7 +40,7 @@ public class AtorNetgames implements OuvidorProxy {
 			proxy.conectar(servidor, nome);
 			
 		} catch (JahConectadoException e) {
-			// TODO Auto-generated catch block
+			//JOptionPane.showMessageDialog(atorJogador.getFrame(), e.getMessage());
 			e.printStackTrace();
 		} catch (NaoPossivelConectarException e) {
 			// TODO Auto-generated catch block
@@ -72,11 +74,12 @@ public class AtorNetgames implements OuvidorProxy {
 	@Override
 	public void iniciarNovaPartida(Integer posicao) {  // 1 se for jogador 1, 2 se for jogador 2, ...
 		
-		if (posicao == 1) {
-			ehMinhaVez = true;
-		} else if (posicao == 2) {
-			ehMinhaVez = false;
-		}
+//		if (posicao == 1) {
+//			ehMinhaVez = true;
+//		} else if (posicao == 2) {
+//			ehMinhaVez = false;
+//		}
+		ehMinhaVez = posicao == 1;
 		atorJogador.iniciarPartida(ehMinhaVez);
 
 	}
