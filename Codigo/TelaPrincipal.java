@@ -32,6 +32,7 @@ public class TelaPrincipal extends JFrame {
 	protected JMenuItem ajuda;
 	protected Font fontePadrao;
 	protected TratadoraDeEvento tratadoraDeEvento = new TratadoraDeEvento();
+	protected TelaJogo jogo;
 	
 	public TelaPrincipal(String nomeJanela) {
 		super(nomeJanela);
@@ -43,8 +44,10 @@ public class TelaPrincipal extends JFrame {
 	
 	public void configurarInterface(AtorJogador atorJogador) {
 		this.atorJogador = atorJogador;
-		setPreferredSize(new Dimension(800, 600));
+		setPreferredSize(new Dimension(900, 700));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLayout(null);
+		
 		//setResizable(false);
 	}
 	
@@ -193,5 +196,12 @@ public class TelaPrincipal extends JFrame {
 				case Constante.AJUDA: ajuda(); break;
 			}
 		}
+	}
+
+	public void comecaJogo(EstadoMesa estadoMesa) {
+		this.jogo = new TelaJogo(estadoMesa);
+		add(jogo);
+		jogo.setBounds(100, 15, 800, 700);
+		
 	}
 }

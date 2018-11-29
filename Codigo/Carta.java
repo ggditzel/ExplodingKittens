@@ -9,5 +9,7 @@ public abstract class Carta implements Jogada{
 	}
 
 	public abstract boolean isCartaEfeito();
+	
+	public abstract String urlImagem();
 
 }
