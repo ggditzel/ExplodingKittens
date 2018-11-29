@@ -15,11 +15,14 @@ public class InterfaceMao extends JPanel{
 			for(int i = 0; i < mao.cartas.size(); i++) {
 				JLabel carta = new JLabel();
 				add(carta);
-				carta.setBounds(0 + (i * 40), 0, 35, 65);
+				carta.setBounds(0 + (i * 40), 20, 35, 65);
 				Image iconVerso = new ImageIcon(mao.getCarta(i).urlImagem()).getImage()
 						.getScaledInstance(carta.getWidth(), carta.getHeight(), Image.SCALE_SMOOTH);
 				ImageIcon imageIcon = new ImageIcon(iconVerso);
 				carta.setIcon(imageIcon);
+				JLabel posicao = new JLabel(""+ i);
+				add(posicao);
+				posicao.setBounds(18 + (i * 40), 0, 20, 15);
 			}
 		} else {
 			for(int i = 0; i < mao.cartas.size(); i++) {

@@ -48,7 +48,7 @@ public class TelaJogo extends JPanel {
 		add(jogarCarta);
 		jogarCarta.setBounds(600, 200, 120, 30);
 		
-		jogarPar = new JButton("jogar par");
+		jogarPar = new JButton("Jogar par");
 		add(jogarPar);
 		jogarPar.setBounds(600, 250, 120, 30);
 		
