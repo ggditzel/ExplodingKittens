@@ -1,6 +1,6 @@
 import br.ufsc.inf.leobr.cliente.Jogada;
 
-public class EstadoMesa implements Jogada{
+public class EstadoMesa implements Jogada {
 	protected Jogador jogador1;
 	protected Jogador jogador2;
 	protected Baralho baralho;

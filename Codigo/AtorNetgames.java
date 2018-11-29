@@ -39,16 +39,14 @@ public class AtorNetgames implements OuvidorProxy {
 	public void conectar(String servidor, String nome) {
 		try {
 			proxy.conectar(servidor, nome);
+			System.out.println("conectou");
 			
 		} catch (JahConectadoException e) {
-			//JOptionPane.showMessageDialog(atorJogador.getFrame(), e.getMessage());
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(atorJogador.getTela(), e.getMessage());
 		} catch (NaoPossivelConectarException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(atorJogador.getTela(), e.getMessage());
 		} catch (ArquivoMultiplayerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(atorJogador.getTela(), e.getMessage());
 		}
 	}
 	
@@ -58,9 +56,9 @@ public class AtorNetgames implements OuvidorProxy {
 	public void iniciarPartida() {
 		try {
 			proxy.iniciarPartida(2); // solicita ao servidor; servidor manda msg para cada jogador, via metodo inicarNovaPartida
+			System.out.println("criou sala para 2 jogadores");
 		} catch (NaoConectadoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(atorJogador.getTela(), e.getMessage());
 		}
 	}
 	
@@ -81,6 +79,7 @@ public class AtorNetgames implements OuvidorProxy {
 //			ehMinhaVez = false;
 //		}
 		ehMinhaVez = posicao == 1;
+		System.out.println("criou uma partida, vez de " + ehMinhaVez);
 		atorJogador.iniciarPartida(ehMinhaVez);
 
 	}
@@ -89,9 +88,10 @@ public class AtorNetgames implements OuvidorProxy {
 		try {
 			proxy.enviaJogada(jogada);
 			ehMinhaVez = false; // apos jogar, nao eh mais sua vez
+			System.out.println("enviou jogada");
 		} catch (NaoJogandoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(atorJogador.getTela(), e.getMessage());
+
 		}
 	}
 	
@@ -100,6 +100,7 @@ public class AtorNetgames implements OuvidorProxy {
 	@Override
 	public void receberJogada(Jogada jogada) {
 		ehMinhaVez = true; // se recebi uma jogada, agora eh minha vez
+		System.out.println("recebeu jogada");
 		atorJogador.receberJogada(jogada); // ator jogador pode receber toda a informacao da jogada, atualizar telas, etc
 		
 	}
@@ -108,8 +109,8 @@ public class AtorNetgames implements OuvidorProxy {
 		try {
 			proxy.desconectar();
 		} catch (NaoConectadoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(atorJogador.getTela(), e.getMessage());
+
 		}
 	}
 	

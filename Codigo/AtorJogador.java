@@ -1,3 +1,5 @@
+import javax.swing.JFrame;
+
 import br.ufsc.inf.leobr.cliente.Jogada;
 
 // interface grafica do jogador
@@ -7,6 +9,7 @@ public class AtorJogador {
 	
 	private AtorNetgames atorNetgames;
 	protected Mesa mesa;
+	protected TelaPrincipal tela;
 	
 	public AtorJogador() {
 		atorNetgames = new AtorNetgames(this);
@@ -17,11 +20,19 @@ public class AtorJogador {
 		atorNetgames = new AtorNetgames(this);
 	}
 	
+	public AtorJogador(TelaPrincipal telaPrincipal) {
+		atorNetgames = new AtorNetgames(this);
+		this.tela = telaPrincipal;
+	}
+
 	public void conectar() {
 		
 		// solicitar nome, depois conectar
 		
-		atorNetgames.conectar("localhost", "ze"); // servidor na propria maquina onde esta o jogo
+		String servidor = tela.obterServidor();
+		String idUsuario = tela.obterIdJogador();
+		
+		atorNetgames.conectar(servidor, idUsuario); // servidor na propria maquina onde esta o jogo
 		
 		
 	}
@@ -56,18 +67,26 @@ public class AtorJogador {
 			mesa = new Mesa(this);
 			mesa.jogador1.setNome(nome);
 			mesa.jogador2.setNome(nomeOutroJogador);
-			enviarJogada(mesa.getEstadoMesa());
+			System.out.println("enviei mesa");
+			enviarJogada(mesa.getEstadoInicial());
 			//System.out.println("Eu ("+this.nome+") que jogo");// inserir criacao de mesa, etc
 		}
 	}
 
 	public void receberJogada(Jogada lance) {
-		if(lance instanceof EstadoMesa) { //se for passado apenas o estado da mesa entao eh a criacao da mesa pro jogador 2
-			mesa = new Mesa((EstadoMesa) lance, this);
+		System.out.println("deu ruim" + lance);
+		if(lance instanceof EstadoInicialMesa) { //se for passado o estado inicial da mesa entao eh a criacao da mesa pro jogador 2
+			mesa = new Mesa((EstadoInicialMesa) lance, this);
+			System.out.println("recebi mesa");
 		} else if(lance instanceof PretensaoJogarCarta) {
-			//algo para verificar nope
+			mesa.verificarNope((PretensaoJogarCarta) lance);
 		} else if(lance instanceof RespostaNope) {
-			//resposta do verificar nope
+			mesa.jogarCarta((RespostaNope) lance);
+		} else if(lance instanceof EstadoMesa) { // se for passado o estado da mesa eh para a troca de turno
+			System.out.println("burro");
+			mesa.mudarTurno((EstadoMesa) lance);
+		}else {
+			System.out.println("deu ruim" + lance);
 		}
 		// recebe a jogada via AtorNetgames/servidor, implementar a logica
 		// pode ter varios getters...
@@ -81,13 +100,17 @@ public class AtorJogador {
 	}
 
 	public void iniciarNovaPartida() {
-		// TODO Auto-generated method stub
+		atorNetgames.iniciarPartida();
 		
 	}
 
 	public void desistirPartida() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public JFrame getTela() {
+		return this.tela;
 	}
 	
 }

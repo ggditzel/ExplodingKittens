@@ -2,9 +2,7 @@
 public class Main {
 	public static void main(String[] args) {
 		
-		AtorJogador aj = new AtorJogador();
-		
-		TelaPrincipal tp = new TelaPrincipal("Exploding Kittens", aj);
+		TelaPrincipal tp = new TelaPrincipal("Exploding Kittens");
 		
 		//new Mesa();
 		

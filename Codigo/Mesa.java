@@ -59,7 +59,7 @@ public class Mesa {
 
 
 
-	public Mesa(EstadoMesa estado,AtorJogador atorJogador) { //aqui eh invertido para a interface mostrar sempre o jogador 1
+	public Mesa(EstadoInicialMesa estado, AtorJogador atorJogador) { //aqui eh invertido para a interface mostrar sempre o jogador 1
 		this.atorJogador = atorJogador; 
 		this.jogador1 = estado.getJogador2();
 		this.jogador2 = estado.getJogador1();
@@ -68,6 +68,7 @@ public class Mesa {
 		this.skip = estado.isSkip();
 		this.tela = new TelaMesa();
 	}
+
 
 
 
@@ -115,6 +116,10 @@ public class Mesa {
 	public void verificarNope(CartaEfeito cartaSelecionada) {
 		atorJogador.enviarJogada(new PretensaoJogarCarta(cartaSelecionada));
 	}
+	
+	public void verificarNope(PretensaoJogarCarta pretensao) {
+		tela.perguntaNope();
+	}
 
 
 	public void mostrarCartasViradasBaixo() {
@@ -123,16 +128,24 @@ public class Mesa {
 	}
 	
 	//jogar carta
-	public void retirarCarta(int posicao) throws Exception {
+	public void retirarCarta(int posicao) {
 		Carta cartaSelecionada = jogadorDaVez.retirarCarta(posicao);
 		System.out.println("carta selecionada: " + cartaSelecionada.getDescricao());
 		
 		if(cartaSelecionada.isCartaEfeito()) {
 			CartaEfeito cartaEfeito = (CartaEfeito) cartaSelecionada;
-			verificarNope(cartaEfeito);
+			if(cartaEfeito.getEfeito() == EfeitoCarta.NOPE || cartaEfeito.getEfeito() == EfeitoCarta.DEFUSE) {
+				jogadorDaVez.inserirCarta(cartaEfeito);
+				//throw new Exception(cartaEfeito.descricao + " nao pode ser jogada em seu turno");
+			} else if(cartaEfeito.getEfeito() == EfeitoCarta.SKIP && skip) {
+				jogadorDaVez.inserirCarta(cartaEfeito);
+				//throw new Exception(cartaEfeito.descricao + " ja foi jogada nesse turno");
+			} else {
+				verificarNope(cartaEfeito);
+			}
 		} else {
 			jogadorDaVez.inserirCarta(cartaSelecionada);
-			throw new Exception("Cartas kitten nao podem ser jogada sem ser em par");
+			//throw new Exception("Cartas kitten nao podem ser jogada sem ser em par");
 		}
 		
 	}
@@ -239,10 +252,15 @@ public class Mesa {
 	public void mudarTurno() {
 		jogadorDaVez = jogadorDaVez.equals(jogador1) ? jogador2 : jogador1;
 		this.skip = false;
+		this.atorJogador.enviarJogada(getEstadoMesa());
+	}
+	
+	public void mudarTurno(EstadoMesa estado) {
+		tela.avisaMudouTurno();
 	}
 
 
-	public void jogarPar() throws Exception {
+	public void jogarPar() {
 		int[] posicoes = tela.perguntaPar();
 		jogadorDaVez.getMao().retirarCartas(posicoes[0], posicoes[1]);
 		roubarCartaAdversario();
@@ -251,8 +269,12 @@ public class Mesa {
 	public EstadoMesa getEstadoMesa() {
 		return new EstadoMesa(jogador1, jogador2, baralho, jogadorDaVez, skip);
 	}
+	
+	public EstadoInicialMesa getEstadoInicial() {
+		return new EstadoInicialMesa(jogador1, jogador2, baralho, jogadorDaVez, skip);
+	}
 
-	public void jogarCarta(RespostaNope resposta) throws Exception {
+	public void jogarCarta(RespostaNope resposta){
 		CartaEfeito cartaEfeito = resposta.getCartaJogada();
 		if(!resposta.jogouNope) {
 			switch (cartaEfeito.getEfeito()) {
@@ -269,19 +291,15 @@ public class Mesa {
 				roubarCartaAdversario();
 				break;
 			case SKIP:
-				if(this.skip = true) {
-					jogadorDaVez.inserirCarta(cartaEfeito);
-					throw new Exception(cartaEfeito.descricao + " ja foi jogada nesse turno");
-				} else {
-					this.skip = true;
-					break;
-				}
+				this.skip = true;
+				break;
 			default:
 				jogadorDaVez.inserirCarta(cartaEfeito);
-				throw new Exception(cartaEfeito.descricao + " nao pode ser jogada em seu turno");
+				//throw new Exception(cartaEfeito.descricao + " nao pode ser jogada em seu turno");
 			}
 		} else {
 			tela.avisaNopeJogado();
+			jogadorDaVez.inserirCarta(cartaEfeito);
 		}
 	}
 

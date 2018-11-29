@@ -33,9 +33,9 @@ public class TelaPrincipal extends JFrame {
 	protected Font fontePadrao;
 	protected TratadoraDeEvento tratadoraDeEvento = new TratadoraDeEvento();
 	
-	public TelaPrincipal(String nomeJanela, AtorJogador atorJogador) {
+	public TelaPrincipal(String nomeJanela) {
 		super(nomeJanela);
-		configurarInterface(atorJogador);
+		configurarInterface(new AtorJogador(this));
 		carregarMenu();
 		pack();
 		setVisible(true);
@@ -43,9 +43,9 @@ public class TelaPrincipal extends JFrame {
 	
 	public void configurarInterface(AtorJogador atorJogador) {
 		this.atorJogador = atorJogador;
-		setPreferredSize(new Dimension(1150, 790));
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setResizable(false);
+		setPreferredSize(new Dimension(800, 600));
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setResizable(false);
 	}
 	
 	public void carregarMenu() {
@@ -163,6 +163,18 @@ public class TelaPrincipal extends JFrame {
 	
 	public void alterarAtorJogador(AtorJogador atorJogador) {
 		this.atorJogador = atorJogador;
+	}
+	
+	public String obterServidor() {
+		String idServidor = ("localhost");
+		idServidor = JOptionPane.showInputDialog(this, ("Insira o endereço do servidor"), idServidor);
+		return idServidor;
+	}
+
+	public String obterIdJogador() {
+		String idJogador = ("jogador");
+		idJogador = JOptionPane.showInputDialog(this, ("Insira o nome do jogador"));
+		return idJogador;
 	}
 	
 	private class TratadoraDeEvento implements ActionListener {

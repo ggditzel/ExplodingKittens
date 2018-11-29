@@ -2,7 +2,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-public class Baralho {
+import br.ufsc.inf.leobr.cliente.Jogada;
+
+public class Baralho implements Jogada{
 
 	//topo do baralho sera a posicao 0
 	protected ArrayList<Carta> cartas;

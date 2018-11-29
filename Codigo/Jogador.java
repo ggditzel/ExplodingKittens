@@ -1,4 +1,6 @@
-public class Jogador {
+import br.ufsc.inf.leobr.cliente.Jogada;
+
+public class Jogador implements Jogada{
 
 	protected String nome;
 	protected Mao mao;

@@ -77,4 +77,14 @@ public class TelaMesa {
 		
 	}
 
+	public void perguntaNope() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void avisaMudouTurno() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
