@@ -268,12 +268,16 @@ public class Mesa {
 	public void mudarTurno() {
 		jogadorDaVez = jogadorDaVez.equals(jogador1) ? jogador2 : jogador1;
 		this.skip = false;
-		telaJogo.atualiza(getEstadoMesa());
 		this.atorJogador.enviarJogada(getEstadoMesa());
+		telaJogo.atualiza(getEstadoMesa());
 	}
 	
 	public void mudarTurno(EstadoMesa estado) {
-		tela.avisaMudouTurno();
+		Jogador aux = estado.jogador1;
+		estado.jogador1 = estado.jogador2;
+		estado.jogador2 = aux;
+		telaJogo.atualiza(estado);
+		//tela.avisaMudouTurno();
 	}
 
 
