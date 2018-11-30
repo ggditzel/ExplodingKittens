@@ -199,7 +199,7 @@ public class TelaPrincipal extends JFrame {
 	}
 
 	public void comecaJogo(EstadoMesa estadoMesa) {
-		this.jogo = new TelaJogo(estadoMesa);
+		this.jogo = new TelaJogo(estadoMesa, atorJogador);
 		add(jogo);
 		jogo.setBounds(100, 15, 800, 700);
 		

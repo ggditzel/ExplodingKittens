@@ -63,4 +63,12 @@ public class Jogador implements Jogada{
 		return this.mao.possuiPar();
 	}
 
+	public boolean possuiNope() {
+		return this.mao.possuiNope();
+	}
+	public void retirarNope() {
+		this.mao.retirarNope();
+		
+	}
+
 }

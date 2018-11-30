@@ -5,7 +5,7 @@ import br.ufsc.inf.leobr.cliente.Jogada;
 // interface grafica do jogador
 public class AtorJogador {
 	
-	private String nome = "Joao"; // solicitar via interface grafica
+	private String nome; // solicitar via interface grafica
 	
 	private AtorNetgames atorNetgames;
 	protected Mesa mesa;
@@ -31,6 +31,7 @@ public class AtorJogador {
 		
 		String servidor = tela.obterServidor();
 		String idUsuario = tela.obterIdJogador();
+		this.nome = idUsuario;
 		
 		atorNetgames.conectar(servidor, idUsuario); // servidor na propria maquina onde esta o jogo
 		
@@ -75,7 +76,6 @@ public class AtorJogador {
 	}
 
 	public void receberJogada(Jogada lance) {
-		System.out.println("deu ruim" + lance);
 		if(lance instanceof EstadoInicialMesa) { //se for passado o estado inicial da mesa entao eh a criacao da mesa pro jogador 2
 			mesa = new Mesa((EstadoInicialMesa) lance, this);
 			tela.comecaJogo(mesa.getEstadoMesa());
@@ -85,7 +85,6 @@ public class AtorJogador {
 		} else if(lance instanceof RespostaNope) {
 			mesa.jogarCarta((RespostaNope) lance);
 		} else if(lance instanceof EstadoMesa) { // se for passado o estado da mesa eh para a troca de turno
-			System.out.println("burro");
 			mesa.mudarTurno((EstadoMesa) lance);
 		}else {
 			System.out.println("deu ruim" + lance);
@@ -113,6 +112,25 @@ public class AtorJogador {
 	
 	public JFrame getTela() {
 		return this.tela;
+	}
+
+	public void comprarCarta() {
+		mesa.comprarCarta();
+		
+	}
+	
+	public void jogarCarta(int posicao) {
+		mesa.retirarCarta(posicao);
+	}
+
+	public void jogarPar(int[] posicoes) {
+		mesa.jogarPar(posicoes);
+		
+	}
+
+	public void setTelaJogo(TelaJogo telaJogo) {
+		this.mesa.setTelaJogo(telaJogo);
+		
 	}
 	
 }

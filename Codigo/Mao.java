@@ -199,6 +199,20 @@ public class Mao implements Jogada{
 	public boolean possuiPar() {
 		return quantidadeKittenGarfield > 1 || quantidadeKittenMeow > 1 || quantidadeKittenPussInBoots > 1 || quantidadeKittenSylvester > 1;
 	}
+	
+	public void retirarNope() {
+		for(Carta c: cartas) {
+			if(c.isCartaEfeito()) {
+				CartaEfeito cartaEfeito = (CartaEfeito) c;
+				if(cartaEfeito.getEfeito() == EfeitoCarta.NOPE) {
+					cartas.remove(cartaEfeito);
+					quantidadeNope--;
+					return;
+				} 
+			}
+		}
+		
+	}
 
 
 }

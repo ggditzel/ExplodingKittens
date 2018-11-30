@@ -1,5 +1,6 @@
+import br.ufsc.inf.leobr.cliente.Jogada;
 
-public class RespostaNope {
+public class RespostaNope implements Jogada{
 	protected boolean jogouNope;
 	protected CartaEfeito cartaJogada;
 

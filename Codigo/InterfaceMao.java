@@ -15,20 +15,26 @@ public class InterfaceMao extends JPanel{
 			for(int i = 0; i < mao.cartas.size(); i++) {
 				JLabel carta = new JLabel();
 				add(carta);
-				carta.setBounds(0 + (i * 40), 20, 35, 65);
+				carta.setBounds(0 + (i * 60), 20, 50, 85);
 				Image iconVerso = new ImageIcon(mao.getCarta(i).urlImagem()).getImage()
 						.getScaledInstance(carta.getWidth(), carta.getHeight(), Image.SCALE_SMOOTH);
 				ImageIcon imageIcon = new ImageIcon(iconVerso);
 				carta.setIcon(imageIcon);
+				
 				JLabel posicao = new JLabel(""+ i);
 				add(posicao);
-				posicao.setBounds(18 + (i * 40), 0, 20, 15);
+				posicao.setBounds(18 + (i * 60), 0, 20, 15);
+				
+				JLabel descricao = new JLabel(mao.getCarta(i).getDescricao());
+				add(descricao);
+				descricao.setBounds(0 + (i * 60), 90, 50, 40);
+				
 			}
 		} else {
 			for(int i = 0; i < mao.cartas.size(); i++) {
 				JLabel versoCarta = new JLabel();
 				add(versoCarta);
-				versoCarta.setBounds(0 + (i * 40), 0, 35, 65);
+				versoCarta.setBounds(0 + (i * 60), 0, 50, 85);
 				Image iconVerso = new ImageIcon("imagens/verso2.jpg").getImage()
 						.getScaledInstance(versoCarta.getWidth(), versoCarta.getHeight(), Image.SCALE_SMOOTH);
 				ImageIcon imageIcon = new ImageIcon(iconVerso);

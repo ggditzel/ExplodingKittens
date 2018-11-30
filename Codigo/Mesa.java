@@ -9,6 +9,7 @@ public class Mesa {
 	protected Jogador jogadorDaVez;
 	protected boolean skip;
 	protected TelaMesa tela;
+	protected TelaJogo telaJogo;
 	protected AtorJogador atorJogador;
 	
 	protected boolean encerrado;
@@ -80,7 +81,8 @@ public class Mesa {
 			Carta carta = jogador1.retirarCartaAleatoria();
 			jogador2.inserirCarta(carta);
 		}
-		falaMaos();
+		telaJogo.atualiza(getEstadoMesa());
+		//falaMaos();
 	}
 
 	public void trocaSkip() {
@@ -118,7 +120,12 @@ public class Mesa {
 	}
 	
 	public void verificarNope(PretensaoJogarCarta pretensao) {
-		tela.perguntaNope();
+		boolean resposta = telaJogo.perguntaNope(pretensao.getCarta());
+		if(resposta) {
+			Jogador aux = jogadorDaVez.equals(jogador1) ? jogador2 : jogador1;
+			aux.retirarNope();
+		}
+		atorJogador.enviarJogada(new RespostaNope(resposta, pretensao.getCarta()));
 	}
 
 
@@ -129,6 +136,8 @@ public class Mesa {
 	
 	//jogar carta
 	public void retirarCarta(int posicao) {
+		
+		System.out.println("\n \n \n JOGAR CARTA NA MESA \n \n \n");
 		Carta cartaSelecionada = jogadorDaVez.retirarCarta(posicao);
 		System.out.println("carta selecionada: " + cartaSelecionada.getDescricao());
 		
@@ -136,15 +145,21 @@ public class Mesa {
 			CartaEfeito cartaEfeito = (CartaEfeito) cartaSelecionada;
 			if(cartaEfeito.getEfeito() == EfeitoCarta.NOPE || cartaEfeito.getEfeito() == EfeitoCarta.DEFUSE) {
 				jogadorDaVez.inserirCarta(cartaEfeito);
+				telaJogo.enviaMensagem(cartaEfeito.descricao + " nao pode ser jogada em seu turno");
+				telaJogo.atualiza(getEstadoMesa());
 				//throw new Exception(cartaEfeito.descricao + " nao pode ser jogada em seu turno");
 			} else if(cartaEfeito.getEfeito() == EfeitoCarta.SKIP && skip) {
 				jogadorDaVez.inserirCarta(cartaEfeito);
+				telaJogo.enviaMensagem(cartaEfeito.descricao + " ja foi jogada nesse turno");
+				telaJogo.atualiza(getEstadoMesa());
 				//throw new Exception(cartaEfeito.descricao + " ja foi jogada nesse turno");
 			} else {
 				verificarNope(cartaEfeito);
 			}
 		} else {
 			jogadorDaVez.inserirCarta(cartaSelecionada);
+			telaJogo.enviaMensagem("Cartas kitten nao podem ser jogada sem ser em par");
+			telaJogo.atualiza(getEstadoMesa());
 			//throw new Exception("Cartas kitten nao podem ser jogada sem ser em par");
 		}
 		
@@ -176,6 +191,7 @@ public class Mesa {
 	}
 
 	public void comprarCarta() {
+		System.out.println("\n \n \n COMPRAR CARTA NA MESA \n \n \n");
 		if(!skip) {
 			Carta carta = baralho.removeCartaTopo();
 			if(carta.isCartaEfeito()) {
@@ -186,7 +202,7 @@ public class Mesa {
 				}
 			}
 			jogadorDaVez.inserirCarta(carta);
-		} 
+		}
 		mudarTurno();
 	}
 	
@@ -236,7 +252,7 @@ public class Mesa {
 					}
 				} else if(jogada == jogadorDaVez.getMao().cartas.size() && jogadorDaVez.possuiPar()){
 					try  {
-						jogarPar();
+						//jogarPar();
 					} catch(Exception e) {
 						System.out.println(e.getMessage());
 					}
@@ -252,6 +268,7 @@ public class Mesa {
 	public void mudarTurno() {
 		jogadorDaVez = jogadorDaVez.equals(jogador1) ? jogador2 : jogador1;
 		this.skip = false;
+		telaJogo.atualiza(getEstadoMesa());
 		this.atorJogador.enviarJogada(getEstadoMesa());
 	}
 	
@@ -260,8 +277,9 @@ public class Mesa {
 	}
 
 
-	public void jogarPar() {
-		int[] posicoes = tela.perguntaPar();
+	public void jogarPar(int[] posicoes) {
+		System.out.println("\n \n \n JOGAR PAR NA MESA \n \n");
+		//int[] posicoes = tela.perguntaPar();
 		jogadorDaVez.getMao().retirarCartas(posicoes[0], posicoes[1]);
 		roubarCartaAdversario();
 	}
@@ -275,6 +293,7 @@ public class Mesa {
 	}
 
 	public void jogarCarta(RespostaNope resposta){
+		System.out.println("\n \n \n \n \n \n \n \n \n CHEGAMOS AQUIIIIII \n \n \n \n \n");
 		CartaEfeito cartaEfeito = resposta.getCartaJogada();
 		if(!resposta.jogouNope) {
 			switch (cartaEfeito.getEfeito()) {
@@ -299,10 +318,12 @@ public class Mesa {
 			}
 		} else {
 			tela.avisaNopeJogado();
-			jogadorDaVez.inserirCarta(cartaEfeito);
 		}
 	}
 
+	public void setTelaJogo(TelaJogo telaJogo) {
+		this.telaJogo = telaJogo;
+	}
 
 	//---------------------------------------------------------------------------------------------------------------------------------------
 	private void perguntaNomes() {
@@ -315,6 +336,9 @@ public class Mesa {
 		tela.falaMao(jogador1);
 		tela.falaMao(jogador2);
 	}
+
+
+
 
 
 
