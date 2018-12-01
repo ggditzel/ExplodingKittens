@@ -144,7 +144,7 @@ public class TelaJogo extends JPanel {
 //		b.setBounds(300, 180, 300, 15);
 		
 		if(estado.jogador1.possuiNope()) {
-			int resposta = JOptionPane.showConfirmDialog (null, "Voce deseja jogar NOPE?","Seu oponente jogou " + cartaEfeito.getDescricao(), JOptionPane.YES_NO_OPTION);
+			int resposta = JOptionPane.showConfirmDialog (this, "Voce deseja jogar NOPE?","Seu oponente jogou " + cartaEfeito.getDescricao(), JOptionPane.YES_NO_OPTION);
 
 			return resposta == JOptionPane.YES_OPTION;
 			
