@@ -89,8 +89,11 @@ public class AtorJogador {
 			mesa.jogarCarta((RespostaNope) lance);
 		} else if(lance instanceof EstadoMesa) { // se for passado o estado da mesa eh para a troca de turno
 			mesa.mudarTurno((EstadoMesa) lance);
-		}else {
+		} else if(lance instanceof JogoEncerrado){
+			mesa.encerraJogo(true);
+		} else {
 			System.out.println("deu ruim" + lance);
+
 		}
 		// recebe a jogada via AtorNetgames/servidor, implementar a logica
 		// pode ter varios getters...

@@ -192,6 +192,36 @@ public class TelaJogo extends JPanel {
 		
 	}
 
+	public int mostrarCartasViradasBaixo(int qtdCartas) {
+		String posicoes = "";
+		int posicao = 0;
+		System.out.println("Voce possui uma defuse \n Escolha em qual posicao voce colocara o EXPLODING KITTEN");
+		for(int i = 0; i < qtdCartas; i++) {
+//			System.out.print(" [" + i + "] ");
+			posicoes += " [" + i + "] ";
+		}
+		boolean respostaOK = false;
+		do{
+			String posicaoString = JOptionPane.showInputDialog("Voce possui uma DEFUSE \n Escolha em qual posicao voce colocara o EXPLODING KITTEN \n " + posicoes);
+			try {
+				posicao = Integer.parseInt(posicaoString);
+				respostaOK = true;
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Insira a posicao desejada", "Posicao invalida", JOptionPane.PLAIN_MESSAGE);
+			}
+		} while(!respostaOK); 
+		return posicao;
+	}
+
+	public void acabaJogo(boolean venceu) {
+		if(venceu) {
+			JOptionPane.showMessageDialog(null, "Voce venceu", "Fim de partida", JOptionPane.PLAIN_MESSAGE);		
+
+		} else {
+		JOptionPane.showMessageDialog(null, "Voce perdeu", "Fim de partida", JOptionPane.PLAIN_MESSAGE);		
+	
+		}
+	}
 
 }
 

@@ -179,11 +179,12 @@ public class Mesa {
 		if(jogadorDaVez.possuiDefuse()) {
 			jogadorDaVez.retirarDefuse();
 			ArrayList<Carta> cartas = baralho.getCartas();
-			int posicao = xxxx.mostrarCartasViradasBaixo(cartas.size() + 1);
+			int posicao = telaJogo.mostrarCartasViradasBaixo(cartas.size() + 1);
+			//int posicao = xxxx.mostrarCartasViradasBaixo(cartas.size() + 1);
 			baralho.inserirExplodingKitten(posicao);
 			mudarTurno();
 		} else {
-			encerraJogo();
+			encerraJogo(false);
 		}
 	}
 
@@ -215,9 +216,13 @@ public class Mesa {
 
 
 
-	public void encerraJogo() {
-		System.out.println("fim de jogo");
+	public void encerraJogo(boolean venceu) {
+		//System.out.println("fim de jogo");
+		telaJogo.acabaJogo(venceu);
+		this.telaJogo.setVisible(false);
 		this.encerrado = true;
+		if(venceu) return;
+		this.atorJogador.enviarJogada(new JogoEncerrado());
 	}
 	
 	public void mostrarDescricaoCarta(int posicao, Jogador jogador) {
