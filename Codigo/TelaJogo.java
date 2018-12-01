@@ -2,6 +2,7 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -84,11 +85,11 @@ public class TelaJogo extends JPanel {
 //		}
 		maoJogador = new InterfaceMao(estado.jogador1.getMao(), true);
 		add(maoJogador);
-		maoJogador.setBounds(10, 450, 600, 150);
+		maoJogador.setBounds(10, 450, 700, 150);
 		
 		maoOponente = new InterfaceMao(estado.jogador2.getMao(), false);
 		add(maoOponente);
-		maoOponente.setBounds(10, 50, 600, 150);
+		maoOponente.setBounds(10, 50, 700, 150);
 		
 	}
 	
@@ -155,6 +156,40 @@ public class TelaJogo extends JPanel {
 			} catch (InterruptedException e) {}
 			return false;
 		}
+	}
+
+	public int[] perguntaCartasTopo(ArrayList<Carta> cartas) {
+		int[] ordem = new int[cartas.size()];
+		String[] stringOrdem = new String[cartas.size()];
+		System.out.println("Selecione a ordem das cartas:");
+		String stringCartas = "";
+		for(int i = 0; i < cartas.size(); i++) {
+			System.out.println(i + " - " + cartas.get(i).getDescricao());
+			stringCartas += i + " - " + cartas.get(i).getDescricao() + " \n";
+		}
+		for(int i = 0; i < cartas.size(); i++) {
+			boolean respostaOK = false;
+			do{
+				String posicaoString = JOptionPane.showInputDialog("Cartas do topo: \n " + stringCartas +"Insira qual carta voce quer na posicao " + i + " do baralho");
+				try {
+					ordem[i] = Integer.parseInt(posicaoString);
+					respostaOK = true;
+				} catch (Exception e) {
+					JOptionPane.showMessageDialog(null, "Insira apenas a posicao da carta", "Posicao invalida", JOptionPane.PLAIN_MESSAGE);
+				}
+			} while(!respostaOK);
+		}
+		return ordem;
+	}
+
+	public void mostrarCartasTopo(ArrayList<Carta> cartas) {
+		String cartasTopo = "";
+		for(int i = 0; i < cartas.size(); i++) {
+			cartasTopo += "[" + i +"] " + cartas.get(i).getDescricao() + " \n ";
+			//System.out.println("[" + i +"] " + cartas.get(i).getDescricao());
+		}
+		JOptionPane.showMessageDialog(null, "As cartas do topo sao: \n" + cartasTopo, "SEE THE FUTURE", JOptionPane.PLAIN_MESSAGE);
+		
 	}
 
 

@@ -98,7 +98,8 @@ public class Mesa {
 	 * @param cartas
 	 */
 	public void mostrarCartasTopo(ArrayList<Carta> cartas) {
-		//xxxx.mostrarCartasTopo(cartas);
+		telaJogo.mostrarCartasTopo(cartas);
+		xxxx.mostrarCartasTopo(cartas);
 	}
 	
 
@@ -225,7 +226,8 @@ public class Mesa {
 	}
 	
 	public int[] perguntaCartasTopo(ArrayList<Carta> cartas) {
-		return xxxx.perguntaCartasTopo(cartas);
+		return telaJogo.perguntaCartasTopo(cartas);
+		//return xxxx.perguntaCartasTopo(cartas);
 	}
 	
 	public void distribuiCartas() {
@@ -315,10 +317,12 @@ public class Mesa {
 				ArrayList<Carta> cartas = getCartasTopo();
 				int[] posicoes = perguntaCartasTopo(cartas);
 				definirOrdemTopo(cartas, posicoes);
+				telaJogo.atualiza(getEstadoMesa());
 				break;
 			case SEE_THE_FUTURE:
 				ArrayList<Carta> cartasTopo = getCartasTopo();
 				mostrarCartasTopo(cartasTopo);
+				telaJogo.atualiza(getEstadoMesa());
 				break;
 			case FAVOR:
 				roubarCartaAdversario();

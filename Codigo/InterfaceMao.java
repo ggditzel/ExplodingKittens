@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 public class InterfaceMao extends JPanel{
 
 	public InterfaceMao(Mao mao, boolean jogadorPrincipal) {
-		setPreferredSize (new Dimension(600, 150));
+		setPreferredSize (new Dimension(700, 150));
 		setLayout(null);
 		
 		if(jogadorPrincipal) {
