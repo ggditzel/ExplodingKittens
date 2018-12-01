@@ -74,14 +74,14 @@ public class TelaJogo extends JPanel {
 		jogarPar.setBounds(600, 250, 120, 30);
 		
 		
-		System.out.println("estado do jogo: \n" + "mao jogador 1:");
-		for(int i = 0; i < estado.jogador1.getMao().cartas.size(); i++) {
-			System.out.println("" + i + " - " + estado.jogador1.getMao().getCarta(i).getDescricao());
-		}
-		System.out.println("jogador 2:");
-		for(int i = 0; i < estado.jogador2.getMao().cartas.size(); i++) {
-			System.out.println("" + i + " - " + estado.jogador2.getMao().getCarta(i).getDescricao());
-		}
+//		System.out.println("estado do jogo: \n" + "mao jogador 1:");
+//		for(int i = 0; i < estado.jogador1.getMao().cartas.size(); i++) {
+//			System.out.println("" + i + " - " + estado.jogador1.getMao().getCarta(i).getDescricao());
+//		}
+//		System.out.println("jogador 2:");
+//		for(int i = 0; i < estado.jogador2.getMao().cartas.size(); i++) {
+//			System.out.println("" + i + " - " + estado.jogador2.getMao().getCarta(i).getDescricao());
+//		}
 		maoJogador = new InterfaceMao(estado.jogador1.getMao(), true);
 		add(maoJogador);
 		maoJogador.setBounds(10, 450, 600, 150);
@@ -136,26 +136,24 @@ public class TelaJogo extends JPanel {
 
 	public boolean perguntaNope(CartaEfeito cartaEfeito) {
 		System.out.println("chegou aqui");
+		System.out.println(cartaEfeito);
+		//System.out.println(cartaEfeito.descricao);
 //		JLabel b = new JLabel("seu adversario jogou:" + carta.getDescricao());
 //		add(b);
 //		b.setBounds(300, 180, 300, 15);
 		
 		if(estado.jogador1.possuiNope()) {
-//			JLabel a = new JLabel("Voce deseja jogar NOPE?");
-//			add(a);
-//			a.setBounds(300, 200, 300, 300);
-			//String nome = carta.getDescricao();
-			int resposta = JOptionPane.showConfirmDialog (null, "Voce deseja jogar NOPE?","carta",JOptionPane.YES_NO_OPTION);
+			int resposta = JOptionPane.showConfirmDialog (null, "Voce deseja jogar NOPE?","Seu oponente jogou " + cartaEfeito.getDescricao(), JOptionPane.YES_NO_OPTION);
+
 			return resposta == JOptionPane.YES_OPTION;
+			
 		} else {
+
+			JOptionPane.showMessageDialog(null, "Voce nao possui carta NOPE", "Seu oponente jogou " + cartaEfeito.getDescricao(), JOptionPane.PLAIN_MESSAGE);
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {}
 			return false;
-//			JLabel a = new JLabel("Voce nao possui carta NOPE");
-//			add(a);
-////			a.setBounds(300, 200, 300, 300);
-//			int resposta = JOptionPane.showConfirmDialog (null, "Are you sure?","WARNING",JOptionPane.YES_NO_OPTION);
-//
-//			//JOptionPane.showMessageDialog(null, "Voce nao possui carta NOPE", "seu adversario jogou:" + carta.getDescricao(), JOptionPane.PLAIN_MESSAGE);
-//			return resposta == JOptionPane.YES_OPTION;
 		}
 	}
 

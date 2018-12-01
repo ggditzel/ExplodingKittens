@@ -81,6 +81,9 @@ public class AtorJogador {
 			tela.comecaJogo(mesa.getEstadoMesa());
 			System.out.println("recebi mesa");
 		} else if(lance instanceof PretensaoJogarCarta) {
+			System.out.println("chegou pretensao");
+			PretensaoJogarCarta aux = (PretensaoJogarCarta) lance;
+			System.out.println(aux.getCarta());
 			mesa.verificarNope((PretensaoJogarCarta) lance);
 		} else if(lance instanceof RespostaNope) {
 			mesa.jogarCarta((RespostaNope) lance);

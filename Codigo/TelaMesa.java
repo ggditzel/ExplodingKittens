@@ -43,22 +43,22 @@ public class TelaMesa {
 	}
 
 	public void falaMao(Jogador jogador) {
-		System.out.println("mao do jogador " + jogador.getNome() + " :");
-		for(int i = 0; i < jogador.getMao().cartas.size(); i++) {
-			System.out.println("" + i + " - " + jogador.getMao().getCarta(i).getDescricao());
-		}
+//		System.out.println("mao do jogador " + jogador.getNome() + " :");
+//		for(int i = 0; i < jogador.getMao().cartas.size(); i++) {
+//			System.out.println("" + i + " - " + jogador.getMao().getCarta(i).getDescricao());
+//		}
 		
 	}
 
 	public int perguntaJogada(Jogador jogadorDaVez) {
-		System.out.println(jogadorDaVez.getNome() + " escolha sua jogada:");
-		falaMao(jogadorDaVez);
-		if(jogadorDaVez.possuiPar()) {
-			System.out.println(jogadorDaVez.getMao().cartas.size() + " - jogar par");
-			System.out.println((jogadorDaVez.getMao().cartas.size() + 1) + " - acabar turno");
-		} else {
-			System.out.println(jogadorDaVez.getMao().cartas.size() + " - acabar turno");
-		}
+//		System.out.println(jogadorDaVez.getNome() + " escolha sua jogada:");
+//		falaMao(jogadorDaVez);
+//		if(jogadorDaVez.possuiPar()) {
+//			System.out.println(jogadorDaVez.getMao().cartas.size() + " - jogar par");
+//			System.out.println((jogadorDaVez.getMao().cartas.size() + 1) + " - acabar turno");
+//		} else {
+//			System.out.println(jogadorDaVez.getMao().cartas.size() + " - acabar turno");
+//		}
 		return sc.nextInt();
 	}
 

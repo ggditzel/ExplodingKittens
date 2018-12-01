@@ -8,7 +8,7 @@ public class Mesa {
 	protected Baralho baralho;
 	protected Jogador jogadorDaVez;
 	protected boolean skip;
-	protected TelaMesa tela;
+	protected TelaMesa xxxx;
 	protected TelaJogo telaJogo;
 	protected AtorJogador atorJogador;
 	
@@ -24,7 +24,7 @@ public class Mesa {
 		//this.jogadorDaVez = new Random().nextDouble() >= 0.5 ? jogador1 : jogador2;
 		this.jogadorDaVez = jogador1;
 		this.skip = false;
-		this.tela = new TelaMesa();
+		this.xxxx = new TelaMesa();
 		System.out.println("mesa criada");
 		//perguntaNomes();
 		distribuiCartas();
@@ -67,7 +67,7 @@ public class Mesa {
 		this.baralho = estado.getBaralho();
 		this.jogadorDaVez = estado.getJogadorDaVez();
 		this.skip = estado.isSkip();
-		this.tela = new TelaMesa();
+		this.xxxx = new TelaMesa();
 	}
 
 
@@ -98,7 +98,7 @@ public class Mesa {
 	 * @param cartas
 	 */
 	public void mostrarCartasTopo(ArrayList<Carta> cartas) {
-		tela.mostrarCartasTopo(cartas);
+		//xxxx.mostrarCartasTopo(cartas);
 	}
 	
 
@@ -116,6 +116,8 @@ public class Mesa {
 	}
 
 	public void verificarNope(CartaEfeito cartaSelecionada) {
+		System.out.println("antes da pretensao");
+		System.out.println(cartaSelecionada);
 		atorJogador.enviarJogada(new PretensaoJogarCarta(cartaSelecionada));
 	}
 	
@@ -155,6 +157,8 @@ public class Mesa {
 				telaJogo.atualiza(getEstadoMesa());
 				//throw new Exception(cartaEfeito.descricao + " ja foi jogada nesse turno");
 			} else {
+				System.out.println("antes de verificar");
+				System.out.println(cartaEfeito);
 				verificarNope(cartaEfeito);
 			}
 		} else {
@@ -174,7 +178,7 @@ public class Mesa {
 		if(jogadorDaVez.possuiDefuse()) {
 			jogadorDaVez.retirarDefuse();
 			ArrayList<Carta> cartas = baralho.getCartas();
-			int posicao = tela.mostrarCartasViradasBaixo(cartas.size() + 1);
+			int posicao = xxxx.mostrarCartasViradasBaixo(cartas.size() + 1);
 			baralho.inserirExplodingKitten(posicao);
 			mudarTurno();
 		} else {
@@ -217,11 +221,11 @@ public class Mesa {
 	
 	public void mostrarDescricaoCarta(int posicao, Jogador jogador) {
 		String descricao = jogador.getMao().getCarta(posicao).getDescricao();
-		tela.mostrarAjuda(descricao);
+		//xxxx.mostrarAjuda(descricao);
 	}
 	
 	public int[] perguntaCartasTopo(ArrayList<Carta> cartas) {
-		return tela.perguntaCartasTopo(cartas);
+		return xxxx.perguntaCartasTopo(cartas);
 	}
 	
 	public void distribuiCartas() {
@@ -244,7 +248,7 @@ public class Mesa {
 		while(!encerrado) {
 			int jogada = -1;
 			while(true) {
-				jogada = tela.perguntaJogada(jogadorDaVez);
+				//jogada = xxxx.perguntaJogada(jogadorDaVez);
 				if(jogada != jogadorDaVez.getMao().cartas.size() && jogada != jogadorDaVez.getMao().cartas.size() + 1) {
 					try  {
 						retirarCarta(jogada);
@@ -337,8 +341,8 @@ public class Mesa {
 
 	//---------------------------------------------------------------------------------------------------------------------------------------
 	private void perguntaNomes() {
-		this.jogador1.setNome(tela.perguntaNomeJogador());
-		this.jogador2.setNome(tela.perguntaNomeJogador());
+		this.jogador1.setNome(xxxx.perguntaNomeJogador());
+		this.jogador2.setNome(xxxx.perguntaNomeJogador());
 		System.out.println("o jogador que comeca sera: " + jogadorDaVez.getNome());
 	}
 
