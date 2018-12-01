@@ -21,25 +21,25 @@ public class CartaEfeito extends Carta {
 		String url = "";
 		switch (efeito) {
 		case CHANGE_THE_FUTURE:
-			url = "imagens/verso2.jpg";
+			url = "imagens/changeTheFuture.jpg";
 			break;
 		case DEFUSE:
-			url = "imagens/verso2.jpg";
+			url = "imagens/defuse.jpg";
 			break;
 		case EXPLODING_KITTEN:
 			url = "imagens/verso2.jpg";
 			break;
 		case FAVOR:
-			url = "imagens/verso2.jpg";
+			url = "imagens/favor.jpg";
 			break;
 		case NOPE:
-			url = "imagens/verso2.jpg";
+			url = "imagens/nope.jpg";
 			break;
 		case SEE_THE_FUTURE:
-			url = "imagens/verso2.jpg";
+			url = "imagens/seeTheFuture.jpg";
 			break;
 		case SKIP:
-			url = "imagens/verso2.jpg";
+			url = "imagens/skip.jpg";
 			break;
 		}
 		return url;
