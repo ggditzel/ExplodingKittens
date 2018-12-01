@@ -278,10 +278,15 @@ public class Mesa {
 	}
 	
 	public void mudarTurno(EstadoMesa estado) {
-		Jogador aux = estado.jogador1;
-		estado.jogador1 = estado.jogador2;
-		estado.jogador2 = aux;
-		telaJogo.atualiza(estado);
+//		Jogador aux = estado.jogador1;
+//		estado.jogador1 = estado.jogador2;
+//		estado.jogador2 = aux;
+		this.jogador1 = estado.jogador2;
+		this.jogador2 = estado.jogador1;
+		this.baralho = estado.baralho;
+		this.jogadorDaVez = estado.jogadorDaVez;
+		this.skip = estado.skip;
+		telaJogo.atualiza(getEstadoMesa());
 		//tela.avisaMudouTurno();
 	}
 
