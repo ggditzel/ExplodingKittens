@@ -205,6 +205,7 @@ public class TelaJogo extends JPanel {
 			String posicaoString = JOptionPane.showInputDialog("Voce possui uma DEFUSE \n Escolha em qual posicao voce colocara o EXPLODING KITTEN \n " + posicoes);
 			try {
 				posicao = Integer.parseInt(posicaoString);
+				if(posicao >= qtdCartas) throw new Exception();
 				respostaOK = true;
 			} catch (Exception e) {
 				JOptionPane.showMessageDialog(null, "Insira a posicao desejada", "Posicao invalida", JOptionPane.PLAIN_MESSAGE);
