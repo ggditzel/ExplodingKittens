@@ -10,7 +10,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.InterningXmlVisitor;
 
 public class TelaJogo extends JPanel {
 	
@@ -135,29 +134,31 @@ public class TelaJogo extends JPanel {
 		JOptionPane.showMessageDialog(this, mensagem, "Oops!", JOptionPane.PLAIN_MESSAGE);
 	}
 
-	public boolean perguntaNope(CartaEfeito carta) {
+	public boolean perguntaNope(CartaEfeito cartaEfeito) {
 		System.out.println("chegou aqui");
-		JLabel b = new JLabel("seu adversario jogou:" + carta.getDescricao());
-		add(b);
-		b.setBounds(300, 180, 300, 15);
+//		JLabel b = new JLabel("seu adversario jogou:" + carta.getDescricao());
+//		add(b);
+//		b.setBounds(300, 180, 300, 15);
 		
 		if(estado.jogador1.possuiNope()) {
-			JLabel a = new JLabel("Voce deseja jogar NOPE?");
-			add(a);
-			a.setBounds(300, 200, 300, 300);
-			
-			int resposta = JOptionPane.showConfirmDialog (null, "Are you sure?","WARNING",JOptionPane.YES_NO_OPTION);
+//			JLabel a = new JLabel("Voce deseja jogar NOPE?");
+//			add(a);
+//			a.setBounds(300, 200, 300, 300);
+			//String nome = carta.getDescricao();
+			int resposta = JOptionPane.showConfirmDialog (null, "Voce deseja jogar NOPE?","carta",JOptionPane.YES_NO_OPTION);
 			return resposta == JOptionPane.YES_OPTION;
 		} else {
-			
-			JLabel a = new JLabel("Voce nao possui carta NOPE");
-			add(a);
-			a.setBounds(300, 200, 300, 300);
-			int resposta = JOptionPane.showConfirmDialog (null, "Are you sure?","WARNING",JOptionPane.YES_NO_OPTION);
-
-			//JOptionPane.showMessageDialog(null, "Voce nao possui carta NOPE", "seu adversario jogou:" + carta.getDescricao(), JOptionPane.PLAIN_MESSAGE);
-			return resposta == JOptionPane.YES_OPTION;
+			return false;
+//			JLabel a = new JLabel("Voce nao possui carta NOPE");
+//			add(a);
+////			a.setBounds(300, 200, 300, 300);
+//			int resposta = JOptionPane.showConfirmDialog (null, "Are you sure?","WARNING",JOptionPane.YES_NO_OPTION);
+//
+//			//JOptionPane.showMessageDialog(null, "Voce nao possui carta NOPE", "seu adversario jogou:" + carta.getDescricao(), JOptionPane.PLAIN_MESSAGE);
+//			return resposta == JOptionPane.YES_OPTION;
 		}
 	}
+
+
 }
 

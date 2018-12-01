@@ -121,6 +121,7 @@ public class Mesa {
 	
 	public void verificarNope(PretensaoJogarCarta pretensao) {
 		boolean resposta = telaJogo.perguntaNope(pretensao.getCarta());
+		System.out.println("respondeu: " + resposta);
 		if(resposta) {
 			Jogador aux = jogadorDaVez.equals(jogador1) ? jogador2 : jogador1;
 			aux.retirarNope();
@@ -235,7 +236,7 @@ public class Mesa {
 		jogador2.inserirCarta(defuse2);
 		baralho.inserir(explodingKitten);
 		embaralhar();
-		falaMaos();
+		//falaMaos();
 	}
 
 
@@ -297,7 +298,7 @@ public class Mesa {
 	}
 
 	public void jogarCarta(RespostaNope resposta){
-		System.out.println("\n \n \n \n \n \n \n \n \n CHEGAMOS AQUIIIIII \n \n \n \n \n");
+		System.out.println("\n \n \n \n \n \n \n \n \n CHEGAMOS JOGAR CARTA  \n \n \n \n \n RECONHECEU RESPOSTA NOPE");
 		CartaEfeito cartaEfeito = resposta.getCartaJogada();
 		if(!resposta.jogouNope) {
 			switch (cartaEfeito.getEfeito()) {
@@ -312,16 +313,21 @@ public class Mesa {
 				break;
 			case FAVOR:
 				roubarCartaAdversario();
+				telaJogo.atualiza(getEstadoMesa());
 				break;
 			case SKIP:
 				this.skip = true;
+				telaJogo.atualiza(getEstadoMesa());
 				break;
 			default:
 				jogadorDaVez.inserirCarta(cartaEfeito);
 				//throw new Exception(cartaEfeito.descricao + " nao pode ser jogada em seu turno");
 			}
 		} else {
-			tela.avisaNopeJogado();
+			telaJogo.enviaMensagem("Seu oponente jogou NOPE e sua  foi negada.");
+			jogador2.retirarNope();
+			telaJogo.atualiza(getEstadoMesa());
+			//tela.avisaNopeJogado();
 		}
 	}
 
@@ -336,10 +342,6 @@ public class Mesa {
 		System.out.println("o jogador que comeca sera: " + jogadorDaVez.getNome());
 	}
 
-	private void falaMaos() {
-		tela.falaMao(jogador1);
-		tela.falaMao(jogador2);
-	}
 
 
 
