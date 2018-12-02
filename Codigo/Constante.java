@@ -21,8 +21,6 @@ public class Constante {
 
 	public static final String JOGADOR_PERDEU = "Você perdeu.";
 	public static final String ADVERSARIO_DESISTIU = "Seu adversário desistiu. Parabéns, você ganhou.";
-	public static final String LIBERACAO_DECLARADA = "Lance os gravetos para tentar liberar seu peão.";
-	public static final String GRAVETOS_JA_LANCADOS = "Você já lançou os gravetos.";
 	public static final String AJUDA = "1. Conecte-se a um servidor.\n" +
 									   "2. Inicie uma nova partida.\n" +
 									   "3. Bla Bla Bla\n";

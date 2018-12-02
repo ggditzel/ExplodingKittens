@@ -31,9 +31,9 @@ public class Baralho implements Jogada{
 		//adicionar as cartas do baralho
 	}
 	
-	public Baralho(ArrayList<Carta> cartas) {
-		this.cartas = cartas;
-	}
+//	public Baralho(ArrayList<Carta> cartas) {
+//		this.cartas = cartas;
+//	}
 
 	public Carta removeCartaTopo() {
 		return cartas.remove(0);

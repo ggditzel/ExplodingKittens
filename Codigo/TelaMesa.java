@@ -6,51 +6,51 @@ public class TelaMesa {
 
 	Scanner sc =  new Scanner(System.in);
 	
-	public int mostrarCartasViradasBaixo(int qtdCartas) {
-		System.out.println("Voce possui uma defuse \n Escolha em qual posicao voce colocara o EXPLODING KITTEN");
-		for(int i = 0; i < qtdCartas; i++) {
-			System.out.print(" [" + i + "] ");
-		}
-		return sc.nextInt();
-	}
-
-	public void mostrarAjuda(String descricao) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void mostrarCartasTopo(ArrayList<Carta> cartas) {
-		for(int i = 0; i < cartas.size(); i++) {
-			System.out.println("[" + i +"] " + cartas.get(i).getDescricao());
-		}
-	}
-
-	public int[] perguntaCartasTopo(ArrayList<Carta> cartas) {
-		int[] ordem = new int[cartas.size()];
-		System.out.println("Selecione a ordem das cartas:");
-		for(int i = 0; i < cartas.size(); i++) {
-			System.out.println(i + " - " + cartas.get(i).getDescricao());
-		}
-		for(int i = 0; i < cartas.size(); i++) {
-			ordem[i] = sc.nextInt();
-		}
-		return ordem;
-	}
-
-	public String perguntaNomeJogador() {
-		System.out.println("insira seu nome: ");
-		return sc.nextLine();
-	}
-
-	public void falaMao(Jogador jogador) {
-//		System.out.println("mao do jogador " + jogador.getNome() + " :");
-//		for(int i = 0; i < jogador.getMao().cartas.size(); i++) {
-//			System.out.println("" + i + " - " + jogador.getMao().getCarta(i).getDescricao());
+//	public int mostrarCartasViradasBaixo(int qtdCartas) {
+//		System.out.println("Voce possui uma defuse \n Escolha em qual posicao voce colocara o EXPLODING KITTEN");
+//		for(int i = 0; i < qtdCartas; i++) {
+//			System.out.print(" [" + i + "] ");
 //		}
-		
-	}
+//		return sc.nextInt();
+//	}
 
-	public int perguntaJogada(Jogador jogadorDaVez) {
+//	public void mostrarAjuda(String descricao) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+
+//	public void mostrarCartasTopo(ArrayList<Carta> cartas) {
+//		for(int i = 0; i < cartas.size(); i++) {
+//			System.out.println("[" + i +"] " + cartas.get(i).getDescricao());
+//		}
+//	}
+
+//	public int[] perguntaCartasTopo(ArrayList<Carta> cartas) {
+//		int[] ordem = new int[cartas.size()];
+//		System.out.println("Selecione a ordem das cartas:");
+//		for(int i = 0; i < cartas.size(); i++) {
+//			System.out.println(i + " - " + cartas.get(i).getDescricao());
+//		}
+//		for(int i = 0; i < cartas.size(); i++) {
+//			ordem[i] = sc.nextInt();
+//		}
+//		return ordem;
+//	}
+
+//	public String perguntaNomeJogador() {
+//		System.out.println("insira seu nome: ");
+//		return sc.nextLine();
+//	}
+
+//	public void falaMao(Jogador jogador) {
+////		System.out.println("mao do jogador " + jogador.getNome() + " :");
+////		for(int i = 0; i < jogador.getMao().cartas.size(); i++) {
+////			System.out.println("" + i + " - " + jogador.getMao().getCarta(i).getDescricao());
+////		}
+//		
+//	}
+
+//	public int perguntaJogada(Jogador jogadorDaVez) {
 //		System.out.println(jogadorDaVez.getNome() + " escolha sua jogada:");
 //		falaMao(jogadorDaVez);
 //		if(jogadorDaVez.possuiPar()) {
@@ -59,32 +59,32 @@ public class TelaMesa {
 //		} else {
 //			System.out.println(jogadorDaVez.getMao().cartas.size() + " - acabar turno");
 //		}
-		return sc.nextInt();
-	}
+//		return sc.nextInt();
+//	}
 
-	public int[] perguntaPar() {
-		int[] par = new int[2];
-		System.out.print("Carta1: ");
-		par[0] = sc.nextInt();
-		System.out.print("Carta2: ");
-		par[1] = sc.nextInt();
-		System.out.println();
-		return par;
-	}
+//	public int[] perguntaPar() {
+//		int[] par = new int[2];
+//		System.out.print("Carta1: ");
+//		par[0] = sc.nextInt();
+//		System.out.print("Carta2: ");
+//		par[1] = sc.nextInt();
+//		System.out.println();
+//		return par;
+//	}
 
-	public void avisaNopeJogado() {
-		// TODO Auto-generated method stub
-		
-	}
+//	public void avisaNopeJogado() {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
-	public void perguntaNope() {
-		// TODO Auto-generated method stub
-		
-	}
+//	public void perguntaNope() {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
-	public void avisaMudouTurno() {
-		// TODO Auto-generated method stub
-		
-	}
+//	public void avisaMudouTurno() {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
 }

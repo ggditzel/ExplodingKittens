@@ -23,10 +23,10 @@ public class Mao implements Jogada{
 		this.quantidadeKittenSylvester = 0;
 		this.quantidadeNope = 0;
 	}
-	public Mao(ArrayList<Carta> cartas) {
-		this.cartas = cartas;
-		atualizarQuantidades();
-	}
+//	public Mao(ArrayList<Carta> cartas) {
+//		this.cartas = cartas;
+//		atualizarQuantidades();
+//	}
 	
 	
 	/**
@@ -161,17 +161,17 @@ public class Mao implements Jogada{
 	 * @param posicao2
 	 * @throws Exception 
 	 */
-	public void retirarCartas(int posicao1, int posicao2){
+	public void retirarCartas(int posicao1, int posicao2)  throws Exception {
 		if(posicao1 == posicao2) {} //throw new Exception("Selecione duas cartas diferentes");
 		Carta carta1 = cartas.get(posicao1);
 		Carta carta2 = cartas.get(posicao2);
 		if(carta1.isCartaEfeito() || carta2.isCartaEfeito() ) {
-			//throw new Exception("Carta de efeito nao pode ser jogada como par");
+			throw new Exception("Carta de efeito nao pode ser jogada como par");
 		}
 		CartaKitten cartaKitten1 = (CartaKitten) carta1;
 		CartaKitten cartaKitten2 = (CartaKitten) carta2;
 		if(cartaKitten1.getTribo() != cartaKitten2.getTribo()) {
-			//throw new Exception("Cartas de tribo diferente nao podem ser jogadas como par");
+			throw new Exception("Cartas de tribo diferente nao podem ser jogadas como par");
 		}
 		
 		if(posicao1 > posicao2) {

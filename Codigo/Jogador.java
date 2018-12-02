@@ -9,15 +9,15 @@ public class Jogador implements Jogada{
 		this.mao = new Mao();
 	}
 	
-	public Jogador(String nome) {
-		this.mao = new Mao();
-		this.nome = nome;
-	}
+//	public Jogador(String nome) {
+//		this.mao = new Mao();
+//		this.nome = nome;
+//	}
 	
-	public Jogador(String nome, Mao mao) {
-		this.mao = mao;
-		this.nome = nome;
-	}
+//	public Jogador(String nome, Mao mao) {
+//		this.mao = mao;
+//		this.nome = nome;
+//	}
 	
 	
 	
@@ -59,9 +59,9 @@ public class Jogador implements Jogada{
 		return this.mao.possuiDefuse();
 	}
 	
-	public boolean possuiPar() {
-		return this.mao.possuiPar();
-	}
+//	public boolean possuiPar() {
+//		return this.mao.possuiPar();
+//	}
 
 	public boolean possuiNope() {
 		return this.mao.possuiNope();

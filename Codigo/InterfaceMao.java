@@ -1,9 +1,11 @@
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 public class InterfaceMao extends JPanel{
 
@@ -25,9 +27,17 @@ public class InterfaceMao extends JPanel{
 				add(posicao);
 				posicao.setBounds(18 + (i * 60), 0, 20, 15);
 				
-				JLabel descricao = new JLabel(mao.getCarta(i).getDescricao());
+//				JLabel descricao = new JLabel(mao.getCarta(i).getDescricao());
+//				add(descricao);
+//				descricao.setBounds(0 + (i * 60), 90, 50, 40);
+				
+				JTextArea descricao = new JTextArea(mao.getCarta(i).getDescricao());  
+				descricao.setEditable(false);  
+				descricao.setLineWrap(true);  
+				descricao.setWrapStyleWord(true);
+				descricao.setBounds(0 + (i * 60), 110, 50, 60);
+				descricao.setFont(new Font("Times New Roman", Font.BOLD, 10));
 				add(descricao);
-				descricao.setBounds(0 + (i * 60), 90, 50, 40);
 				
 			}
 		} else {

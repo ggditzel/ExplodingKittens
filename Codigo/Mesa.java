@@ -24,7 +24,7 @@ public class Mesa {
 		//this.jogadorDaVez = new Random().nextDouble() >= 0.5 ? jogador1 : jogador2;
 		this.jogadorDaVez = jogador1;
 		this.skip = false;
-		this.xxxx = new TelaMesa();
+		//this.xxxx = new TelaMesa();
 		System.out.println("mesa criada");
 		//perguntaNomes();
 		distribuiCartas();
@@ -33,30 +33,30 @@ public class Mesa {
 	
 
 
-	public Mesa(Jogador jogador1, Jogador jogador2) {
-		this.encerrado = false;
-		this.baralho = new Baralho();
-		embaralhar();
-		this.skip = false;
-		this.jogadorDaVez = new Random().nextDouble() >= 0.5 ? jogador1 : jogador2;
-	}
+//	public Mesa(Jogador jogador1, Jogador jogador2) {
+//		this.encerrado = false;
+//		this.baralho = new Baralho();
+//		embaralhar();
+//		this.skip = false;
+//		this.jogadorDaVez = new Random().nextDouble() >= 0.5 ? jogador1 : jogador2;
+//	}
 	
-	public Mesa(Jogador jogador1, Jogador jogador2, Jogador jogadorDaVez) {
-		this.encerrado = false;
-		this.baralho = new Baralho();
-		embaralhar();
-		this.skip = false;
-		this.jogadorDaVez = jogadorDaVez;
-	}
+//	public Mesa(Jogador jogador1, Jogador jogador2, Jogador jogadorDaVez) {
+//		this.encerrado = false;
+//		this.baralho = new Baralho();
+//		embaralhar();
+//		this.skip = false;
+//		this.jogadorDaVez = jogadorDaVez;
+//	}
 	
-	public Mesa(Jogador jogador1, Jogador jogador2, Baralho baralho, Jogador jogadorDaVez, boolean skip) {
-		this.encerrado = false;
-		this.jogador1 = jogador1;
-		this.jogador2 = jogador2;
-		this.baralho = baralho;
-		this.jogadorDaVez = jogadorDaVez;
-		this.skip = skip;
-	}
+//	public Mesa(Jogador jogador1, Jogador jogador2, Baralho baralho, Jogador jogadorDaVez, boolean skip) {
+//		this.encerrado = false;
+//		this.jogador1 = jogador1;
+//		this.jogador2 = jogador2;
+//		this.baralho = baralho;
+//		this.jogadorDaVez = jogadorDaVez;
+//		this.skip = skip;
+//	}
 
 
 
@@ -67,7 +67,7 @@ public class Mesa {
 		this.baralho = estado.getBaralho();
 		this.jogadorDaVez = estado.getJogadorDaVez();
 		this.skip = estado.isSkip();
-		this.xxxx = new TelaMesa();
+		//this.xxxx = new TelaMesa();
 	}
 
 
@@ -85,9 +85,9 @@ public class Mesa {
 		//falaMaos();
 	}
 
-	public void trocaSkip() {
-		this.skip = !this.skip;
-	}
+//	public void trocaSkip() {
+//		this.skip = !this.skip;
+//	}
 
 	public ArrayList<Carta> getCartasTopo() {
 		return this.baralho.getCartasTopo();
@@ -99,7 +99,7 @@ public class Mesa {
 	 */
 	public void mostrarCartasTopo(ArrayList<Carta> cartas) {
 		telaJogo.mostrarCartasTopo(cartas);
-		xxxx.mostrarCartasTopo(cartas);
+		//xxxx.mostrarCartasTopo(cartas);
 	}
 	
 
@@ -133,10 +133,10 @@ public class Mesa {
 	}
 
 
-	public void mostrarCartasViradasBaixo() {
-		// TODO - implement Mesa.mostrarCartasViradasBaixo
-		throw new UnsupportedOperationException();
-	}
+//	public void mostrarCartasViradasBaixo() {
+//		// TODO - implement Mesa.mostrarCartasViradasBaixo
+//		throw new UnsupportedOperationException();
+//	}
 	
 	//jogar carta
 	public void retirarCarta(int posicao) {
@@ -192,10 +192,10 @@ public class Mesa {
 		this.baralho.embaralhar();
 	}
 
-	public void adicionarJogador() {
-		// TODO - implement Mesa.adicionarJogador
-		throw new UnsupportedOperationException();
-	}
+//	public void adicionarJogador() {
+//		// TODO - implement Mesa.adicionarJogador
+//		throw new UnsupportedOperationException();
+//	}
 
 	public void comprarCarta() {
 		System.out.println("\n \n \n COMPRAR CARTA NA MESA \n \n \n");
@@ -225,10 +225,10 @@ public class Mesa {
 		this.atorJogador.enviarJogada(new JogoEncerrado());
 	}
 	
-	public void mostrarDescricaoCarta(int posicao, Jogador jogador) {
-		String descricao = jogador.getMao().getCarta(posicao).getDescricao();
-		//xxxx.mostrarAjuda(descricao);
-	}
+//	public void mostrarDescricaoCarta(int posicao, Jogador jogador) {
+//		String descricao = jogador.getMao().getCarta(posicao).getDescricao();
+//		//xxxx.mostrarAjuda(descricao);
+//	}
 	
 	public int[] perguntaCartasTopo(ArrayList<Carta> cartas) {
 		return telaJogo.perguntaCartasTopo(cartas);
@@ -251,30 +251,30 @@ public class Mesa {
 	}
 
 
-	public void realizaJogada() {
-		while(!encerrado) {
-			int jogada = -1;
-			while(true) {
-				//jogada = xxxx.perguntaJogada(jogadorDaVez);
-				if(jogada != jogadorDaVez.getMao().cartas.size() && jogada != jogadorDaVez.getMao().cartas.size() + 1) {
-					try  {
-						retirarCarta(jogada);
-					} catch(Exception e) {
-						System.out.println(e.getMessage());
-					}
-				} else if(jogada == jogadorDaVez.getMao().cartas.size() && jogadorDaVez.possuiPar()){
-					try  {
-						//jogarPar();
-					} catch(Exception e) {
-						System.out.println(e.getMessage());
-					}
-				} else {
-					comprarCarta();
-					break;
-				}
-			}
-		}
-	}
+//	public void realizaJogada() {
+//		while(!encerrado) {
+//			int jogada = -1;
+//			while(true) {
+//				//jogada = xxxx.perguntaJogada(jogadorDaVez);
+//				if(jogada != jogadorDaVez.getMao().cartas.size() && jogada != jogadorDaVez.getMao().cartas.size() + 1) {
+//					try  {
+//						retirarCarta(jogada);
+//					} catch(Exception e) {
+//						System.out.println(e.getMessage());
+//					}
+//				} else if(jogada == jogadorDaVez.getMao().cartas.size() && jogadorDaVez.possuiPar()){
+//					try  {
+//						//jogarPar();
+//					} catch(Exception e) {
+//						System.out.println(e.getMessage());
+//					}
+//				} else {
+//					comprarCarta();
+//					break;
+//				}
+//			}
+//		}
+//	}
 
 
 	public void mudarTurno() {
@@ -301,8 +301,13 @@ public class Mesa {
 	public void jogarPar(int[] posicoes) {
 		System.out.println("\n \n \n JOGAR PAR NA MESA \n \n");
 		//int[] posicoes = tela.perguntaPar();
-		jogadorDaVez.getMao().retirarCartas(posicoes[0], posicoes[1]);
-		roubarCartaAdversario();
+		try {
+			jogadorDaVez.getMao().retirarCartas(posicoes[0], posicoes[1]);
+			roubarCartaAdversario();
+		} catch (Exception e) {
+			telaJogo.enviaMensagem(e.getMessage());
+			//Se.printStackTrace();
+		}
 	}
 	
 	public EstadoMesa getEstadoMesa() {
@@ -354,11 +359,11 @@ public class Mesa {
 	}
 
 	//---------------------------------------------------------------------------------------------------------------------------------------
-	private void perguntaNomes() {
-		this.jogador1.setNome(xxxx.perguntaNomeJogador());
-		this.jogador2.setNome(xxxx.perguntaNomeJogador());
-		System.out.println("o jogador que comeca sera: " + jogadorDaVez.getNome());
-	}
+//	private void perguntaNomes() {
+//		this.jogador1.setNome(xxxx.perguntaNomeJogador());
+//		this.jogador2.setNome(xxxx.perguntaNomeJogador());
+//		System.out.println("o jogador que comeca sera: " + jogadorDaVez.getNome());
+//	}
 
 
 

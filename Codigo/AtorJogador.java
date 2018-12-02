@@ -11,14 +11,14 @@ public class AtorJogador {
 	protected Mesa mesa;
 	protected TelaPrincipal tela;
 	
-	public AtorJogador() {
-		atorNetgames = new AtorNetgames(this);
-	}
-	
-	public AtorJogador(String nome) {
-		this.nome = nome;
-		atorNetgames = new AtorNetgames(this);
-	}
+//	public AtorJogador() {
+//		atorNetgames = new AtorNetgames(this);
+//	}
+//	
+//	public AtorJogador(String nome) {
+//		this.nome = nome;
+//		atorNetgames = new AtorNetgames(this);
+//	}
 	
 	public AtorJogador(TelaPrincipal telaPrincipal) {
 		atorNetgames = new AtorNetgames(this);
@@ -57,9 +57,9 @@ public class AtorJogador {
 	 * vai chamar o metodo "iniciarPartida()" para efetivamente iniciar a partida
 	 */
 	
-	public void iniciar() {
-		atorNetgames.iniciarPartida(); // quando o jogador quiser iniciar a partida, em vez de esperar solicitacao
-	}
+//	public void iniciar() {
+//		atorNetgames.iniciarPartida(); // quando o jogador quiser iniciar a partida, em vez de esperar solicitacao
+//	}
 	
 	public void iniciarPartida(boolean comecoJogando) { // chamado pelo AtorNetgames, apos receber solicitacao do servidor
 		

@@ -59,10 +59,10 @@ public class TelaJogo extends JPanel {
 		ImageIcon imageIcon = new ImageIcon(iconVerso);
 		baralho.setIcon(imageIcon);
 		
-		comprarCarta = new JButton("Comprar carta");
+		comprarCarta = new JButton("<html><center>Comprar carta<br>Passar turno</center></html>");
 		comprarCarta.addActionListener(tratadorBotoes);
 		add(comprarCarta);
-		comprarCarta.setBounds(120, 250, 120, 30);
+		comprarCarta.setBounds(120, 250, 120, 40);
 		
 		jogarCarta = new JButton("Jogar carta");
 		jogarCarta.addActionListener(tratadorBotoes);

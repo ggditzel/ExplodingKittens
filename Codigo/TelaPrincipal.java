@@ -124,24 +124,24 @@ public class TelaPrincipal extends JFrame {
 		
 	}
 
-	public boolean confirmarAcao(String acao) {
-		Object[] opcoes = {"sim", "cancelar"};
-		
-		if (obterOpcao(opcoes, "Você deseja realmente " + acao + "?", "Confirmar") == 0)
-			return true;
-		
-		return false;
-	}
+//	public boolean confirmarAcao(String acao) {
+//		Object[] opcoes = {"sim", "cancelar"};
+//		
+//		if (obterOpcao(opcoes, "Você deseja realmente " + acao + "?", "Confirmar") == 0)
+//			return true;
+//		
+//		return false;
+//	}
 
-	public void exibirMensagem(String titulo, String mensagem) {
-		JOptionPane.showMessageDialog(this, mensagem, titulo, JOptionPane.PLAIN_MESSAGE);
-	}
+//	public void exibirMensagem(String titulo, String mensagem) {
+//		JOptionPane.showMessageDialog(this, mensagem, titulo, JOptionPane.PLAIN_MESSAGE);
+//	}
 
-	public int obterOpcao(Object[] opcoes, String mensagem, String titulo) {
-		return	JOptionPane.showOptionDialog(this, mensagem,
-				titulo, JOptionPane.PLAIN_MESSAGE,
-				JOptionPane.QUESTION_MESSAGE, null, opcoes, null);
-	}
+//	public int obterOpcao(Object[] opcoes, String mensagem, String titulo) {
+//		return	JOptionPane.showOptionDialog(this, mensagem,
+//				titulo, JOptionPane.PLAIN_MESSAGE,
+//				JOptionPane.QUESTION_MESSAGE, null, opcoes, null);
+//	}
 
 	public void desconectar() {
 		atorJogador.desconectar();
@@ -164,9 +164,9 @@ public class TelaPrincipal extends JFrame {
 		atorJogador.desistirPartida();
 	}
 	
-	public void alterarAtorJogador(AtorJogador atorJogador) {
-		this.atorJogador = atorJogador;
-	}
+//	public void alterarAtorJogador(AtorJogador atorJogador) {
+//		this.atorJogador = atorJogador;
+//	}
 	
 	public String obterServidor() {
 		String idServidor = ("localhost");
