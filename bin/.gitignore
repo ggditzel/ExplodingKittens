@@ -1,7 +1,2 @@
 *.class
-/.classpath
-/.gitignore
-/.metadata/
-/.project
-/jogoMultiPlayer.properties
-/ngnrtFramework.jar
+CopiaClasses/
