@@ -21,7 +21,5 @@ public class Constante {
 
 	public static final String JOGADOR_PERDEU = "Você perdeu.";
 	public static final String ADVERSARIO_DESISTIU = "Seu adversário desistiu. Parabéns, você ganhou.";
-	public static final String AJUDA = "1. Conecte-se a um servidor.\n" +
-									   "2. Inicie uma nova partida.\n" +
-									   "3. Bla Bla Bla\n";
+	public static final String AJUDA = "Acesse https://explodingkittens.com/how-to-play/";
 }
