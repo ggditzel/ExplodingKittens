@@ -1,0 +1,17 @@
+!SESSION 2018-12-01 00:16:44.671 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.8.0_191
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=pt_BR
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.jdt.launching 4 108 2018-12-01 02:49:35.299
+!MESSAGE Working directory does not exist: /home/mateus/Área de Trabalho/expoding/ExplodingKittens/Codigo/APS
+
+!ENTRY org.eclipse.ui.ide 4 4 2018-12-01 02:49:41.260
+!MESSAGE Problems saving workspace
+
+!ENTRY org.eclipse.ui.ide 2 1 2018-12-01 02:49:41.260
+!MESSAGE Problems occurred while trying to save the state of the workbench.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2018-12-01 02:49:41.260
+!MESSAGE The project description file (.project) for 'APS' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.

@@ -78,7 +78,7 @@ public class Baralho implements Jogada{
 		Collections.shuffle(cartas);
 	}
 
-	public CartaEfeito removeExpoddingKitten() {
+	public CartaEfeito removeExplodingKitten() {
 		for(Carta c: cartas) {
 			if(c instanceof CartaEfeito) {
 				CartaEfeito cEfeito = (CartaEfeito) c;

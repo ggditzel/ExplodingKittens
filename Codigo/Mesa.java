@@ -236,7 +236,7 @@ public class Mesa {
 	}
 	
 	public void distribuiCartas() {
-		CartaEfeito explodingKitten = baralho.removeExpoddingKitten();
+		CartaEfeito explodingKitten = baralho.removeExplodingKitten();
 		CartaEfeito defuse1 = baralho.removeDefuse();
 		CartaEfeito defuse2 = baralho.removeDefuse();
 		for(int i = 0; i < 7; i++) {

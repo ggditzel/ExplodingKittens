@@ -67,40 +67,40 @@ public class Mao implements Jogada{
 		return cartaRemovida;
 	}
 
-	private void atualizarQuantidades() {
-		this.quantidadeDefuse = 0;
-		this.quantidadeKittenGarfield = 0;
-		this.quantidadeKittenMeow = 0;
-		this.quantidadeKittenPussInBoots = 0;
-		this.quantidadeKittenSylvester = 0;
-		this.quantidadeNope = 0;
-		for(Carta carta: this.cartas) {
-			if(carta.isCartaEfeito()) {
-				CartaEfeito cartaEfeito = (CartaEfeito) carta;
-				if(cartaEfeito.getEfeito() == EfeitoCarta.NOPE) {
-					quantidadeNope++;
-				} else if(cartaEfeito.getEfeito() == EfeitoCarta.DEFUSE) {
-					quantidadeDefuse++;
-				}
-			} else {
-				CartaKitten cartaKitten = (CartaKitten) carta;
-				switch(cartaKitten.getTribo()) {
-					case KITTEN_GARFIELD: 
-						quantidadeKittenGarfield++;
-						break;
-					case KITTEN_MEOW:
-						quantidadeKittenMeow++;
-						break;
-					case KITTEN_PUSS_IN_BOOTS:
-						quantidadeKittenPussInBoots++;
-						break;
-					case KITTEN_SYLVESTER:
-						quantidadeKittenSylvester++;
-						break;
-				}
-			}
-		}
-	}
+//	private void atualizarQuantidades() {
+//		this.quantidadeDefuse = 0;
+//		this.quantidadeKittenGarfield = 0;
+//		this.quantidadeKittenMeow = 0;
+//		this.quantidadeKittenPussInBoots = 0;
+//		this.quantidadeKittenSylvester = 0;
+//		this.quantidadeNope = 0;
+//		for(Carta carta: this.cartas) {
+//			if(carta.isCartaEfeito()) {
+//				CartaEfeito cartaEfeito = (CartaEfeito) carta;
+//				if(cartaEfeito.getEfeito() == EfeitoCarta.NOPE) {
+//					quantidadeNope++;
+//				} else if(cartaEfeito.getEfeito() == EfeitoCarta.DEFUSE) {
+//					quantidadeDefuse++;
+//				}
+//			} else {
+//				CartaKitten cartaKitten = (CartaKitten) carta;
+//				switch(cartaKitten.getTribo()) {
+//					case KITTEN_GARFIELD: 
+//						quantidadeKittenGarfield++;
+//						break;
+//					case KITTEN_MEOW:
+//						quantidadeKittenMeow++;
+//						break;
+//					case KITTEN_PUSS_IN_BOOTS:
+//						quantidadeKittenPussInBoots++;
+//						break;
+//					case KITTEN_SYLVESTER:
+//						quantidadeKittenSylvester++;
+//						break;
+//				}
+//			}
+//		}
+//	}
 
 	/**
 	 * 
