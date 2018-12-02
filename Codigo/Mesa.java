@@ -8,7 +8,7 @@ public class Mesa {
 	protected Baralho baralho;
 	protected Jogador jogadorDaVez;
 	protected boolean skip;
-	protected TelaMesa xxxx;
+//	protected TelaMesa xxxx;
 	protected TelaJogo telaJogo;
 	protected AtorJogador atorJogador;
 	
