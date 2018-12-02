@@ -23,13 +23,13 @@ public class TelaPrincipal extends JFrame {
 	protected JMenu menu;
 	protected JMenu conexao;
 	protected JMenuItem conectarServidor;
-	protected JMenuItem alterarServidor;
+	//protected JMenuItem alterarServidor;
 	protected JMenuItem desconectar;
 	protected JMenu partida;
 	protected JMenuItem iniciarNovaPartida;
 	protected JMenuItem desistirDaPartida;
 	protected JMenuItem sair;
-	protected JMenuItem ajuda;
+	//protected JMenuItem ajuda;
 	protected Font fontePadrao;
 	protected TratadoraDeEvento tratadoraDeEvento = new TratadoraDeEvento();
 	protected TelaJogo jogo;
@@ -76,11 +76,11 @@ public class TelaPrincipal extends JFrame {
 		conectarServidor.setActionCommand(Constante.CONECTAR_SERVIDOR);
 		conexao.add(conectarServidor);
 		
-		alterarServidor = new JMenuItem("Alterar servidor");
-		alterarServidor.setBackground(corDeFundo);
-		alterarServidor.addActionListener(tratadoraDeEvento);
-		alterarServidor.setActionCommand(Constante.ALTERAR_SERVIDOR);
-		conexao.add(alterarServidor);
+//		alterarServidor = new JMenuItem("Alterar servidor");
+//		alterarServidor.setBackground(corDeFundo);
+//		alterarServidor.addActionListener(tratadoraDeEvento);
+//		alterarServidor.setActionCommand(Constante.ALTERAR_SERVIDOR);
+//		conexao.add(alterarServidor);
 		
 		desconectar = new JMenuItem("Desconectar");
 		desconectar.setBackground(corDeFundo);
@@ -93,7 +93,7 @@ public class TelaPrincipal extends JFrame {
 		partida.setBackground(corDeFundo);
 		menu.add(partida);
 		
-		iniciarNovaPartida = new JMenuItem("Iniciar nova partida");
+		iniciarNovaPartida = new JMenuItem("Iniciar partida");
 		iniciarNovaPartida.setBackground(corDeFundo);
 		iniciarNovaPartida.addActionListener(tratadoraDeEvento);
 		iniciarNovaPartida.setActionCommand(Constante.INICIAR_NOVA_PARTIDA);
@@ -111,12 +111,12 @@ public class TelaPrincipal extends JFrame {
 		sair.setActionCommand(Constante.SAIR);
 		menu.add(sair);
 		
-		ajuda = new JMenuItem("Ajuda");
-		ajuda.setBackground(corDeFundo);
-		ajuda.setMnemonic(KeyEvent.VK_A);
-		ajuda.addActionListener(tratadoraDeEvento);
-		ajuda.setActionCommand(Constante.AJUDA);
-		barraDeMenu.add(ajuda);
+//		ajuda = new JMenuItem("Ajuda");
+//		ajuda.setBackground(corDeFundo);
+//		ajuda.setMnemonic(KeyEvent.VK_A);
+//		ajuda.addActionListener(tratadoraDeEvento);
+//		ajuda.setActionCommand(Constante.AJUDA);
+//		barraDeMenu.add(ajuda);
 	}
 	
 	public void conectar() {
@@ -147,9 +147,9 @@ public class TelaPrincipal extends JFrame {
 		atorJogador.desconectar();
 	}
 
-	public void ajuda() {
-		JOptionPane.showMessageDialog(null, Constante.AJUDA, "Ajuda", JOptionPane.INFORMATION_MESSAGE);
-	}
+//	public void ajuda() {
+//		JOptionPane.showMessageDialog(null, Constante.AJUDA, "Ajuda", JOptionPane.INFORMATION_MESSAGE);
+//	}
 
 	public void sair() {
 		if (atorJogador.sair())
@@ -193,7 +193,7 @@ public class TelaPrincipal extends JFrame {
 				case Constante.INICIAR_NOVA_PARTIDA: iniciarNovaPartida(); break;
 				case Constante.DESISTIR_DA_PARTIDA: desistirPartida(); break;
 				case Constante.SAIR: sair(); break;
-				case Constante.AJUDA: ajuda(); break;
+//				case Constante.AJUDA: ajuda(); break;
 			}
 		}
 	}
