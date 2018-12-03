@@ -10,7 +10,7 @@ import javax.swing.JTextArea;
 public class InterfaceMao extends JPanel{
 
 	public InterfaceMao(Mao mao, boolean jogadorPrincipal) {
-		setPreferredSize (new Dimension(700, 150));
+		setPreferredSize (new Dimension(1000, 150));
 		setLayout(null);
 		
 		if(jogadorPrincipal) {
@@ -45,7 +45,7 @@ public class InterfaceMao extends JPanel{
 				JLabel versoCarta = new JLabel();
 				add(versoCarta);
 				versoCarta.setBounds(0 + (i * 60), 0, 50, 85);
-				Image iconVerso = new ImageIcon("imagens/verso2.jpg").getImage()
+				Image iconVerso = new ImageIcon("../imagens/verso2.jpg").getImage()
 						.getScaledInstance(versoCarta.getWidth(), versoCarta.getHeight(), Image.SCALE_SMOOTH);
 				ImageIcon imageIcon = new ImageIcon(iconVerso);
 				versoCarta.setIcon(imageIcon);

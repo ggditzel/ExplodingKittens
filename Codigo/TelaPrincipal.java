@@ -44,7 +44,7 @@ public class TelaPrincipal extends JFrame {
 	
 	public void configurarInterface(AtorJogador atorJogador) {
 		this.atorJogador = atorJogador;
-		setPreferredSize(new Dimension(900, 700));
+		setPreferredSize(new Dimension(1200, 700));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(null);
 		
@@ -201,7 +201,7 @@ public class TelaPrincipal extends JFrame {
 	public void comecaJogo(EstadoMesa estadoMesa) {
 		this.jogo = new TelaJogo(estadoMesa, atorJogador);
 		add(jogo);
-		jogo.setBounds(100, 15, 800, 700);
+		jogo.setBounds(100, 15, 1100, 700);
 		
 	}
 }

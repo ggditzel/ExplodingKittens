@@ -40,7 +40,7 @@ public class TelaJogo extends JPanel {
 	private void config() {		
 		
 		removeAll();
-		setPreferredSize (new Dimension(800, 700));
+		setPreferredSize (new Dimension(1100, 700));
 		setLayout(null);
 		
 		vez = new JLabel("turno de " + estado.getJogadorDaVez().getNome());
@@ -54,7 +54,7 @@ public class TelaJogo extends JPanel {
 		baralho = new JLabel();
 		add(baralho);
 		baralho.setBounds(0, 200, 75, 135);
-		Image iconVerso = new ImageIcon("imagens/verso2.jpg").getImage()
+		Image iconVerso = new ImageIcon("../imagens/verso2.jpg").getImage()
 				.getScaledInstance(baralho.getWidth(), baralho.getHeight(), Image.SCALE_SMOOTH);
 		ImageIcon imageIcon = new ImageIcon(iconVerso);
 		baralho.setIcon(imageIcon);
@@ -85,11 +85,11 @@ public class TelaJogo extends JPanel {
 //		}
 		maoJogador = new InterfaceMao(estado.jogador1.getMao(), true);
 		add(maoJogador);
-		maoJogador.setBounds(10, 450, 700, 150);
+		maoJogador.setBounds(10, 450, 1000, 150);
 		
 		maoOponente = new InterfaceMao(estado.jogador2.getMao(), false);
 		add(maoOponente);
-		maoOponente.setBounds(10, 50, 700, 150);
+		maoOponente.setBounds(10, 50, 1000, 150);
 		
 	}
 	
@@ -152,7 +152,7 @@ public class TelaJogo extends JPanel {
 
 			JOptionPane.showMessageDialog(null, "Voce nao possui carta NOPE", "Seu oponente jogou " + cartaEfeito.getDescricao(), JOptionPane.PLAIN_MESSAGE);
 			try {
-				Thread.sleep(5000);
+				Thread.sleep(1500);
 			} catch (InterruptedException e) {}
 			return false;
 		}
@@ -201,8 +201,10 @@ public class TelaJogo extends JPanel {
 			posicoes += " [" + i + "] ";
 		}
 		boolean respostaOK = false;
+		JOptionPane.showMessageDialog(this, "Mas voce possui defuse", "Voce comprou EXPLODING KITTEN", JOptionPane.PLAIN_MESSAGE);		
 		do{
-			String posicaoString = JOptionPane.showInputDialog("Voce possui uma DEFUSE \n Escolha em qual posicao voce colocara o EXPLODING KITTEN \n " + posicoes);
+			
+			String posicaoString = JOptionPane.showInputDialog("Escolha em qual posicao voce colocara o EXPLODING KITTEN \n " + posicoes);
 			try {
 				posicao = Integer.parseInt(posicaoString);
 				if(posicao >= qtdCartas) throw new Exception();
@@ -216,10 +218,11 @@ public class TelaJogo extends JPanel {
 
 	public void acabaJogo(boolean venceu) {
 		if(venceu) {
-			JOptionPane.showMessageDialog(null, "Voce venceu", "Fim de partida", JOptionPane.PLAIN_MESSAGE);		
+			JOptionPane.showMessageDialog(this, "Voce venceu", "Fim de partida", JOptionPane.PLAIN_MESSAGE);		
 
 		} else {
-		JOptionPane.showMessageDialog(null, "Voce perdeu", "Fim de partida", JOptionPane.PLAIN_MESSAGE);		
+		JOptionPane.showMessageDialog(this, "Infelizmente voce nao possui DEFUSE", "Voce comprou EXPLODING KITTEN", JOptionPane.PLAIN_MESSAGE);		
+		JOptionPane.showMessageDialog(this, "Voce perdeu", "Fim de partida", JOptionPane.PLAIN_MESSAGE);		
 	
 		}
 	}
