@@ -62,7 +62,9 @@ public class Mao implements Jogada{
 	}
 
 	public Carta retirarCartaAleatoria() {
-		Carta cartaRemovida = cartas.remove(new Random().nextInt(cartas.size()));
+		int numeroCartas = cartas.size();
+		int posicao = new Random().nextInt(numeroCartas);
+		Carta cartaRemovida = cartas.remove(posicao);
 		AtualizaRemocao(cartaRemovida);
 		return cartaRemovida;
 	}

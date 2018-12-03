@@ -2,23 +2,15 @@ import javax.swing.JFrame;
 
 import br.ufsc.inf.leobr.cliente.Jogada;
 
-// interface grafica do jogador
 public class AtorJogador {
 	
-	private String nome; // solicitar via interface grafica
+	private String nome; 
 	
 	private AtorNetgames atorNetgames;
 	protected Mesa mesa;
 	protected TelaPrincipal tela;
 	
-//	public AtorJogador() {
-//		atorNetgames = new AtorNetgames(this);
-//	}
-//	
-//	public AtorJogador(String nome) {
-//		this.nome = nome;
-//		atorNetgames = new AtorNetgames(this);
-//	}
+
 	
 	public AtorJogador(TelaPrincipal telaPrincipal) {
 		atorNetgames = new AtorNetgames(this);
@@ -27,13 +19,12 @@ public class AtorJogador {
 
 	public void conectar() {
 		
-		// solicitar nome, depois conectar
 		
 		String servidor = tela.obterServidor();
 		String idUsuario = tela.obterIdJogador();
 		this.nome = idUsuario;
 		
-		atorNetgames.conectar(servidor, idUsuario); // servidor na propria maquina onde esta o jogo
+		atorNetgames.conectar(servidor, idUsuario); 
 		
 		
 	}
@@ -74,12 +65,11 @@ public class AtorJogador {
 			EstadoInicialMesa estadoInicial = mesa.getEstadoInicial();
 			enviarJogada(estadoInicial);
 			
-			//System.out.println("Eu ("+this.nome+") que jogo");// inserir criacao de mesa, etc
 		}
 	}
 
 	public void receberJogada(Jogada lance) {
-		if(lance instanceof EstadoInicialMesa) { //se for passado o estado inicial da mesa entao eh a criacao da mesa pro jogador 2
+		if(lance instanceof EstadoInicialMesa) { 
 			mesa = new Mesa((EstadoInicialMesa) lance, this);
 			EstadoMesa estado = mesa.getEstadoMesa();
 			tela.comecaJogo(estado);
@@ -91,7 +81,7 @@ public class AtorJogador {
 			mesa.verificarNope((PretensaoJogarCarta) lance);
 		} else if(lance instanceof RespostaNope) {
 			mesa.jogarCarta((RespostaNope) lance);
-		} else if(lance instanceof EstadoMesa) { // se for passado o estado da mesa eh para a troca de turno
+		} else if(lance instanceof EstadoMesa) { 
 			mesa.mudarTurno((EstadoMesa) lance);
 		} else if(lance instanceof JogoEncerrado){
 			mesa.encerraJogo(true);
@@ -99,9 +89,7 @@ public class AtorJogador {
 			System.out.println("deu ruim" + lance);
 
 		}
-		// recebe a jogada via AtorNetgames/servidor, implementar a logica
-		// pode ter varios getters...
-		//System.out.println(lance.getMessage());
+
 		
 	}
 

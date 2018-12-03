@@ -8,7 +8,6 @@ public class Mesa {
 	protected Baralho baralho;
 	protected Jogador jogadorDaVez;
 	protected boolean skip;
-//	protected TelaMesa xxxx;
 	protected TelaJogo telaJogo;
 	protected AtorJogador atorJogador;
 	
@@ -21,42 +20,15 @@ public class Mesa {
 		this.jogador2 = new Jogador();
 		this.baralho = new Baralho();
 		embaralhar();
-		//this.jogadorDaVez = new Random().nextDouble() >= 0.5 ? jogador1 : jogador2;
 		this.jogadorDaVez = new Random().nextDouble() >= 0.5 ? jogador1 : jogador2;
 		this.skip = false;
-		//this.xxxx = new TelaMesa();
 		System.out.println("mesa criada");
-		//perguntaNomes();
 		distribuiCartas();
-		//realizaJogada();
 	}
 	
 
 
-//	public Mesa(Jogador jogador1, Jogador jogador2) {
-//		this.encerrado = false;
-//		this.baralho = new Baralho();
-//		embaralhar();
-//		this.skip = false;
-//		this.jogadorDaVez = new Random().nextDouble() >= 0.5 ? jogador1 : jogador2;
-//	}
-	
-//	public Mesa(Jogador jogador1, Jogador jogador2, Jogador jogadorDaVez) {
-//		this.encerrado = false;
-//		this.baralho = new Baralho();
-//		embaralhar();
-//		this.skip = false;
-//		this.jogadorDaVez = jogadorDaVez;
-//	}
-	
-//	public Mesa(Jogador jogador1, Jogador jogador2, Baralho baralho, Jogador jogadorDaVez, boolean skip) {
-//		this.encerrado = false;
-//		this.jogador1 = jogador1;
-//		this.jogador2 = jogador2;
-//		this.baralho = baralho;
-//		this.jogadorDaVez = jogadorDaVez;
-//		this.skip = skip;
-//	}
+
 
 
 
@@ -67,7 +39,6 @@ public class Mesa {
 		this.baralho = estado.getBaralho();
 		this.jogadorDaVez = estado.getJogadorDaVez();
 		this.skip = estado.isSkip();
-		//this.xxxx = new TelaMesa();
 	}
 
 
@@ -82,12 +53,9 @@ public class Mesa {
 			jogador2.inserirCarta(carta);
 		}
 		telaJogo.atualiza(getEstadoMesa());
-		//falaMaos();
 	}
 
-//	public void trocaSkip() {
-//		this.skip = !this.skip;
-//	}
+
 
 	public ArrayList<Carta> getCartasTopo() {
 		return this.baralho.getCartasTopo();
@@ -99,7 +67,6 @@ public class Mesa {
 	 */
 	public void mostrarCartasTopo(ArrayList<Carta> cartas) {
 		telaJogo.mostrarCartasTopo(cartas);
-		//xxxx.mostrarCartasTopo(cartas);
 	}
 	
 
@@ -133,11 +100,7 @@ public class Mesa {
 	}
 
 
-//	public void mostrarCartasViradasBaixo() {
-//		// TODO - implement Mesa.mostrarCartasViradasBaixo
-//		throw new UnsupportedOperationException();
-//	}
-	
+
 	//jogar carta
 	public void retirarCarta(int posicao) {
 		
@@ -180,7 +143,6 @@ public class Mesa {
 			jogadorDaVez.retirarDefuse();
 			ArrayList<Carta> cartas = baralho.getCartas();
 			int posicao = telaJogo.mostrarCartasViradasBaixo(cartas.size() + 1);
-			//int posicao = xxxx.mostrarCartasViradasBaixo(cartas.size() + 1);
 			baralho.inserirExplodingKitten(posicao);
 			mudarTurno();
 		} else {
@@ -192,10 +154,7 @@ public class Mesa {
 		this.baralho.embaralhar();
 	}
 
-//	public void adicionarJogador() {
-//		// TODO - implement Mesa.adicionarJogador
-//		throw new UnsupportedOperationException();
-//	}
+
 
 	public void comprarCarta() {
 		System.out.println("\n \n \n COMPRAR CARTA NA MESA \n \n \n");
@@ -217,7 +176,6 @@ public class Mesa {
 
 
 	public void encerraJogo(boolean venceu) {
-		//System.out.println("fim de jogo");
 		telaJogo.acabaJogo(venceu);
 		this.telaJogo.setVisible(false);
 		this.encerrado = true;
@@ -225,14 +183,10 @@ public class Mesa {
 		this.atorJogador.enviarJogada(new JogoEncerrado());
 	}
 	
-//	public void mostrarDescricaoCarta(int posicao, Jogador jogador) {
-//		String descricao = jogador.getMao().getCarta(posicao).getDescricao();
-//		//xxxx.mostrarAjuda(descricao);
-//	}
+
 	
 	public int[] perguntaCartasTopo(ArrayList<Carta> cartas) {
 		return telaJogo.perguntaCartasTopo(cartas);
-		//return xxxx.perguntaCartasTopo(cartas);
 	}
 	
 	public void distribuiCartas() {
@@ -247,7 +201,7 @@ public class Mesa {
 		jogador2.inserirCarta(defuse2);
 		baralho.inserir(explodingKitten);
 		embaralhar();
-		//falaMaos();
+
 	}
 
 
@@ -285,28 +239,23 @@ public class Mesa {
 	}
 	
 	public void mudarTurno(EstadoMesa estado) {
-//		Jogador aux = estado.jogador1;
-//		estado.jogador1 = estado.jogador2;
-//		estado.jogador2 = aux;
+
 		this.jogador1 = estado.jogador2;
 		this.jogador2 = estado.jogador1;
 		this.baralho = estado.baralho;
 		this.jogadorDaVez = estado.jogadorDaVez;
 		this.skip = estado.skip;
 		telaJogo.atualiza(getEstadoMesa());
-		//tela.avisaMudouTurno();
 	}
 
 
 	public void jogarPar(int[] posicoes) {
 		System.out.println("\n \n \n JOGAR PAR NA MESA \n \n");
-		//int[] posicoes = tela.perguntaPar();
 		try {
 			jogadorDaVez.getMao().retirarCartas(posicoes[0], posicoes[1]);
 			roubarCartaAdversario();
 		} catch (Exception e) {
 			telaJogo.enviaMensagem(e.getMessage());
-			//Se.printStackTrace();
 		}
 	}
 	
@@ -358,12 +307,7 @@ public class Mesa {
 		this.telaJogo = telaJogo;
 	}
 
-	//---------------------------------------------------------------------------------------------------------------------------------------
-//	private void perguntaNomes() {
-//		this.jogador1.setNome(xxxx.perguntaNomeJogador());
-//		this.jogador2.setNome(xxxx.perguntaNomeJogador());
-//		System.out.println("o jogador que comeca sera: " + jogadorDaVez.getNome());
-//	}
+
 
 
 
