@@ -22,7 +22,7 @@ public class Mesa {
 		this.baralho = new Baralho();
 		embaralhar();
 		//this.jogadorDaVez = new Random().nextDouble() >= 0.5 ? jogador1 : jogador2;
-		this.jogadorDaVez = jogador1;
+		this.jogadorDaVez = new Random().nextDouble() >= 0.5 ? jogador1 : jogador2;
 		this.skip = false;
 		//this.xxxx = new TelaMesa();
 		System.out.println("mesa criada");

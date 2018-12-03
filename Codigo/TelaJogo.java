@@ -113,6 +113,7 @@ public class TelaJogo extends JPanel {
 					JOptionPane.showMessageDialog(null, "Insira apenas a posicao da carta", "Posicao invalida", JOptionPane.PLAIN_MESSAGE);
 				}
 			} else if(e.getSource().equals(jogarPar)) {
+				if(estado.jogador1.mao.possuiPar()) {
 					int[] posicoes = new int[2];
 					String posicao1String = JOptionPane.showInputDialog("Insira a posicao de uma carta do par na mao");
 					String posicao2String = JOptionPane.showInputDialog("Insira a posicao da outra carta do par na mao");
@@ -126,6 +127,9 @@ public class TelaJogo extends JPanel {
 					} catch (Exception error) {
 						JOptionPane.showMessageDialog(null, "Insira apenas a posicao da carta", "Posicao invalida", JOptionPane.PLAIN_MESSAGE);
 					}
+				} else {
+					JOptionPane.showMessageDialog(null, "Voce nao possui par de kittensmu", "Oops!", JOptionPane.PLAIN_MESSAGE);
+				}
 			}
 			
 		}
@@ -135,21 +139,12 @@ public class TelaJogo extends JPanel {
 		JOptionPane.showMessageDialog(this, mensagem, "Oops!", JOptionPane.PLAIN_MESSAGE);
 	}
 
-	public boolean perguntaNope(CartaEfeito cartaEfeito) {
-		System.out.println("chegou aqui");
-		System.out.println(cartaEfeito);
-		//System.out.println(cartaEfeito.descricao);
-//		JLabel b = new JLabel("seu adversario jogou:" + carta.getDescricao());
-//		add(b);
-//		b.setBounds(300, 180, 300, 15);
-		
+	public boolean perguntaNope(CartaEfeito cartaEfeito) {		
 		if(estado.jogador1.possuiNope()) {
 			int resposta = JOptionPane.showConfirmDialog (this, "Voce deseja jogar NOPE?","Seu oponente jogou " + cartaEfeito.getDescricao(), JOptionPane.YES_NO_OPTION);
-
 			return resposta == JOptionPane.YES_OPTION;
 			
 		} else {
-
 			JOptionPane.showMessageDialog(null, "Voce nao possui carta NOPE", "Seu oponente jogou " + cartaEfeito.getDescricao(), JOptionPane.PLAIN_MESSAGE);
 			try {
 				Thread.sleep(1500);
