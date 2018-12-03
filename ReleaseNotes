@@ -1,0 +1,71 @@
+==================================================================
+ExplodingKittens  03/12/2018
+Release Notes
+
+Gustavo Ghedin Ditzel
+Mateus Nunes Cechetto
+Vinícius Monteiro Dias
+==================================================================
+
+Sumário
+
+1. Requisitos do sistema
+2. Instalação e execução
+3. Versão atual e seus aspectos
+4. Restrições
+5. Melhorias para próximas versões
+
+==================================================================
+1. Requisitos do sistema
+==================================================================
+
+Para executar o jogo é necessário:
+- Java Runtime Environment (JRE) instalado na máquina, na versão 8 ou superior
+- Conexão com a internet para jogar com outros usuários em rede.
+- Servidor local rodando na máquina para caso queira jogar localmente.
+
+==================================================================
+2. Instalação e execução
+==================================================================
+
+- Descompactar o arquivo BattleSpears.zip que contém:
+	 pasta: Código Fonte
+	 pasta: Documentação
+	 pasta: Executavel
+	 Release Notes.txt
+- Não é necessário instalar o jogo para que ele seja executado.
+- Você pode executar o jogo diretamente no arquivo "ExplodingKittens.jar" (que consta na pasta Executavel) considerando as restrições:
+	Se  "Java platform SE binary" estiver definido como programa padrão para abrir arquivo: Dar duplo clique em "ExplodingKittens.jar" 
+	Caso contrário: Clicar com o botão direito do mouse no arquivo "ExplodingKittens.jar" e clicar em "Abrir com..." para procurar o JRE 8 em seu computador. 
+
+==================================================================
+3. Versão atual e seus aspectos
+==================================================================
+
+- O jogo encontra-se na sua primeira versão com uma interface simples e funcional.
+- Número de jogadores suportado: 2.
+- Ambos jogadores devem se conectar ao servidor "localhost".
+- Um dos jogadores deve iniciar a partida, e este mesmo iniciará jogando.
+- Para uma jogada ,você deve selecionar o botão que irá clica e para cada botão ocorrerá uma ação.
+- Você pode fazer quantas jogadas achar necessário, desde que possua as cartas para tal. O turno se encerra quando o jogador da vez compra uma carta.
+Você pode executar os seguintes tipo de jogadas:
+	- Jogar Carta: O jogador insere o número da posição da carta e confirma a ação. O adversário terá a opção de jogar a carta Nope para anular essa jogada; 
+	- Jogar Par: O jogador joga duas cartas da mesma tribo, selecionando uma de cada vez e colocando a posição onde cada carta da tribo está.
+O adversário também terá a opção de jogar a carta Nope para anular essa jogada ; 
+	- Comprar Carta: O jogador compra uma carta e encerra o turno, caso for a carta ExplodingKitten e o jogador não possuir defuse, ele perde a partida;
+    - Vence a partida o jogador que não for explodido pela carta ExplodingKitten. 
+
+==================================================================
+4. Restrições
+==================================================================
+
+
+
+==================================================================
+5. Melhorias para próximas versões
+==================================================================
+
+- Melhorar a interface gráfica: Melhorar o visual.
+- Mostrar explicação da carta ao clicar nela.
+- Corrigir possíveis bugs que venham a surgir.
+- Melhorar os procedimentos de certos métodos para conseguir um melhor desempenho e menores chances de bugs.
