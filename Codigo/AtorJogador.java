@@ -69,8 +69,11 @@ public class AtorJogador {
 			mesa.jogador1.setNome(nome);
 			mesa.jogador2.setNome(nomeOutroJogador);
 			System.out.println("enviei mesa");
-			tela.comecaJogo(mesa.getEstadoMesa());
-			enviarJogada(mesa.getEstadoInicial());
+			EstadoMesa estado = mesa.getEstadoMesa();
+			tela.comecaJogo(estado);
+			EstadoInicialMesa estadoInicial = mesa.getEstadoInicial();
+			enviarJogada(estadoInicial);
+			
 			//System.out.println("Eu ("+this.nome+") que jogo");// inserir criacao de mesa, etc
 		}
 	}
@@ -78,7 +81,8 @@ public class AtorJogador {
 	public void receberJogada(Jogada lance) {
 		if(lance instanceof EstadoInicialMesa) { //se for passado o estado inicial da mesa entao eh a criacao da mesa pro jogador 2
 			mesa = new Mesa((EstadoInicialMesa) lance, this);
-			tela.comecaJogo(mesa.getEstadoMesa());
+			EstadoMesa estado = mesa.getEstadoMesa();
+			tela.comecaJogo(estado);
 			System.out.println("recebi mesa");
 		} else if(lance instanceof PretensaoJogarCarta) {
 			System.out.println("chegou pretensao");

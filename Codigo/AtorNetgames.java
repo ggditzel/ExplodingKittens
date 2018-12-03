@@ -99,10 +99,9 @@ public class AtorNetgames implements OuvidorProxy {
 	// metodo chamado pelo servidor
 	@Override
 	public void receberJogada(Jogada jogada) {
-		ehMinhaVez = true; // se recebi uma jogada, agora eh minha vez
+		ehMinhaVez = true; 
 		System.out.println("recebeu jogada");
-		atorJogador.receberJogada(jogada); // ator jogador pode receber toda a informacao da jogada, atualizar telas, etc
-		
+		atorJogador.receberJogada(jogada); 
 	}
 	
 	public void desconectar() {

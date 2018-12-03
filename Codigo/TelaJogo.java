@@ -135,21 +135,12 @@ public class TelaJogo extends JPanel {
 		JOptionPane.showMessageDialog(this, mensagem, "Oops!", JOptionPane.PLAIN_MESSAGE);
 	}
 
-	public boolean perguntaNope(CartaEfeito cartaEfeito) {
-		System.out.println("chegou aqui");
-		System.out.println(cartaEfeito);
-		//System.out.println(cartaEfeito.descricao);
-//		JLabel b = new JLabel("seu adversario jogou:" + carta.getDescricao());
-//		add(b);
-//		b.setBounds(300, 180, 300, 15);
-		
+	public boolean perguntaNope(CartaEfeito cartaEfeito) {		
 		if(estado.jogador1.possuiNope()) {
 			int resposta = JOptionPane.showConfirmDialog (this, "Voce deseja jogar NOPE?","Seu oponente jogou " + cartaEfeito.getDescricao(), JOptionPane.YES_NO_OPTION);
-
 			return resposta == JOptionPane.YES_OPTION;
 			
 		} else {
-
 			JOptionPane.showMessageDialog(null, "Voce nao possui carta NOPE", "Seu oponente jogou " + cartaEfeito.getDescricao(), JOptionPane.PLAIN_MESSAGE);
 			try {
 				Thread.sleep(1500);
