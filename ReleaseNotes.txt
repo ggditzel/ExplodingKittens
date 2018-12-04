@@ -29,14 +29,18 @@ Para executar o jogo é necessário:
 ==================================================================
 
 - Descompactar o arquivo ExplodingKittens.zip que contém:
-	 pasta: Código Fonte
-	 pasta: Documentação
-	 pasta: Executavel
+	 pasta: Codigo
+	 pasta: Modelagem
+	 Executavel.jar
+     Servidor.jar
 	 Release Notes.txt
+     EspecificacaoRequisitorExplodingKittens.docx
+     ConfigurarUsoNetGames.txt
 - Não é necessário instalar o jogo para que ele seja executado.
-- Você pode executar o jogo diretamente no arquivo "ExplodingKittens.jar" (que consta na pasta Executavel) considerando as restrições:
-	Se  "Java platform SE binary" estiver definido como programa padrão para abrir arquivo: Dar duplo clique em "ExplodingKittens.jar" 
-	Caso contrário: Clicar com o botão direito do mouse no arquivo "ExplodingKittens.jar" e clicar em "Abrir com..." para procurar o JRE 8 em seu computador. 
+- Para executar o jogo você antes tem que iniciar o servidor: Dar duplo clique em "servidor.jar"
+- Com o servidor iniciado pode executar o jogo diretamente do arquivo "executavel.jar" considerando as restrições:
+	Se "Java platform SE binary" estiver definido como programa padrão para abrir arquivo: Dar duplo clique em "executavel.jar" 
+	Caso contrário: Clicar com o botão direito do mouse no arquivo "executavel.jar" e clicar em "Abrir com..." para procurar o JRE 8 em seu computador. 
 
 ==================================================================
 3. Versão atual e seus aspectos

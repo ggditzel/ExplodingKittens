@@ -54,7 +54,7 @@ public class TelaJogo extends JPanel {
 		baralho = new JLabel();
 		add(baralho);
 		baralho.setBounds(0, 200, 75, 135);
-		Image iconVerso = new ImageIcon("imagens/verso2.jpg").getImage()
+		Image iconVerso = new ImageIcon("Codigo/imagens/verso2.jpg").getImage()
 				.getScaledInstance(baralho.getWidth(), baralho.getHeight(), Image.SCALE_SMOOTH);
 		ImageIcon imageIcon = new ImageIcon(iconVerso);
 		baralho.setIcon(imageIcon);

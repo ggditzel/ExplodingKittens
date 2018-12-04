@@ -16,4 +16,4 @@ Para testar, com o servidor rodando na própria máquina, baixar também
 http://www.labsoft.ufsc.br/~netgames/NetGamesNRT/Executavel/Servidor/servidor.jar
 http://www.labsoft.ufsc.br/~netgames/NetGamesNRT/Executavel/Servidor/server.properties
 
-Para iniciar o servidor, basta rodar o arquivo "servidor.java" (obs: é possível baixar o código fonte e rodar diretamente a partir do Eclipse)
+Para iniciar o servidor, basta rodar o arquivo "servidor.jar" (obs: é possível baixar o código fonte e rodar diretamente a partir do Eclipse)
