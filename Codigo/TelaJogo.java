@@ -54,7 +54,7 @@ public class TelaJogo extends JPanel {
 		baralho = new JLabel();
 		add(baralho);
 		baralho.setBounds(0, 200, 75, 135);
-		Image iconVerso = new ImageIcon("../imagens/verso2.jpg").getImage()
+		Image iconVerso = new ImageIcon("imagens/verso2.jpg").getImage()
 				.getScaledInstance(baralho.getWidth(), baralho.getHeight(), Image.SCALE_SMOOTH);
 		ImageIcon imageIcon = new ImageIcon(iconVerso);
 		baralho.setIcon(imageIcon);
@@ -128,7 +128,7 @@ public class TelaJogo extends JPanel {
 						JOptionPane.showMessageDialog(null, "Insira apenas a posicao da carta", "Posicao invalida", JOptionPane.PLAIN_MESSAGE);
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "Voce nao possui par de kittensmu", "Oops!", JOptionPane.PLAIN_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Voce nao possui par de kitten", "Oops!", JOptionPane.PLAIN_MESSAGE);
 				}
 			}
 			

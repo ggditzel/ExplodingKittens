@@ -296,7 +296,7 @@ public class Mesa {
 				//throw new Exception(cartaEfeito.descricao + " nao pode ser jogada em seu turno");
 			}
 		} else {
-			telaJogo.enviaMensagem("Seu oponente jogou NOPE e sua  foi negada.");
+			telaJogo.enviaMensagem("Seu oponente jogou NOPE e sua "+ cartaEfeito.getDescricao() +" foi negada.");
 			jogador2.retirarNope();
 			telaJogo.atualiza(getEstadoMesa());
 			//tela.avisaNopeJogado();

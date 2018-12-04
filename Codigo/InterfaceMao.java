@@ -45,7 +45,7 @@ public class InterfaceMao extends JPanel{
 				JLabel versoCarta = new JLabel();
 				add(versoCarta);
 				versoCarta.setBounds(0 + (i * 60), 0, 50, 85);
-				Image iconVerso = new ImageIcon("../imagens/verso2.jpg").getImage()
+				Image iconVerso = new ImageIcon("imagens/verso2.jpg").getImage()
 						.getScaledInstance(versoCarta.getWidth(), versoCarta.getHeight(), Image.SCALE_SMOOTH);
 				ImageIcon imageIcon = new ImageIcon(iconVerso);
 				versoCarta.setIcon(imageIcon);
