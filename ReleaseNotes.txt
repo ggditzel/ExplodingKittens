@@ -45,8 +45,8 @@ Para executar o jogo é necessário:
 - O jogo encontra-se na sua primeira versão com uma interface simples e funcional.
 - Número de jogadores suportado: 2.
 - Ambos jogadores devem se conectar ao servidor "localhost".
-- Um dos jogadores deve iniciar a partida, e este mesmo iniciará jogando.
-- Para uma jogada ,você deve selecionar o botão que irá clica e para cada botão ocorrerá uma ação.
+- Um dos jogadores deve iniciar a partida.
+- Para uma jogada ,você deve selecionar o botão que irá clicar e para cada botão ocorrerá uma ação.
 - Você pode fazer quantas jogadas achar necessário, desde que possua as cartas para tal. O turno se encerra quando o jogador da vez compra uma carta.
 Você pode executar os seguintes tipo de jogadas:
 	- Jogar Carta: O jogador insere o número da posição da carta e confirma a ação. O adversário terá a opção de jogar a carta Nope para anular essa jogada; 
@@ -66,6 +66,7 @@ O adversário também terá a opção de jogar a carta Nope para anular essa jog
 ==================================================================
 
 - Melhorar a interface gráfica: Melhorar o visual.
-- Mostrar explicação da carta ao clicar nela.
+- Mostrar explicação da carta ao passar o mouse sobre ela.
+- Jogar carta ao clicar na mesma.
 - Corrigir possíveis bugs que venham a surgir.
 - Melhorar os procedimentos de certos métodos para conseguir um melhor desempenho e menores chances de bugs.
