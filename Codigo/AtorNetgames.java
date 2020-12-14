@@ -49,6 +49,8 @@ public class AtorNetgames implements OuvidorProxy {
 			System.out.println("conectou");
 			
 		} catch (JahConectadoException e) {
+			this.resourceBundle = resourceBundle.getBundle("resources.ArquivoMensagens", GameLocale.locale);
+
 			if(resourceBundle.getLocale().getCountry().equalsIgnoreCase("BR")) {
 				JOptionPane.showMessageDialog(atorJogador.getTela(), e.getMessage());	
 			} else {
@@ -56,12 +58,16 @@ public class AtorNetgames implements OuvidorProxy {
 			}
 			
 		} catch (NaoPossivelConectarException e) {
+			this.resourceBundle = resourceBundle.getBundle("resources.ArquivoMensagens", GameLocale.locale);
+
 			if(resourceBundle.getLocale().getCountry().equalsIgnoreCase("BR")) {
 				JOptionPane.showMessageDialog(atorJogador.getTela(), e.getMessage());
 			} else {
 				JOptionPane.showMessageDialog(atorJogador.getTela(), resourceBundle.getString("NaoPossivelConectarException"));
 			}
 		} catch (ArquivoMultiplayerException e) {
+			this.resourceBundle = resourceBundle.getBundle("resources.ArquivoMensagens", GameLocale.locale);
+
 			if(resourceBundle.getLocale().getCountry().equalsIgnoreCase("BR")) {
 				JOptionPane.showMessageDialog(atorJogador.getTela(), e.getMessage());
 			} else {
@@ -74,10 +80,13 @@ public class AtorNetgames implements OuvidorProxy {
 	 * Inicia uma partida entre cliente e servidor
 	 */
 	public void iniciarPartida() {
+
 		try {
 			proxy.iniciarPartida(2); // solicita ao servidor; servidor manda msg para cada jogador, via metodo inicarNovaPartida
 			System.out.println("criou sala para 2 jogadores");
 		} catch (NaoConectadoException e) {
+			this.resourceBundle = resourceBundle.getBundle("resources.ArquivoMensagens", GameLocale.locale);
+
 			if(resourceBundle.getLocale().getCountry().equalsIgnoreCase("BR")) {
 				JOptionPane.showMessageDialog(atorJogador.getTela(), e.getMessage());
 			} else {
@@ -114,6 +123,8 @@ public class AtorNetgames implements OuvidorProxy {
 			ehMinhaVez = false; // apos jogar, nao eh mais sua vez
 			System.out.println("enviou jogada");
 		} catch (NaoJogandoException e) {
+			this.resourceBundle = resourceBundle.getBundle("resources.ArquivoMensagens", GameLocale.locale);
+
 			if(resourceBundle.getLocale().getCountry().equalsIgnoreCase("BR")) {
 				JOptionPane.showMessageDialog(atorJogador.getTela(), e.getMessage());
 			} else {
@@ -135,6 +146,8 @@ public class AtorNetgames implements OuvidorProxy {
 		try {
 			proxy.desconectar();
 		} catch (NaoConectadoException e) {
+			this.resourceBundle = resourceBundle.getBundle("resources.ArquivoMensagens", GameLocale.locale);
+
 			if(resourceBundle.getLocale().getCountry().equalsIgnoreCase("BR")) {
 				JOptionPane.showMessageDialog(atorJogador.getTela(), e.getMessage());
 			} else {
@@ -183,5 +196,9 @@ public class AtorNetgames implements OuvidorProxy {
 	public void receberMensagem(String msg) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void mudarIdioma() {
+		this.resourceBundle = resourceBundle.getBundle("resources.ArquivoMensagens", GameLocale.locale);
 	}
 }
