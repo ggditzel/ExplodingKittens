@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.ResourceBundle;
 
 public class Mesa {
 
@@ -12,8 +13,10 @@ public class Mesa {
 	protected AtorJogador atorJogador;
 	
 	protected boolean encerrado;
+	protected ResourceBundle resourceBundle;
 
 	public Mesa(AtorJogador atorJogador) {
+		this.resourceBundle = ResourceBundle.getBundle("resources.ArquivoMensagens", GameLocale.locale);
 		this.atorJogador = atorJogador;
 		this.encerrado = false;
 		this.jogador1 = new Jogador();
@@ -112,12 +115,12 @@ public class Mesa {
 			CartaEfeito cartaEfeito = (CartaEfeito) cartaSelecionada;
 			if(cartaEfeito.getEfeito() == EfeitoCarta.NOPE || cartaEfeito.getEfeito() == EfeitoCarta.DEFUSE) {
 				jogadorDaVez.inserirCarta(cartaEfeito);
-				telaJogo.enviaMensagem(cartaEfeito.descricao + " nao pode ser jogada em seu turno");
+				telaJogo.enviaMensagem(cartaEfeito.descricao + " " + this.resourceBundle.getString("naoPodeJogar"));
 				telaJogo.atualiza(getEstadoMesa());
 				//throw new Exception(cartaEfeito.descricao + " nao pode ser jogada em seu turno");
 			} else if(cartaEfeito.getEfeito() == EfeitoCarta.SKIP && skip) {
 				jogadorDaVez.inserirCarta(cartaEfeito);
-				telaJogo.enviaMensagem(cartaEfeito.descricao + " ja foi jogada nesse turno");
+				telaJogo.enviaMensagem(cartaEfeito.descricao + " " + this.resourceBundle.getString("jaFoiJogada"));
 				telaJogo.atualiza(getEstadoMesa());
 				//throw new Exception(cartaEfeito.descricao + " ja foi jogada nesse turno");
 			} else {
@@ -127,7 +130,7 @@ public class Mesa {
 			}
 		} else {
 			jogadorDaVez.inserirCarta(cartaSelecionada);
-			telaJogo.enviaMensagem("Cartas kitten nao podem ser jogada sem ser em par");
+			telaJogo.enviaMensagem(this.resourceBundle.getString("apenasPar"));
 			telaJogo.atualiza(getEstadoMesa());
 			//throw new Exception("Cartas kitten nao podem ser jogada sem ser em par");
 		}
@@ -255,7 +258,7 @@ public class Mesa {
 			jogadorDaVez.getMao().retirarCartas(posicoes[0], posicoes[1]);
 			roubarCartaAdversario();
 		} catch (Exception e) {
-			telaJogo.enviaMensagem(e.getMessage());
+			telaJogo.enviaMensagem(this.resourceBundle.getString(e.getMessage()));
 		}
 	}
 	
@@ -296,7 +299,7 @@ public class Mesa {
 				//throw new Exception(cartaEfeito.descricao + " nao pode ser jogada em seu turno");
 			}
 		} else {
-			telaJogo.enviaMensagem("Seu oponente jogou NOPE e sua "+ cartaEfeito.getDescricao() +" foi negada.");
+			telaJogo.enviaMensagem(this.resourceBundle.getString("oponenteNOPE")+ cartaEfeito.getDescricao() + " " + this.resourceBundle.getString("negada"));
 			jogador2.retirarNope();
 			telaJogo.atualiza(getEstadoMesa());
 			//tela.avisaNopeJogado();
@@ -306,6 +309,19 @@ public class Mesa {
 	public void setTelaJogo(TelaJogo telaJogo) {
 		this.telaJogo = telaJogo;
 	}
+
+
+
+
+
+
+
+	public void mudarIdioma() {
+		this.resourceBundle = ResourceBundle.getBundle("resources.ArquivoMensagens", GameLocale.locale);		
+	}
+
+
+
 
 
 

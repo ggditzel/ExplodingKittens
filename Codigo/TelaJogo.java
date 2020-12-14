@@ -3,6 +3,8 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -25,9 +27,12 @@ public class TelaJogo extends JPanel {
 	protected EstadoMesa estado;
 	protected AtorJogador atorJogador;
 	
+	protected ResourceBundle resourceBundle; 
+	
 	public TelaJogo(EstadoMesa estado, AtorJogador atorJogador) {
 		this.estado = estado;
 		this.atorJogador = atorJogador;
+		this.resourceBundle = ResourceBundle.getBundle("resources.ArquivoMensagens", GameLocale.locale);
 		config();
 		this.atorJogador.setTelaJogo(this);
 	}
@@ -43,11 +48,11 @@ public class TelaJogo extends JPanel {
 		setPreferredSize (new Dimension(1100, 700));
 		setLayout(null);
 		
-		vez = new JLabel("turno de " + estado.getJogadorDaVez().getNome());
+		vez = new JLabel(this.resourceBundle.getString("turnoDe") + estado.getJogadorDaVez().getNome());
 		add(vez);
 		vez.setBounds(380, 0, 130, 20);
 		
-		restantes = new JLabel("Cartas Restantes: " + estado.getBaralho().getCartas().size());
+		restantes = new JLabel(this.resourceBundle.getString("cartasRestantes") + estado.getBaralho().getCartas().size());
 		add(restantes);
 		restantes.setBounds(0, 350, 120, 25);
 		
@@ -59,17 +64,17 @@ public class TelaJogo extends JPanel {
 		ImageIcon imageIcon = new ImageIcon(iconVerso);
 		baralho.setIcon(imageIcon);
 		
-		comprarCarta = new JButton("<html><center>Comprar carta<br>Passar turno</center></html>");
+		comprarCarta = new JButton(this.resourceBundle.getString("passarTurno"));
 		comprarCarta.addActionListener(tratadorBotoes);
 		add(comprarCarta);
 		comprarCarta.setBounds(120, 250, 120, 40);
 		
-		jogarCarta = new JButton("Jogar carta");
+		jogarCarta = new JButton(this.resourceBundle.getString("jogarCarta"));
 		jogarCarta.addActionListener(tratadorBotoes);
 		add(jogarCarta);
 		jogarCarta.setBounds(600, 200, 120, 30);
 		
-		jogarPar = new JButton("Jogar par");
+		jogarPar = new JButton(this.resourceBundle.getString("jogarPar"));
 		jogarPar.addActionListener(tratadorBotoes);
 		add(jogarPar);
 		jogarPar.setBounds(600, 250, 120, 30);
@@ -95,28 +100,29 @@ public class TelaJogo extends JPanel {
 	
 	private ActionListener tratadorBotoes = new ActionListener() {
 		
+		ResourceBundle resourceBundle = ResourceBundle.getBundle("resources.ArquivoMensagens", GameLocale.locale);
+		
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(!estado.jogadorDaVez.equals(estado.jogador1)) {
-				JOptionPane.showMessageDialog(null, "Espere seu turno para jogar", "Nao eh sua vez", JOptionPane.PLAIN_MESSAGE);
-				System.out.println("FFFFFFFFFFFFFFF");
+				JOptionPane.showMessageDialog(null, this.resourceBundle.getString("esperarTurno"), this.resourceBundle.getString("naoVez"), JOptionPane.PLAIN_MESSAGE);
 				return;
 			}
 			if(e.getSource().equals(comprarCarta)) {
 				atorJogador.comprarCarta();
 			} else if(e.getSource().equals(jogarCarta)) {
-				String posicaoCarta = JOptionPane.showInputDialog("Insira a posicao da carta na mao");
+				String posicaoCarta = JOptionPane.showInputDialog(this.resourceBundle.getString("inserirPosicaoMao"));
 				try {
 					int posicao = Integer.parseInt(posicaoCarta);
 					atorJogador.jogarCarta(posicao);
 				} catch (Exception error) {
-					JOptionPane.showMessageDialog(null, "Insira apenas a posicao da carta", "Posicao invalida", JOptionPane.PLAIN_MESSAGE);
+					JOptionPane.showMessageDialog(null, this.resourceBundle.getString("inserirApenasPosicao"), this.resourceBundle.getString("PosicaoInvalida"), JOptionPane.PLAIN_MESSAGE);
 				}
 			} else if(e.getSource().equals(jogarPar)) {
 				if(estado.jogador1.mao.possuiPar()) {
 					int[] posicoes = new int[2];
-					String posicao1String = JOptionPane.showInputDialog("Insira a posicao de uma carta do par na mao");
-					String posicao2String = JOptionPane.showInputDialog("Insira a posicao da outra carta do par na mao");
+					String posicao1String = JOptionPane.showInputDialog(this.resourceBundle.getString("inserirPosicaoPar"));
+					String posicao2String = JOptionPane.showInputDialog(this.resourceBundle.getString("inserirPosicaoPar2"));
 					
 					try {
 						int posicao1 = Integer.parseInt(posicao1String);
@@ -125,10 +131,10 @@ public class TelaJogo extends JPanel {
 						posicoes[1] = posicao2;
 						atorJogador.jogarPar(posicoes);
 					} catch (Exception error) {
-						JOptionPane.showMessageDialog(null, "Insira apenas a posicao da carta", "Posicao invalida", JOptionPane.PLAIN_MESSAGE);
+						JOptionPane.showMessageDialog(null, this.resourceBundle.getString("inserirApenasPosicao"), this.resourceBundle.getString("PosicaoInvalida"), JOptionPane.PLAIN_MESSAGE);
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "Voce nao possui par de kitten", "Oops!", JOptionPane.PLAIN_MESSAGE);
+					JOptionPane.showMessageDialog(null, this.resourceBundle.getString("naoTemPar"), this.resourceBundle.getString("Oops"), JOptionPane.PLAIN_MESSAGE);
 				}
 			}
 			
@@ -136,16 +142,16 @@ public class TelaJogo extends JPanel {
 	};
 
 	public void enviaMensagem(String mensagem) {
-		JOptionPane.showMessageDialog(this, mensagem, "Oops!", JOptionPane.PLAIN_MESSAGE);
+		JOptionPane.showMessageDialog(this, mensagem, this.resourceBundle.getString("Oops"), JOptionPane.PLAIN_MESSAGE);
 	}
 
 	public boolean perguntaNope(CartaEfeito cartaEfeito) {		
 		if(estado.jogador1.possuiNope()) {
-			int resposta = JOptionPane.showConfirmDialog (this, "Voce deseja jogar NOPE?","Seu oponente jogou " + cartaEfeito.getDescricao(), JOptionPane.YES_NO_OPTION);
+			int resposta = JOptionPane.showConfirmDialog (this, this.resourceBundle.getString("perguntaNOPE"),this.resourceBundle.getString("oponenteJogou") + cartaEfeito.getDescricao(), JOptionPane.YES_NO_OPTION);
 			return resposta == JOptionPane.YES_OPTION;
 			
 		} else {
-			JOptionPane.showMessageDialog(null, "Voce nao possui carta NOPE", "Seu oponente jogou " + cartaEfeito.getDescricao(), JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showMessageDialog(null, this.resourceBundle.getString("Voce nao possui carta NOPE"), this.resourceBundle.getString("oponenteJogou") + cartaEfeito.getDescricao(), JOptionPane.PLAIN_MESSAGE);
 			try {
 				Thread.sleep(1500);
 			} catch (InterruptedException e) {}
@@ -165,12 +171,12 @@ public class TelaJogo extends JPanel {
 		for(int i = 0; i < cartas.size(); i++) {
 			boolean respostaOK = false;
 			do{
-				String posicaoString = JOptionPane.showInputDialog("Cartas do topo: \n " + stringCartas +"Insira qual carta voce quer na posicao " + i + " do baralho");
+				String posicaoString = JOptionPane.showInputDialog(this.resourceBundle.getString("cartasTopo") + stringCartas +this.resourceBundle.getString("perguntaPosicao") + i + " " + this.resourceBundle.getString("perguntaPosicao2"));
 				try {
 					ordem[i] = Integer.parseInt(posicaoString);
 					respostaOK = true;
 				} catch (Exception e) {
-					JOptionPane.showMessageDialog(null, "Insira apenas a posicao da carta", "Posicao invalida", JOptionPane.PLAIN_MESSAGE);
+					JOptionPane.showMessageDialog(null, this.resourceBundle.getString("erroPosicao"), this.resourceBundle.getString("PosicaoInvalida"), JOptionPane.PLAIN_MESSAGE);
 				}
 			} while(!respostaOK);
 		}
@@ -183,29 +189,29 @@ public class TelaJogo extends JPanel {
 			cartasTopo += "[" + i +"] " + cartas.get(i).getDescricao() + " \n ";
 			//System.out.println("[" + i +"] " + cartas.get(i).getDescricao());
 		}
-		JOptionPane.showMessageDialog(null, "As cartas do topo sao: \n" + cartasTopo, "SEE THE FUTURE", JOptionPane.PLAIN_MESSAGE);
+		JOptionPane.showMessageDialog(null, this.resourceBundle.getString("cartasTopo") + cartasTopo, "SEE THE FUTURE", JOptionPane.PLAIN_MESSAGE);
 		
 	}
 
 	public int mostrarCartasViradasBaixo(int qtdCartas) {
 		String posicoes = "";
 		int posicao = 0;
-		System.out.println("Voce possui uma defuse \n Escolha em qual posicao voce colocara o EXPLODING KITTEN");
+		System.out.println(this.resourceBundle.getString("temDefuse"));
 		for(int i = 0; i < qtdCartas; i++) {
 //			System.out.print(" [" + i + "] ");
 			posicoes += " [" + i + "] ";
 		}
 		boolean respostaOK = false;
-		JOptionPane.showMessageDialog(this, "Mas voce possui defuse", "Voce comprou EXPLODING KITTEN", JOptionPane.PLAIN_MESSAGE);		
+		JOptionPane.showMessageDialog(this, this.resourceBundle.getString("masTemDefuse"), this.resourceBundle.getString("comprouEK"), JOptionPane.PLAIN_MESSAGE);		
 		do{
 			
-			String posicaoString = JOptionPane.showInputDialog("Escolha em qual posicao voce colocara o EXPLODING KITTEN \n " + posicoes);
+			String posicaoString = JOptionPane.showInputDialog(this.resourceBundle.getString("escolherPosicaoEK") + posicoes);
 			try {
 				posicao = Integer.parseInt(posicaoString);
 				if(posicao >= qtdCartas) throw new Exception();
 				respostaOK = true;
 			} catch (Exception e) {
-				JOptionPane.showMessageDialog(null, "Insira a posicao desejada", "Posicao invalida", JOptionPane.PLAIN_MESSAGE);
+				JOptionPane.showMessageDialog(null, this.resourceBundle.getString("insiraPosicao"), this.resourceBundle.getString("PosicaoInvalida"), JOptionPane.PLAIN_MESSAGE);
 			}
 		} while(!respostaOK); 
 		return posicao;
@@ -213,13 +219,21 @@ public class TelaJogo extends JPanel {
 
 	public void acabaJogo(boolean venceu) {
 		if(venceu) {
-			JOptionPane.showMessageDialog(this, "Voce venceu", "Fim de partida", JOptionPane.PLAIN_MESSAGE);		
+			JOptionPane.showMessageDialog(this, this.resourceBundle.getString("venceu"), this.resourceBundle.getString("fimDePartida"), JOptionPane.PLAIN_MESSAGE);		
 
 		} else {
-		JOptionPane.showMessageDialog(this, "Infelizmente voce nao possui DEFUSE", "Voce comprou EXPLODING KITTEN", JOptionPane.PLAIN_MESSAGE);		
-		JOptionPane.showMessageDialog(this, "Voce perdeu", "Fim de partida", JOptionPane.PLAIN_MESSAGE);		
+		JOptionPane.showMessageDialog(this, this.resourceBundle.getString("naoPossuiDefuse"), this.resourceBundle.getString("comprouEK"), JOptionPane.PLAIN_MESSAGE);		
+		JOptionPane.showMessageDialog(this, this.resourceBundle.getString("perdeu"), this.resourceBundle.getString("fimDePartida"), JOptionPane.PLAIN_MESSAGE);		
 	
 		}
+	}
+
+	public void mudarLingua() {
+		this.resourceBundle = ResourceBundle.getBundle("resources.ArquivoMensagens", GameLocale.locale);
+		this.maoJogador.mudarIdioma();
+		this.maoOponente.mudarIdioma();
+		config();
+		
 	}
 
 }

@@ -21,16 +21,16 @@ public class CartaKitten extends Carta {
 		String url = "";
 		switch(tribo) {
 		case KITTEN_GARFIELD:
-			url = "Codigo/imagens/Garfield.jpg";
+			url = "Garfield.jpg";
 			break;
 		case KITTEN_MEOW:
-			url = "Codigo/imagens/meow.png";
+			url = "meow.jpg";
 			break;
 		case KITTEN_PUSS_IN_BOOTS:
-			url = "Codigo/imagens/gatoDeBotas.jpg";
+			url = "gatoDeBotas.jpg";
 			break;
 		case KITTEN_SYLVESTER:
-			url = "Codigo/imagens/frajola.jpg";
+			url = "frajola.jpg";
 			break;
 		}
 		return url;

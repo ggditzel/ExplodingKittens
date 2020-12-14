@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.ResourceBundle;
 
 import br.ufsc.inf.leobr.cliente.Jogada;
 
@@ -168,12 +169,12 @@ public class Mao implements Jogada{
 		Carta carta1 = cartas.get(posicao1);
 		Carta carta2 = cartas.get(posicao2);
 		if(carta1.isCartaEfeito() || carta2.isCartaEfeito() ) {
-			throw new Exception("Carta de efeito nao pode ser jogada como par");
+			throw new Exception("efeitoParErro");
 		}
 		CartaKitten cartaKitten1 = (CartaKitten) carta1;
 		CartaKitten cartaKitten2 = (CartaKitten) carta2;
 		if(cartaKitten1.getTribo() != cartaKitten2.getTribo()) {
-			throw new Exception("Cartas de tribo diferente nao podem ser jogadas como par");
+			throw new Exception("triboParErro");
 		}
 		
 		if(posicao1 > posicao2) {

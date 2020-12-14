@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -28,17 +30,20 @@ public class TelaPrincipal extends JFrame {
 	protected JMenu partida;
 	protected JMenuItem iniciarNovaPartida;
 	protected JMenuItem desistirDaPartida;
+	protected JMenuItem mudarLingua;
+
 	protected JMenuItem sair;
 	//protected JMenuItem ajuda;
 	protected Font fontePadrao;
 	protected TratadoraDeEvento tratadoraDeEvento = new TratadoraDeEvento();
 	protected TelaJogo jogo;
 	
+	protected ResourceBundle resourceBundle; 
+	
 	public TelaPrincipal(String nomeJanela) {
 		super(nomeJanela);
+		this.resourceBundle = ResourceBundle.getBundle("resources.ArquivoMensagens", GameLocale.locale);
 		configurarInterface(new AtorJogador(this));
-		carregarMenu();
-		pack();
 		setVisible(true);
 	}
 	
@@ -47,7 +52,7 @@ public class TelaPrincipal extends JFrame {
 		setPreferredSize(new Dimension(1200, 700));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(null);
-		
+		this.mudarLingua();
 		//setResizable(false);
 	}
 	
@@ -60,17 +65,17 @@ public class TelaPrincipal extends JFrame {
 		barraDeMenu.setOpaque(true);
 		setJMenuBar(barraDeMenu);
 		
-		menu = new JMenu("Menu");
+		menu = new JMenu(this.resourceBundle.getString("Menu"));
 		menu.setBackground(corDeFundo);
 		menu.setMnemonic(KeyEvent.VK_M);
 		barraDeMenu.add(menu);
 		
-		conexao = new JMenu("Conexão");
+		conexao = new JMenu(this.resourceBundle.getString("Conexão"));
 		conexao.setOpaque(true);
 		conexao.setBackground(corDeFundo);
 		menu.add(conexao);
 		
-		conectarServidor = new JMenuItem("Conectar servidor");
+		conectarServidor = new JMenuItem(this.resourceBundle.getString("Conectar"));
 		conectarServidor.setBackground(corDeFundo);
 		conectarServidor.addActionListener(tratadoraDeEvento);
 		conectarServidor.setActionCommand(Constante.CONECTAR_SERVIDOR);
@@ -82,30 +87,36 @@ public class TelaPrincipal extends JFrame {
 //		alterarServidor.setActionCommand(Constante.ALTERAR_SERVIDOR);
 //		conexao.add(alterarServidor);
 		
-		desconectar = new JMenuItem("Desconectar");
+		desconectar = new JMenuItem(this.resourceBundle.getString("Desconectar"));
 		desconectar.setBackground(corDeFundo);
 		desconectar.addActionListener(tratadoraDeEvento);
 		desconectar.setActionCommand(Constante.DESCONECTAR);
 		conexao.add(desconectar);
 		
-		partida = new JMenu("Partida");
+		partida = new JMenu(this.resourceBundle.getString("Partida"));
 		partida.setOpaque(true);
 		partida.setBackground(corDeFundo);
 		menu.add(partida);
 		
-		iniciarNovaPartida = new JMenuItem("Iniciar partida");
+		iniciarNovaPartida = new JMenuItem(this.resourceBundle.getString("Iniciar"));
 		iniciarNovaPartida.setBackground(corDeFundo);
 		iniciarNovaPartida.addActionListener(tratadoraDeEvento);
 		iniciarNovaPartida.setActionCommand(Constante.INICIAR_NOVA_PARTIDA);
 		partida.add(iniciarNovaPartida);
 		
-		desistirDaPartida = new JMenuItem("Desistir da partida");
+		desistirDaPartida = new JMenuItem(this.resourceBundle.getString("Desistir"));
 		desistirDaPartida.setBackground(corDeFundo);
 		desistirDaPartida.addActionListener(tratadoraDeEvento);
 		desistirDaPartida.setActionCommand(Constante.DESISTIR_DA_PARTIDA);
 		partida.add(desistirDaPartida);
 		
-		sair = new JMenuItem("Sair");
+		mudarLingua = new JMenuItem(this.resourceBundle.getString("MudarLingua"));
+		mudarLingua.setBackground(corDeFundo);
+		mudarLingua.addActionListener(tratadoraDeEvento);
+		mudarLingua.setActionCommand("mudarLingua");
+		menu.add(mudarLingua);
+		
+		sair = new JMenuItem(this.resourceBundle.getString("Sair"));
 		sair.setBackground(corDeFundo);
 		sair.addActionListener(tratadoraDeEvento);
 		sair.setActionCommand(Constante.SAIR);
@@ -170,13 +181,13 @@ public class TelaPrincipal extends JFrame {
 	
 	public String obterServidor() {
 		String idServidor = ("localhost");
-		idServidor = JOptionPane.showInputDialog(this, ("Insira o endereço do servidor"), idServidor);
+		idServidor = JOptionPane.showInputDialog(this, (this.resourceBundle.getString("pedirServidor")), idServidor);
 		return idServidor;
 	}
 
 	public String obterIdJogador() {
 		String idJogador = ("jogador");
-		idJogador = JOptionPane.showInputDialog(this, ("Insira o nome do jogador"));
+		idJogador = JOptionPane.showInputDialog(this, (this.resourceBundle.getString("pedirNome")));
 		return idJogador;
 	}
 	
@@ -192,6 +203,7 @@ public class TelaPrincipal extends JFrame {
 				case Constante.DESCONECTAR: desconectar(); break;
 				case Constante.INICIAR_NOVA_PARTIDA: iniciarNovaPartida(); break;
 				case Constante.DESISTIR_DA_PARTIDA: desistirPartida(); break;
+				case "mudarLingua": mudarLingua(); break;
 				case Constante.SAIR: sair(); break;
 //				case Constante.AJUDA: ajuda(); break;
 			}
@@ -203,5 +215,18 @@ public class TelaPrincipal extends JFrame {
 		add(jogo);
 		jogo.setBounds(100, 15, 1100, 700);
 		
+	}
+	
+	public void mudarLingua() {
+		String[] idiomas = {"Portugês-BR", "English-US"};
+		int lingua = JOptionPane.showOptionDialog(this, this.resourceBundle.getString("escolhaIdioma"), this.resourceBundle.getString("MudarLingua"),JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, idiomas, null);
+		new GameLocale().setLocale(lingua == 1 ? new Locale("en", "US") : new Locale("pt", "BR"));
+		this.resourceBundle = ResourceBundle.getBundle("resources.ArquivoMensagens", GameLocale.locale);
+		carregarMenu();
+		pack();
+		
+		if(this.jogo != null) {
+			this.jogo.mudarLingua();
+		}
 	}
 }

@@ -1,6 +1,7 @@
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
+import java.util.ResourceBundle;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -8,8 +9,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 public class InterfaceMao extends JPanel{
+	
+	protected ResourceBundle resourceBundle;
 
 	public InterfaceMao(Mao mao, boolean jogadorPrincipal) {
+		
+		this.resourceBundle = resourceBundle.getBundle("resources.ArquivoMensagens", GameLocale.locale);
+		
 		setPreferredSize (new Dimension(1000, 150));
 		setLayout(null);
 		
@@ -18,7 +24,7 @@ public class InterfaceMao extends JPanel{
 				JLabel carta = new JLabel();
 				add(carta);
 				carta.setBounds(0 + (i * 60), 20, 50, 85);
-				Image iconVerso = new ImageIcon(mao.getCarta(i).urlImagem()).getImage()
+				Image iconVerso = new ImageIcon(this.resourceBundle.getString("prefixoImagens") + mao.getCarta(i).urlImagem()).getImage()
 						.getScaledInstance(carta.getWidth(), carta.getHeight(), Image.SCALE_SMOOTH);
 				ImageIcon imageIcon = new ImageIcon(iconVerso);
 				carta.setIcon(imageIcon);
@@ -45,12 +51,16 @@ public class InterfaceMao extends JPanel{
 				JLabel versoCarta = new JLabel();
 				add(versoCarta);
 				versoCarta.setBounds(0 + (i * 60), 0, 50, 85);
-				Image iconVerso = new ImageIcon("imagens/verso2.jpg").getImage()
+				Image iconVerso = new ImageIcon("Codigo/imagens/verso2.jpg").getImage()
 						.getScaledInstance(versoCarta.getWidth(), versoCarta.getHeight(), Image.SCALE_SMOOTH);
 				ImageIcon imageIcon = new ImageIcon(iconVerso);
 				versoCarta.setIcon(imageIcon);
 			}
 		}
+	}
+	
+	public void mudarIdioma() {
+		this.resourceBundle = resourceBundle.getBundle("resources.ArquivoMensagens", GameLocale.locale);
 	}
 
 }

@@ -131,4 +131,8 @@ public class AtorJogador {
 		
 	}
 	
+	public void mudarIdioma() {
+		if(mesa != null) this.mesa.mudarIdioma();
+	}
+	
 }
