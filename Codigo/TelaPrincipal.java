@@ -218,7 +218,7 @@ public class TelaPrincipal extends JFrame {
 	}
 	
 	public void mudarLingua() {
-		String[] idiomas = {"Portugês-BR", "English-US"};
+		String[] idiomas = {"Português-BR", "English-US"};
 		int lingua = JOptionPane.showOptionDialog(this, this.resourceBundle.getString("escolhaIdioma"), this.resourceBundle.getString("MudarLingua"),JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, idiomas, null);
 		new GameLocale().setLocale(lingua == 1 ? new Locale("en", "US") : new Locale("pt", "BR"));
 		this.resourceBundle = ResourceBundle.getBundle("resources.ArquivoMensagens", GameLocale.locale);
