@@ -1,5 +1,7 @@
 
 
+import java.util.ResourceBundle;
+
 import javax.swing.JOptionPane;
 
 import br.ufsc.inf.leobr.cliente.Jogada;
@@ -21,9 +23,14 @@ public class AtorNetgames implements OuvidorProxy {
 	
 	private boolean ehMinhaVez = false;
 	
+	protected ResourceBundle resourceBundle;
+
+	
 	
 	public AtorNetgames(AtorJogador atorJogador) {
 		//super();
+		this.resourceBundle = resourceBundle.getBundle("resources.ArquivoMensagens", GameLocale.locale);
+
 		this.atorJogador = atorJogador;
 		proxy = Proxy.getInstance();
 		proxy.addOuvinte(this); // para ouvir o Proxy, receber jogada do outro jogador
@@ -42,11 +49,24 @@ public class AtorNetgames implements OuvidorProxy {
 			System.out.println("conectou");
 			
 		} catch (JahConectadoException e) {
-			JOptionPane.showMessageDialog(atorJogador.getTela(), e.getMessage());
+			if(resourceBundle.getLocale().getCountry().equalsIgnoreCase("BR")) {
+				JOptionPane.showMessageDialog(atorJogador.getTela(), e.getMessage());	
+			} else {
+				JOptionPane.showMessageDialog(atorJogador.getTela(), resourceBundle.getString("JahConectadoException"));
+			}
+			
 		} catch (NaoPossivelConectarException e) {
-			JOptionPane.showMessageDialog(atorJogador.getTela(), e.getMessage());
+			if(resourceBundle.getLocale().getCountry().equalsIgnoreCase("BR")) {
+				JOptionPane.showMessageDialog(atorJogador.getTela(), e.getMessage());
+			} else {
+				JOptionPane.showMessageDialog(atorJogador.getTela(), resourceBundle.getString("NaoPossivelConectarException"));
+			}
 		} catch (ArquivoMultiplayerException e) {
-			JOptionPane.showMessageDialog(atorJogador.getTela(), e.getMessage());
+			if(resourceBundle.getLocale().getCountry().equalsIgnoreCase("BR")) {
+				JOptionPane.showMessageDialog(atorJogador.getTela(), e.getMessage());
+			} else {
+				JOptionPane.showMessageDialog(atorJogador.getTela(), resourceBundle.getString("ArquivoMultiplayerException"));
+			}
 		}
 	}
 	
@@ -58,7 +78,11 @@ public class AtorNetgames implements OuvidorProxy {
 			proxy.iniciarPartida(2); // solicita ao servidor; servidor manda msg para cada jogador, via metodo inicarNovaPartida
 			System.out.println("criou sala para 2 jogadores");
 		} catch (NaoConectadoException e) {
-			JOptionPane.showMessageDialog(atorJogador.getTela(), e.getMessage());
+			if(resourceBundle.getLocale().getCountry().equalsIgnoreCase("BR")) {
+				JOptionPane.showMessageDialog(atorJogador.getTela(), e.getMessage());
+			} else {
+				JOptionPane.showMessageDialog(atorJogador.getTela(), resourceBundle.getString("NaoConectadoException"));
+			}
 		}
 	}
 	
@@ -90,8 +114,11 @@ public class AtorNetgames implements OuvidorProxy {
 			ehMinhaVez = false; // apos jogar, nao eh mais sua vez
 			System.out.println("enviou jogada");
 		} catch (NaoJogandoException e) {
-			JOptionPane.showMessageDialog(atorJogador.getTela(), e.getMessage());
-
+			if(resourceBundle.getLocale().getCountry().equalsIgnoreCase("BR")) {
+				JOptionPane.showMessageDialog(atorJogador.getTela(), e.getMessage());
+			} else {
+				JOptionPane.showMessageDialog(atorJogador.getTela(), resourceBundle.getString("NaoJogandoException"));
+			}
 		}
 	}
 	
@@ -108,7 +135,11 @@ public class AtorNetgames implements OuvidorProxy {
 		try {
 			proxy.desconectar();
 		} catch (NaoConectadoException e) {
-			JOptionPane.showMessageDialog(atorJogador.getTela(), e.getMessage());
+			if(resourceBundle.getLocale().getCountry().equalsIgnoreCase("BR")) {
+				JOptionPane.showMessageDialog(atorJogador.getTela(), e.getMessage());
+			} else {
+				JOptionPane.showMessageDialog(atorJogador.getTela(), resourceBundle.getString("NaoConectadoException"));
+			}
 
 		}
 	}
