@@ -14,7 +14,7 @@ public class InterfaceMao extends JPanel{
 
 	public InterfaceMao(Mao mao, boolean jogadorPrincipal) {
 		
-		this.resourceBundle = resourceBundle.getBundle("resources.ArquivoMensagens", GameLocale.locale);
+		this.resourceBundle = ResourceBundle.getBundle("resources.ArquivoMensagens", GameLocale.locale);
 		
 		setPreferredSize (new Dimension(1000, 150));
 		setLayout(null);
