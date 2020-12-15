@@ -1,11 +1,2 @@
 *.class
 CopiaClasses/
-/.classpath
-/.gitignore
-/.metadata/
-/.project
-/imagens/
-/jogoMultiPlayer.properties
-/ngnrtFramework.jar
-/resources/
-/servidor.jar
